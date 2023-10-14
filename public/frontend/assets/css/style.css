@@ -1,0 +1,1095 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@700&family=Roboto:wght@700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+  font-family: "Philosopher", sans-serif !important;
+  font-weight: 400;
+ 
+
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto
+}
+
+@media (min-width:576px) {
+  .container {
+      max-width: 540px
+  }
+}
+
+@media (min-width:768px) {
+  .container {
+      max-width: 720px
+  }
+}
+
+@media (min-width:992px) {
+  .container {
+      max-width: 960px
+  }
+}
+
+@media (min-width:1200px) {
+  .container {
+      max-width: 1200px
+  }
+}
+img {
+  max-width: 100%;
+  height: auto; }
+
+
+
+
+/*Topbar Section*/
+.topbar {
+  background-color: #0F0F41;
+  color: #ffffff;
+  padding: 8px 0 10px 0; }
+.topbar a {
+    color: #fff; }
+.topbar a:hover {
+      color: #FF9822; }
+.topbar .contact-info {
+    text-align: right; }
+.topbar .contact-info li {
+      display: inline-block;
+      list-style: none;
+      margin-right: 10px; }
+.topbar .contact-info i {
+      color: #FF9822;}
+  .topbar.black {
+    background-color: #333; }
+
+ul.social-icons {
+    float: right;
+  list-style: none;
+  padding: 0;
+  margin: -5px;
+  display: inline-block; }
+  ul.social-icons li {
+    display: inline-block;
+    margin: 5px 12px; }
+
+
+
+/*header area styles*/
+
+
+
+
+.navbar {
+    padding: 0;
+}
+
+header {
+    position: sticky;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    border-bottom: 1px solid #ddd;
+    background: #000338;
+    transition: .5s;
+}
+
+
+
+.menu-area > ul {
+    margin: 11px 0;
+    padding: 0;
+}
+
+.menu-area > ul > li {
+    list-style: none;
+    display: inline-block;
+}
+
+.menu-area ul li a {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.dropdown-menu1 ul li a .fa {
+    margin-right: 10px;
+}
+
+.menu-area > ul > li > a {
+  text-decoration: none;
+  color: #fff;
+  padding: 0px 15px;
+  display: block;
+  transition: .5s;
+  text-transform: capitalize;
+  font-size: 16px;
+}
+
+.menu-area ul li a:hover {
+    color: #FD9722;
+}
+
+.logo-image {
+    margin-top: 15px;
+}
+
+.menu-active {
+    color: brown !important;
+}
+
+.dropdown-menu1 {
+    position: absolute;
+    background: #fff;
+    width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: 0.4s;
+    box-shadow: var(--shadow);
+    border-top: var(--border);
+    top:45px;
+}
+
+.dm-software {
+    width: 630px;
+}
+
+.dropdown-menu1 ul {
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-menu1 ul li {
+    list-style: none;
+}
+
+.dropdown-menu1 ul li a {
+    text-decoration: none;
+    color: #817e7b;
+    padding: 7px 10px;
+    display: block;
+    padding: 10px;
+    transition: .4s;
+    text-transform: capitalize;
+}
+
+.dropdown-menu1 ul li a:hover {
+    background: var(--bd);
+    color: #FD9722;
+}
+
+.dd-btn1:hover .dropdown-menu1 {
+    opacity: 1;
+    visibility: visible;
+    transform: scaleY(1);
+}
+
+.dropdown-menu2 {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background: #fff;
+    width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: 0.4s;
+}
+
+
+.dd-btn2 {
+    position: relative;
+}
+
+.dd-btn2:hover .dropdown-menu2 {
+    opacity: 1;
+    visibility: visible;
+    transform: scaleY(1);
+}
+
+
+/*toggler css*/
+
+.menu-icon {
+    display: none;
+}
+
+.menu-icon {
+    float: right;
+}
+
+.menu-icon {
+    color: var(--tn);
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/*on scrolled css*/
+
+
+/*mobile menu styles*/
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100%;
+    background: #fdfdfd;
+    transition: .3s;
+    z-index: 9999;
+    border-right: 1px solid #ddd;
+    overflow: scroll;
+}
+
+.mobile-menu-active {
+    left: 0;
+}
+
+.mm-logo {
+    border-bottom: 1px solid #ddd;
+}
+
+.mm-logo .logo {
+    width: 130px;
+    padding: 10px 15px;
+}
+
+.menu-link a {
+    display: block;
+    padding: 10px 15px;
+    color: var(--tm);
+    border-bottom: 1px solid #ddd;
+    transition: .3s;
+    font-family: var(--fl);
+    text-decoration: none;
+}
+
+.mobile-menu a .fa {
+    color: var(--tn);
+}
+
+.menu-link a .fa-plus {
+    float: right;
+    margin-top: 5px;
+
+
+}
+
+.menu-link a .fa-minus {
+    float: right;
+    margin-top: 5px;
+
+}
+
+.menu-body ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-body ul li {
+    border-bottom: 1px solid #ddd;
+}
+
+.menu-body .card-body {
+    padding: 0;
+    background: #fafafa;
+}
+
+.menu-body ul li a {
+    padding: 10px 10px;
+    display: block;
+    color: var(--tm);
+    text-decoration: none;
+    font-family: var(--fl);
+}
+
+.mm-logo {
+    position: relative;
+}
+
+.mm-cross-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.mm-cross-icon .fa {
+    font-size: 20px;
+    color: var(--ttm);
+}
+
+.mm-ci {
+    cursor: pointer;
+}
+
+/***************** *********************
+         slider area styles
+****************** ********************/
+
+.showcase .carousel-item {
+  height: 70vh;
+}
+
+.showcase .carousel-img-1 {
+  background: url(../images/slideshow/img1.jpg);
+  background-size: cover;
+  background-position: center center;
+}
+
+.showcase .carousel-img-2 {
+  background: url(../images/slideshow/img2.jpg);
+  background-size: cover;
+  background-position: center center;
+}
+
+.showcase .carousel-img-3 {
+  background: url(../images/slideshow/Sail-Away.jpg);
+  background-size: cover;
+  background-position: center center;
+}
+
+.showcase .carousel-indicators li {
+  height: 4px;
+  width: 30px;
+  border-radius: 5px;
+  color: #E30613;
+  background: rgba(182, 15, 15, 0.568);
+  cursor: pointer;
+}
+
+.showcase .carousel-indicators .active {
+  background: #E30613;
+}
+
+.showcase .slider-control {
+  font-size: 50px;
+}
+
+
+
+.showcase .carousel-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-size: 100% 100%;
+  background-position: center;
+
+}
+
+/* End slider area  */
+
+.text-section h2 {
+  font-size: 45px; }
+.text-section h3 {
+  font-size: 27px;
+  line-height: 50px;
+  position: relative; 
+margin-top: -20px;
+font-family: 'Philosopher', sans-serif;
+
+}
+
+.text-section p {
+    font-size: 20px;
+    text-align: justify;
+    line-height: 30px;
+    color: #737373;
+    margin-bottom: 25px;
+    font-family: open-sans;
+}
+.text-section .btn-about {
+  background: #ff8339;
+  padding: 12px 25px;
+  color: #fff;
+  font-size: 17px;
+  border-radius: 5px;
+  box-shadow: 3px 7px 30px 0px #d2d2d2;
+}
+.text-section .btn-about:hover{
+  background: #016AD9;
+  text-decoration: none;
+}
+
+/*Header Logo and button Section*/
+.button-section{
+    float: right;
+}
+.button-section a {
+    display: inline-block;
+    color: #fff;
+    background: #000338;
+    padding: 10px 10px;
+    margin-top: 90px;
+    font-size: 20px;
+    text-transform: uppercase;
+    transition: 0.4s;
+    font-family: normal;
+    text-decoration: none;
+}
+.button-section a:hover{
+    background: #fff;
+    border: 2px solid #000338;
+    color: #000338;
+}
+/*End Header Logo and buttton Section*/
+
+/*Start rahmania-aziz-seciton*/
+.rahmania-aziz-seciton{
+    margin: 30px 0;
+    padding: 30px 0;
+}
+
+/*Start exprience-seciton*/
+.exprience-seciton {}
+
+.exprience-content {
+    
+    background: linear-gradient(rgba(246, 250, 246, 0.472),rgba(231, 235, 231, 0.445)),url(../images/patterns/pattern-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 20px 24px;
+    transition: 0.4s;
+}
+.exprience-content:hover{
+    background: linear-gradient(rgba(64, 237, 64, 0.787),rgba(47, 185, 47, 0.575)),url(../images/patterns/pattern-bg.jpg);
+   
+    
+}
+.exprience-content:hover .fa{
+    background:#fff; 
+}.exprience-content:hover h3{
+    color: #fff;
+}.exprience-content:hover p{
+    color: #fff;
+}.exprience-content:hover a{
+    color: #fff;
+}
+
+.exprience-content .fa {
+    color: #2EA249;
+    font-size:60px;
+    /*background: #FEB82C;*/
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    padding-top: 20px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    transition: 0.4s;
+}
+
+.exprience-content h3 {
+    color: #000;
+    font-size: 25px;
+    margin-bottom: 18px;
+    line-height: 35px;
+    transition: 0.4s;
+    text-transform: capitalize;
+    font-weight: 600;
+  
+}
+
+.exprience-content p {
+    color: #000;
+    line-height: 25px;
+    font-size: 17px;
+    transition: 0.4s;
+}
+
+.exprience-content a{
+    display: inline-block;
+    color: #000;
+    line-height: 32px;
+    font-size: 20px;
+    transition: 0.4s;
+    text-decoration: underline;
+    
+}
+
+
+
+/*Start Course time section------------------------------------------------*/
+
+/*----------------------------------------------------------------------- 
+Start of features section
+-------------------------------------------------------------------------*/
+.features-section{
+    margin: 50px 0;
+}
+.features-icon i {
+    color: #000338;
+	font-size: 52px;
+	transition: .3s all ease-in-out;
+	position: relative;
+	z-index: 1;
+
+}
+.features-text-title h3 {
+    font-size: 19px;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+}
+.features-text-title a{
+    color: #000338;
+    text-decoration: none;
+}
+.features-icon {
+	height: 120px;
+	width: 120px;
+	margin: 0 auto;
+	line-height: 160px;
+	border-radius: 100%;
+	overflow: hidden;
+	position: relative;
+	-webkit-box-shadow: 0px 5px 30px -9px rgba(238, 9, 121,0.75);
+	-moz-box-shadow: 0px 5px 30px -9px rgba(238, 9, 121,0.75);
+	box-shadow: 0px 5px 30px -9px rgba(238, 9, 121,0.75);
+    margin-bottom: 30px;
+}
+.features-icon:after,
+.extra-features-section .extra-left .features-icon:after,
+.extra-features-section .extra-right .features-icon:after {
+	position: absolute;
+	content: '';
+	border-radius: 100%;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	opacity: 0;
+	transition: .3s all ease-in-out;
+	transform: scale(.5);
+}
+.features-icon:after,
+.extra-features-section .extra-left .features-icon:after,
+.extra-features-section .extra-right .features-icon:after  {
+    background: #FDC800;
+
+}
+.features-text-dec {
+	max-width: 350px;
+	margin: 0 auto;
+	overflow: hidden;
+    margin-bottom: 40px;
+}
+.features-text-icon:hover .features-icon:after,
+.extra-icon-text:hover .features-icon:after {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.extra-icon-text {
+	position: relative;
+}
+.feature-btn-section a {
+    display: inline-block;
+    text-decoration: none;
+    border: 2px solid #FDC800;
+    padding: 6px 17px;
+    font-size: 20px;
+    color: #FDC800;
+    text-transform: uppercase;
+    transition: 0.4s;
+}
+.feature-btn-section a:hover{
+    color: #fff;
+    background: #FDC800;
+}
+/*----------------------------------------------------------------------- 
+End of features section
+-------------------------------------------------------------------------*/
+
+
+
+
+/*Beautiful Campus Section*/
+.campus-section{
+    margin: 20px 0;
+}
+/*End Beautiful Campus Section*/
+
+/*Why to Choose Section*/
+.whychoose{
+    margin: 50px;
+}
+.img-text-section img {
+    margin-bottom: 25px;
+    width: 90px;
+    height: 80px;
+}
+.choose-text h3 {
+    font-size: 23px;
+    text-transform: capitalize;
+    color: #000338;
+}
+.img-text-section {
+    padding: 57px 10px;
+}
+.img-text-section:hover{
+   box-shadow: 4px 5px 20px 0px;
+}.img-text-section:hover h3{
+   
+    color: #FF9824;
+    
+}.img-text-section:hover{
+   
+    border-bottom: 3px solid #FF9824;
+}
+.whychoose{}
+/*End Why to Choose Section*/
+
+/*The Pillars of Islam Section*/
+.pillars-islam{
+    margin: 50px 0;
+    /*background:url(../images/bg/parallax-bg.png);*/
+     background:linear-gradient(rgba(23, 24, 25, 0.49), rgba(23, 24, 25, 0.49)),url(../images/bg/parallax-bg.png);
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+    
+}
+.pillars-text-section h3{
+    color: #fff;
+    font-size: 25px;
+    margin-top: 20px;
+    text-transform: capitalize;
+}
+.pillars-text-section p{
+    color: #fff;
+}
+.col-sec{
+    
+    width: 20%;
+    padding: 0 15px;
+    margin:38px 0;
+    float: left;
+    
+}
+.roted-sec{
+    height: 150px;
+    width: 150px;
+    border: 3px solid #0D7523;
+    transform: rotate(145deg);
+    position: relative;
+    transition: 0.5s;
+}
+.pillars-sec{
+     height: 150px;
+    width: 150px;
+    border: 3px solid #0D7523;
+    background: #E0E9E4;
+    position: absolute;
+   margin-top: -150px;
+    transition: 0.5s;
+    
+}
+.col-sec:hover .roted-sec{
+    transform: rotate(0deg);
+}.col-sec:hover .pillars-sec{
+    transform: rotate(145deg);
+}
+.pillars-dec {
+    margin-top: 40px;
+    margin-right: 70px;
+}
+.pillars-dec h4 {
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 25px;
+}
+.pillars-dec span{color: #0D7523;text-transform: uppercase;}
+/*End The Pillars of Islam Section*/
+
+
+/*Start Audio Section*/
+.audiolaibary-section{
+    margin: 25px 0;
+}
+.audio-text{
+    margin-bottom: 10px;
+}
+.audio-text h5{color: orange;}
+.audio-text h2{}
+
+.card-detles {
+    background: #fff;
+    box-shadow: 2px 5px 12px 0px;
+}
+.cardimg-section{
+     background:rgba(49, 48, 47, 0.58);
+    position: relative;
+}
+.cardimg-section img{
+   position: relative;
+   width: 100%;
+   
+}
+
+.play-icon{
+  position: absolute;
+    left: 50%;
+	top: 42%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+    z-index: 1;
+    font-size: 45px;
+    transition: 0.3s;
+    color: #fff;
+    font-weight: normal;
+    
+}
+.play-icon a:hover{
+     color: #FE9723;
+}
+.card-text{
+    margin: 20px 0;
+    padding: 15px;
+}
+.card-text h3 {
+    font-size: 17px;
+    margin-bottom: 10px;
+    color: #000;
+    font-weight: 600!important;
+}
+
+.icon-left .fa,.latest-detls .fa{
+    color: #FE9723;
+}
+.icon-right{
+    float: right;
+}
+.icon-right a {
+    color: #413f3f;
+    margin-right: 8px;
+    font-size: 17px;
+}
+.icon-right a:hover{
+    color: #FE9723;
+}
+
+
+/* .audio-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+} */
+.audio-btn a {
+    display: inline-block;
+    padding: 10px 10px;
+    background: #FF9822;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 3px;
+    box-shadow: #a09e9e 2px 5px 12px 0px;
+}
+/*End Audio Section*/
+
+/*Lates News Section*/
+.card-detles{
+    overflow: hidden;
+}
+.cardnewsimg-section img{
+    transition: 0.4s;
+   
+}
+.card-detles:hover .cardnewsimg-section img{
+    transform: scale(1.2);
+}
+.latest-detls{}
+.latest-detls h3{}
+.latest-detls .fa{}
+.latest-detls p{}
+/*End Lates News Section*/
+
+
+/* Start Nikha page design */
+
+.nikha-banner{
+  background-image: url(../images/others-pase/nikah-img1.png);
+  background-size: 100% 100%;
+  height: 70vh;
+}
+
+/* nikah-dtls-one */
+
+.nikah-dtls-one{
+  margin: 30px 0;
+}
+.mb-3{margin-bottom: 30px;}
+.mb-3 h4{
+  font-style: italic;
+  margin-bottom: 10px;
+  font-family: "Philosopher", sans-serif !important;
+  color: #000;
+}
+.dtls-one-left p{
+  font-family: open-sans;
+  color: #555;
+  font-size: 18px;
+}
+
+.Procedure-title{}
+.Procedure-title h2{
+  font-size: 40px;
+  font-family: "Philosopher", sans-serif !important;
+  color: #000;
+}
+.nikah-list-left{
+  padding-left: 30px;
+}
+.nikah-list-left li{
+  font-family: open-sans;
+  color: #666;
+  font-size: 20px;
+  line-height: 30px;
+}
+.nikah-second-dtls{
+  font-family: open-sans;
+  color: #666;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+/* End Nikha page design */
+
+/* Start daily-jumuah-prayar */
+.daily-jumuah{
+  background-image: url(../images/others-pase/daily-jumuah-prayar-img1.png);
+  background-size: 100% 100%;
+  height: 70vh;
+  background-repeat: no-repeat;
+}
+
+.daily-dtls{
+  margin: 80px 0;
+  padding: 20px 0;
+}
+.daily-jumuah-imgdtls{}
+.daily-jumuah-imgdtls h2{
+  font-size: 40px;
+  font-family: "Philosopher", sans-serif !important;
+  color: #000;
+}
+.daily-jumuah-imgdtls p{
+  margin: 20px 0 0;
+  direction: ltr;
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: justify;
+  padding-right: 15px;
+  font-family: open-sans;
+}
+
+.listen-btn{
+  position: relative;
+  margin: 50px 0;
+}
+.btn-btn-listen {
+  padding: 10px 40px;
+  background-color: #0F0F41;
+  color: #fff !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  transition: all 0.4s ease;
+  border-radius: 6px;
+  font-family: open-sans;
+}
+.btn-btn-listen:hover{
+  background-color: #5E2C01;
+  color: #fff;
+}
+
+/* end daily-jumuah-prayar */
+
+/* quran-tafsir */
+.quran-tafsir-bg{
+  background-image: url(../images/others-pase/quran-tafsir-img1.png);
+  background-size: 100% 100%;
+  height: 70vh;
+  background-repeat: no-repeat;
+}
+.mt-30{
+  margin-top: 50px;
+}
+/* Ramadan */
+.ramadan-bg{
+  background-image: url(../images/others-pase/ramadan-img1.png);
+  background-size: 100% 100%;
+  height: 70vh;
+  background-repeat: no-repeat;
+}
+
+/*Start Footer Section*/
+.footer-section{
+   padding: 50px 0;
+    margin-top: 50px 0;
+    background: #032926;
+}
+.ft-bg-image{
+     background: url(../images/bg/footer-btm-bannner.png);
+    background: linear-gradient( rgba(3, 33, 30, 0.25));
+    background-position:center;
+    background-repeat: no-repeat;
+ 
+}
+.ft-bg-image{
+    
+}
+
+.ft-para{}
+.ft-para h5{
+    line-height: 20px;
+}
+.ft-logo {
+    margin-bottom: 55px;
+}
+
+.ft-title{}
+.ft-title h2 {
+    font-size: 25px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+.ft-para ul{margin: 0; padding: 0;}
+.child-para{
+     margin-left: 10px;
+} 
+.ft-para ul li, .child-para li {
+    list-style: none;
+    border-bottom: 1px dashed;
+    border-color: #fff;
+    width: 148px;
+    line-height: 30px;
+    color: #BFC7C6;
+    margin-bottom: 8px;
+}
+.ft-para ul li:last-child{
+    border-bottom:none;
+}
+.ft-para ul li a, .child-para li a{
+    color: #BFC7C6;
+    text-decoration: none;
+    transition: 0.3s;
+    display:block;
+}.ft-para ul li a:hover{
+    color: #FF8824;
+   
+} 
+
+/*End Footer Section*/
+
+
+/*-----------------------------------------------*/
+
+
+.text-section h4 {
+  font-size: 28px;
+  line-height: 32px; }
+.text-section h5 {
+  font-size: 18px;
+  letter-spacing: 1px; }
+
+.text-section.white {
+  color: #fff; }
+  .text-section.white h2, .text-section.white h3, .text-section.white h4, .text-section.white h5, .text-section.white a {
+    color: #fff; }
+  .text-section.white a:hover {
+    color: #fe4157; }
+.text-section h2 span, .text-section h3 span, .text-section h4 span, .text-section h5 span, .text-section p span, .text-section a span {
+  color: #FF9822; }
+
+.text-section-2 h4 {
+  margin-bottom: 20px; }
+.text-section-2 ul li i {
+  margin-right: 10px; }
+
+
+
+/*Start Footer Section*/
+.copyright-section {
+  background: #003131;
+  color: #dddddd;
+ 
+  padding: 20px 0px 15px 0; }
+  .copyright-section .copyright-text p {
+    color: #9b9b9b; }
+.copyright-text a {
+    color: #9b9b9b;
+    font-weight: 600; 
+}.copyright-text a:hover {
+    color: #fe4157;
+    font-weight: 600; 
+}
+
+.error-page {
+  text-align: center; }
+  .error-page h1 {
+    font-size: 120px;
+    margin-bottom: 40px;
+    color: #fff; }
+  .error-page h3 {
+    font-size: 60px;
+    color: #fff; }
+  .error-page p {
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #fff; }
+
+.back-to-top.reveal {
+  cursor: pointer;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -ms-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all .3s;
+  opacity: 30;
+  filter: alpha(opacity=3000); }
+  .back-to-top.reveal:focus, .back-to-top.reveal:active, .back-to-top.reveal:hover {
+    opacity: 100;
+    filter: alpha(opacity=10000); }
+
+.back-to-top {
+  position: fixed;
+  z-index: 1000;
+  right: 25px;
+  bottom: 15px;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 350ms;
+  -o-transition: opacity 350ms;
+  transition: opacity 350ms; }
+  .back-to-top i {
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    margin-top: -15px;
+    margin-left: -3px;
+    color: #ffffff; }
+/*End Start Footer Section*/
+
+
+
+

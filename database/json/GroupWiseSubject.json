@@ -1,0 +1,72 @@
+[
+    {
+        "name": "class 6",
+        "subjects": [
+            {
+                "name": "Bangle"
+            },
+            {
+                "name": "English"
+            },
+            {
+                "name": "Math"
+            }
+        ]
+    },
+    {
+        "name": "class 7",
+        "subjects": [
+            {
+                "name": "Bangle"
+            },
+            {
+                "name": "English"
+            },
+            {
+                "name": "Math"
+            }
+        ]
+    },
+    {
+        "name": "class 8",
+        "subjects": [
+            {
+                "name": "Bangle"
+            },
+            {
+                "name": "English"
+            },
+            {
+                "name": "Math"
+            }
+        ]
+    },
+    {
+        "name": "class 9",
+        "subjects": [
+            {
+                "name": "Bangle"
+            },
+            {
+                "name": "English"
+            },
+            {
+                "name": "Math"
+            }
+        ]
+    },
+    {
+        "name": "class 10",
+        "subjects": [
+            {
+                "name": "Bangle"
+            },
+            {
+                "name": "English"
+            },
+            {
+                "name": "Math"
+            }
+        ]
+    }
+]

@@ -1,0 +1,165 @@
+.user-dashboard {}
+
+.ud-sidebar {
+    background: #fff;
+    min-height: 100%;
+}
+
+.ud-account h5 {
+    background: #0670360d;
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+.ud-pp {
+    padding: 25px 0;
+}
+
+.ud-pp img {
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    padding: 2px;
+    box-shadow: 0px 0px 5px #ccc;
+}
+
+.ud-pp h5 {
+    background: #F05925;
+    margin: 0 20px;
+    color: #fff;
+    padding: 7px;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.ud-pp p {
+    margin-top: 10px;
+    font-weight: 500;
+    color: #F05925;
+    margin-bottom: 12px;
+    font-size: 18px;
+
+}
+
+.ud-nav {
+    padding-bottom: 40px;
+}
+
+.ud-nav a {
+    display: block;
+    padding: 7px 20px;
+    text-decoration: none;
+    transition: .3s;
+    border-left: 3px solid transparent;
+    color: #555;
+    font-size: 15px;
+}
+
+.ud-active {
+    border-left: 3px solid #2fbe04 !important;
+}
+
+.ud-nav a:hover {
+    border-left: 3px solid #2fbe04;
+    background: #0080000d;
+}
+
+.ud-content {
+    background: #fff;
+    transform: translateY(0);
+    padding: 20px;
+    min-height: 100%;
+}
+
+.ud-content-2 {
+    background: #fff;
+    transform: translateY(0);
+    padding: 30px;
+}
+
+.ud-title {
+    margin-bottom: 32px;
+    border-bottom: 2px solid #e4ece4;
+    padding-bottom: 15px;
+    font-weight: 400;
+}
+
+.borderless td,
+.borderless thead th {
+    border: none;
+    padding: 8px;
+    vertical-align: top;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 14px;
+}
+
+.borderless thead {
+    background: #f2f9f2;
+}
+
+.borderless.table > :not(:last-child) > :last-child > * {
+    border-bottom-color: #d8d8d8 !important;
+}
+
+.prof-info img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    padding: 2px;
+    max-width: inherit;
+}
+
+.prof-info a {
+    border-color: #f0f0f0;
+    background: #f0f0f0;
+    color: #333;
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 5px;
+}
+
+
+
+.prof-txt h5 {
+    margin-bottom: 13px;
+}
+
+.prof-txt span {
+    color: #777;
+    font-size: 14px;
+}
+
+.prof-txt p {
+    margin-bottom: 5px;
+}
+
+.prof-txt .prof-info-badge {
+    background: #2fbe04;
+    color: #fff;
+    padding: 1px 9px;
+    display: inline-block;
+    border-radius: 5px;
+    margin-bottom: 13px;
+}
+
+.ud-content .ud-content-title {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 12px;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.custom-badge {}
+
+.btn.btn-xs {
+    font-size: 12px;
+    line-height: 18px;
+    padding: 1px 5px;
+}

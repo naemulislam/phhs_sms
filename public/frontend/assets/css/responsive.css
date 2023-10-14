@@ -1,0 +1,141 @@
+@media all and (max-width: 1200px) {}
+
+@media all and (max-width: 1080px) {
+
+    .menu-icon {
+        display: block;
+        color: #fff;
+    }
+
+    .menu-area {
+        display: none;
+    }
+
+}
+
+@media (max-width: 1024px) {
+    .slider-section {
+        height: 70vh;
+    }
+}
+
+@media (max-width: 992px) {
+
+    /*LOgo Section*/
+    .button-section {
+        margin-bottom: 30px;
+    }
+
+    /*text and image section*/
+    .about-image {
+        margin-bottom: 30px;
+    }
+
+    /*Slider Sectoin*/
+    .slider-section {
+        height: 70vh;
+    }
+
+    .owl-carousel .owl-item img {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .slider-section {
+        height: 74vh;
+    }
+
+    .headertext> h1 {
+        font-size: 24px;
+        line-height: 32px;
+    }
+    .headertext-bangla> h1 {
+        font-size: 24px;
+        line-height: 32px;
+
+    }
+    /*Slider Sectoin*/
+    .owl-carousel .owl-item img {
+        height: 230px;
+    }
+
+    /*Satrt Exprience Section*/
+    .exprience-content {
+        margin-bottom: 20px;
+    }
+
+    /*End Exprience Section*/
+
+    /*feature section*/
+    .features-text-icon {
+        margin-bottom: 30px;
+    }
+
+    /*Why choose section*/
+    .img-text-section {
+        margin-bottom: 30px;
+    }
+
+
+    .about-image {
+
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .headertext>h1 {
+        font-size: 21px;
+        line-height: 27px;
+    }
+    .headertext-bangla> h1 {
+        font-size: 21px;
+        line-height: 27px;
+
+    }
+
+    .logoheader>img {
+        width: 70px;
+    }
+
+    .gov-logo {
+        display: none;
+    }
+    table {
+        display: block;
+        /* height: 200px; */
+        overflow-y: auto;
+      }
+      .slider-section {
+        height: 75vh;
+    }
+}
+
+@media (max-width: 320px) {
+    .slider-section {
+        height: 56vh;
+    }
+    .headertext>h1 {
+        color: #2fbe04;
+        font-size: 20px;
+        line-height: 10px;
+    }
+    .headertext-bangla> h1 {
+        color: #2fbe04;
+        font-size: 20px;
+        line-height: 25px;
+
+    }
+
+    .logoheader>img {
+        width: 56px;
+    }
+    /* principle info */
+    .heading-title> h3 {
+        font-size: 16px;
+    }
+    .owl-carousel .owl-item img {
+        height: 170px;
+    }
+}
