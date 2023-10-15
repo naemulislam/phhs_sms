@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
             GroupSeeder::class,
             MediaSeeder::class,
             UserSeeder::class,
-            StudentSeeder::class
+            StudentSeeder::class,
+            TeacherSeeder::class,
+            StaffSeeder::class
         ]);
     }
 }

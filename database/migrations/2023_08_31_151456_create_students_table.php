@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('absent_guardian')->nullable();
             $table->string('absent_guardian_nid')->nullable();
             $table->date('date_of_birth')->nullable();
-            $table->integer('birth_reg_no')->nullable();
+            $table->string('birth_reg_no')->nullable();
             $table->string('phone')->nullable();
             $table->string('religion')->nullable();
             $table->string('gender')->nullable();

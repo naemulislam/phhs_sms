@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Media;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,11 +19,12 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained();
             $table->foreignId('profile_id')->nullable()->constrained((new Media())->getTable());
             $table->string('designation');
-            $table->string('subject');
+            $table->foreignId('subject_id')->constrained((new Subject())->getTable());
             $table->string('shift')->nullable();
             $table->integer('pds');
+            $table->string('nid')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->date('join_date')->nullable();
-            $table->longText('address')->nullable();
             $table->timestamps();
         });
     }

@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('shift')->nullable();
             $table->integer('pds');
             $table->date('join_date')->nullable();
-            $table->longText('address')->nullable();
+            $table->string('nid')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->timestamps();
         });
     }
