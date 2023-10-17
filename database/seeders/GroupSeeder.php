@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Group;
+use App\Models\Media;
 use App\Models\Subject;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -24,9 +25,11 @@ class GroupSeeder extends Seeder
             ]);
             if(isset($group->subjects) && $group->subjects){
                 foreach($group->subjects as $subject){
+                    $code = mt_rand(100, 999);
                     Subject::create([
                         'name' => $subject->name,
-                        'group_id' => $groupId->id
+                        'group_id' => $groupId->id,
+                        'code' => $code
                     ]);
                 }
             }

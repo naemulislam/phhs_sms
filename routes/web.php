@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\GroupController;
+use App\Http\Controllers\Backend\SubjectController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\LoginController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Student\StudentController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,9 +71,28 @@ Route::controller(LoginController::class)->group(function(){
     Route::get('/user/logout', 'userLogout')->name('user.logout');
 });
 //School Dashboard
-Route::middleware(['auth', 'verified'])->group(function(){
-    Route::get('/school/portal/dashboard', [DashboardController::class,'dashboard'])->name('school.dashboard');
+Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function(){
+    Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('school.dashboard');
+    //Group Route
+    Route::controller(GroupController::class)->group(function(){
+        Route::get('/group','index')->name('group.index');
+        Route::post('/group/store','store')->name('group.store');
+        Route::put('/group/update/{group}','update')->name('group.update');
+        Route::get('/group/destroy/{group}','destroy')->name('group.destroy');
+        Route::post('/group/status/{group}','status')->name('group.status');
+    });
+    //subject Route
+    Route::controller(SubjectController::class)->group(function(){
+        Route::get('/subject','index')->name('subject.index');
+        Route::get('/subject/create','create')->name('subject.create');
+        Route::post('/subject/store','store')->name('subject.store');
+        Route::get('/subject/edit/{subject}','edit')->name('subject.edit');
+        Route::put('/subject/update/{subject}','update')->name('subject.update');
+        Route::get('/subject/destroy/{subject}','destroy')->name('subject.destroy');
+        Route::post('/subject/status/{subject}','status')->name('subject.status');
+    });
 });
+
 // Student Dashboard
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/student/dashboard', [StudentController::class,'dashboard'])->name('student.dashboard');
