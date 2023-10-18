@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\GroupController;
+use App\Http\Controllers\Backend\StudentController;
 use App\Http\Controllers\Backend\SubjectController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\LoginController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Student\StudentController;
+use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -91,11 +92,22 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         Route::get('/subject/destroy/{subject}','destroy')->name('subject.destroy');
         Route::post('/subject/status/{subject}','status')->name('subject.status');
     });
+    //Student Route
+    Route::controller(StudentController::class)->group(function(){
+        Route::get('/student','index')->name('student.index');
+        Route::get('/student/create','create')->name('student.create');
+        Route::post('/student/store','store')->name('student.store');
+        Route::get('/student/show/{student}','show')->name('student.show');
+        Route::get('/student/edit/{student}','edit')->name('student.edit');
+        Route::put('/student/update/{student}','update')->name('student.update');
+        Route::get('/student/destroy/{student}','destroy')->name('student.destroy');
+        Route::post('/student/status/{student}','status')->name('student.status');
+    });
 });
 
 // Student Dashboard
 Route::middleware(['auth', 'verified'])->group(function(){
-    Route::get('/student/dashboard', [StudentController::class,'dashboard'])->name('student.dashboard');
+    Route::get('/student/dashboard', [StudentDashboardController::class,'dashboard'])->name('student.dashboard');
 });
 // User Dashboard
 Route::middleware(['auth', 'verified'])->group(function(){

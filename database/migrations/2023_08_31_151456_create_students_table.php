@@ -18,10 +18,13 @@ return new class extends Migration
             $table->id();
             $table->string("applicant_name")->nullable();
             $table->foreignIdFor(User::class)->constrained();
+            $table->integer('roll')->nullable();
             $table->string('father_name')->nullable();
             $table->string('father_nid')->nullable();
+            $table->string('father_phone')->nullable();
             $table->string('mother_name')->nullable();
             $table->string('mother_nid')->nullable();
+            $table->string('mother_phone')->nullable();
             $table->string('absent_guardian')->nullable();
             $table->string('absent_guardian_nid')->nullable();
             $table->date('date_of_birth')->nullable();
@@ -32,9 +35,12 @@ return new class extends Migration
             $table->string('sibling')->nullable();
             $table->string('shift')->nullable();
             $table->string('quota')->nullable();
+            $table->string('type')->nullable();
+            $table->string('blood')->nullable();
             $table->foreignId('group_id')->nullable()->constrained((new Group())->getTable());
             $table->string('old_prev_school')->nullable();
             $table->foreignId('profile_id')->nullable()->constrained((new Media())->getTable());
+            $table->string('status')->default(1);
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->string('profile_id')->nullable();
+            $table->foreignId('profile_id')->nullable()->constrained((new Media())->getTable());
             $table->string('role')->nullable();
             $table->string('password')->nullable();
             $table->boolean('is_active')->default(true);
