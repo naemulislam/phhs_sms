@@ -80,35 +80,35 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
                                             <img style="width:70px ;"
-                                                src="@if (!empty($row->profile_id)) {{ asset($row->profile_id) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
-                                                alt="">
+                                                src="{{$row->image_id? $row->image->file: asset('defaults/noimage/no_img.jpg')}}" alt="">
                                         </td>
-                                        <td>{{ $row->name }}</td>
-                                        <td>Two</td>
-                                        <td>4</td>
+                                        <td>{{ $row->applicant_name }}</td>
+                                        <td>{{ $row->group->name }}</td>
+                                        <td>{{ $row->roll }}</td>
                                         <td>
-                                            @if ($row->is_active == 1)
+                                            @if ($row->user->is_active == 1)
                                                 <a href="#"
                                                     class="btn label label-lg label-light-success label-inline"
                                                     data-toggle="modal" data-target="#row_status_{{ $row->id }}">
                                                     Active</a>
-                                            @elseif($row->is_active == 0)
+                                            @elseif($row->user->is_active == 0)
                                                 <a href="#" class="btn label label-lg label-light-danger label-inline"
                                                     data-toggle="modal" data-target="#row_status_{{ $row->id }}">
-                                                    Panding</a>
+                                                    Inactive</a>
                                             @endif
                                         </td>
 
                                         <td class="d-flex">
                                             <a href="{{ route('student.show', $row->id) }}"
-                                                class="btn btn-icon btn-info btn-hover-primary btn-xs mx-3"><i
+                                                class="btn btn-icon btn-success btn-hover-primary btn-xs mx-3"><i
                                                     class="fa fa-eye"></i></a>
                                             <a href="{{ route('student.edit', $row->id) }}"
-                                                class="btn btn-icon btn-info btn-hover-primary btn-xs mx-3"><i
+                                                class="btn btn-icon btn-success btn-hover-primary btn-xs mx-3"><i
                                                     class="fa fa-edit"></i></a>
+                                                    <a id="delete" href="{{ route('student.destroy',$row->id)}}" class="btn btn-icon btn-danger btn-hover-primary btn-xs mx-3">
+                                                        <i class="fa fa-trash"></i>
                                         </td>
                                     </tr>
-
                                     <!--Row Status -->
                                     <div class="modal fade" id="row_status_{{ $row->id }}" tabindex="-1"
                                         role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -128,10 +128,10 @@
                                                             <label for="">Status</label>
                                                             <select name="status" class="form-control">
                                                                 <option value="1"
-                                                                    @if ($row->is_active == 1) selected @endif>Active
+                                                                    @if ($row->user->is_active == 1) selected @endif>Active
                                                                 </option>
                                                                 <option value="0"
-                                                                    @if ($row->is_active == 0) selected @endif>
+                                                                    @if ($row->user->is_active == 0) selected @endif>
                                                                     Inactive</option>
                                                             </select>
 

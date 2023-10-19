@@ -20,6 +20,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $guarded = ['id'];
+    public function address(){
+        return $this->hasOne(Address::class,'user_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

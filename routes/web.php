@@ -102,6 +102,7 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         Route::put('/student/update/{student}','update')->name('student.update');
         Route::get('/student/destroy/{student}','destroy')->name('student.destroy');
         Route::post('/student/status/{student}','status')->name('student.status');
+        Route::get('/student/id','studentId')->name('id.generate');
     });
 });
 

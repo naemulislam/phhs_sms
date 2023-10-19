@@ -39,7 +39,7 @@ return new class extends Migration
             $table->string('blood')->nullable();
             $table->foreignId('group_id')->nullable()->constrained((new Group())->getTable());
             $table->string('old_prev_school')->nullable();
-            $table->foreignId('profile_id')->nullable()->constrained((new Media())->getTable());
+            $table->foreignId('image_id')->nullable()->constrained((new Media())->getTable());
             $table->string('status')->default(1);
             $table->timestamps();
         });
