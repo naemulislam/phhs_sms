@@ -2,15 +2,7 @@
 @section('title', 'Student Details')
 @section('content')
     <style>
-        .profile-box>img {
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-            height: 164px;
-            width: 162px;
-            border: 3px solid #2fbe04;
-        }
-        .border{
-            border: 1px solid #000;
-        }
+
     </style>
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -61,7 +53,7 @@
                     <div class="card-body">
                         <div class="row mb-3">
                             <div class="col-md-3 mx-auto">
-                                <div class="profile-box">
+                                <div class="imageBox">
                                     <img src="@if (!empty($student->image_id)) {{ asset($student->image->file) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                         alt="">
                                 </div>

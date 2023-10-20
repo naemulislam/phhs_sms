@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Http\Requests\AdmissionRequest;
 use App\Models\Address;
-use App\Models\Student;
+use Illuminate\Http\Request;
 
 class AddressRepository extends Repository
 {
@@ -12,7 +12,7 @@ class AddressRepository extends Repository
     {
         return Address::class;
     }
-    public static function storeByRequest(AdmissionRequest $request, $userId)
+    public static function storeByRequest(Request $request, $userId)
     {
         $permanentVill = $request->permanent_vill;
         $permanentPost = $request->permanent_post;

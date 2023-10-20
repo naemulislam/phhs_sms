@@ -18,10 +18,12 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
             $table->foreignId('profile_id')->nullable()->constrained((new Media())->getTable());
-            $table->string('designation');
+            $table->string('designation')->nullable();
             $table->foreignId('subject_id')->constrained((new Subject())->getTable());
             $table->string('shift')->nullable();
-            $table->integer('pds');
+            $table->string('blood')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('religion')->nullable();
             $table->string('nid')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->date('join_date')->nullable();

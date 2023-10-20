@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\GroupController;
 use App\Http\Controllers\Backend\StudentController;
 use App\Http\Controllers\Backend\SubjectController;
+use App\Http\Controllers\Backend\TeacherController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\LoginController;
 use App\Http\Controllers\Frontend\UserController;
@@ -103,6 +104,18 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         Route::get('/student/destroy/{student}','destroy')->name('student.destroy');
         Route::post('/student/status/{student}','status')->name('student.status');
         Route::get('/student/id','studentId')->name('id.generate');
+    });
+    //Teacher Route
+    Route::controller(TeacherController::class)->group(function(){
+        Route::get('/teacher','index')->name('teacher.index');
+        Route::get('/teacher/create','create')->name('teacher.create');
+        Route::post('/teacher/store','store')->name('teacher.store');
+        Route::get('/teacher/show/{teacher}','show')->name('teacher.show');
+        Route::get('/teacher/edit/{teacher}','edit')->name('teacher.edit');
+        Route::put('/teacher/update/{teacher}','update')->name('teacher.update');
+        Route::get('/teacher/destroy/{teacher}','destroy')->name('teacher.destroy');
+        Route::post('/teacher/status/{teacher}','status')->name('teacher.status');
+        // Route::get('/student/id','studentId')->name('id.generate');
     });
 });
 

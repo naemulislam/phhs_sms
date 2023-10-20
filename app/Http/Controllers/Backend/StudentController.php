@@ -51,7 +51,6 @@ class StudentController extends Controller
     }
     public function show( Student $student)
     {
-        // $groups = GroupRepository::query()->where('is_active', true)->get();
         $address = AddressRepository::query()->where('user_id',$student->user->id)->first();
         return view('backend.dashboard.student.show_dtls', compact('student','address'));
     }
