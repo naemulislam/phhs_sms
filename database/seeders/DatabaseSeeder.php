@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             StudentSeeder::class,
             TeacherSeeder::class,
             StaffSeeder::class
+            // AddressSeeder::class
         ]);
     }
 }

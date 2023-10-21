@@ -17,7 +17,7 @@ class MediaFactory extends Factory
     public function definition(): array
     {
         return [
-            'src'=>'defaults/default.jpeg',
+            'src'=>'defaults/noimage/no_img.jpg',
             'path'=>'defaults/',
             'type'=>'image',
         ];

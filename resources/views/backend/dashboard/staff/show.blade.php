@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Teacher Details')
+@section('title', 'Staff Details')
 @section('content')
     <style>
 
@@ -14,7 +14,7 @@
                     <!--begin::Page Heading-->
                     <div class="d-flex align-items-baseline flex-wrap mr-5">
                         <!--begin::Page Title-->
-                        <h5 class="text-dark font-weight-bold my-1 mr-5">Teacher Information</h5>
+                        <h5 class="text-dark font-weight-bold my-1 mr-5">Staff Information</h5>
                         <!--end::Page Title-->
                     </div>
                     <!--end::Page Heading-->
@@ -27,18 +27,17 @@
         <div class="d-flex flex-column-fluid">
             <!--begin::Container-->
             <div class="container">
-
                 <!--begin::Card-->
                 <div class="card card-custom">
                     <div class="card-header flex-wrap py-5">
                         <div class="card-title">
-                            <h3 class="card-label">Teacher Details
+                            <h3 class="card-label">Staff Details
                                 <span class="d-block text-muted pt-2 font-size-sm">All details here</span>
                             </h3>
                         </div>
                         <div class="card-toolbar">
                             <!--begin::Button-->
-                            <a href="{{ route('teacher.index') }}" class="btn btn-primary btn-sm font-weight-bolder">
+                            <a href="{{ route('staff.index') }}" class="btn btn-primary btn-sm font-weight-bolder">
                                 < Back</a>
                                     <!--end::Button-->
                         </div>
@@ -47,46 +46,44 @@
                         <div class="row mb-3">
                             <div class="col-md-3 mx-auto">
                                 <div class="imageBox">
-                                    <img src="@if (!empty($teacher->profile_id)) {{ asset($teacher->image->file) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
+                                    <img src="@if (!empty($staff->profile_id)) {{ asset($staff->image->file) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                         alt="">
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <b class="col-sm-3">Teacher Name :</b>
-                            <b class="col-sm-8">{{ $teacher->user->name }}</b>
+                            <b class="col-sm-3">Staff Name :</b>
+                            <b class="col-sm-8">{{ $staff->user->name }}</b>
                             <b class="col-sm-3">Email :</b>
-                            <b class="col-sm-8">{{ $teacher->user->email }}</b>
+                            <b class="col-sm-8">{{ $staff->user->email }}</b>
                             <b class="col-sm-3">Phone :</b>
-                            <b class="col-sm-8">{{ $teacher->user->phone ?? 'N/A' }}</b>
-                            <b class="col-sm-3">Subject :</b>
-                            <b class="col-sm-8">{{ $teacher->subject->name}}</b>
+                            <b class="col-sm-8">{{ $staff->user->phone ?? 'N/A' }}</b>
                             <b class="col-sm-3">Designation :</b>
-                            <b class="col-sm-8">{{ $teacher->designation}}</b>
+                            <b class="col-sm-8">{{ $staff->designation}}</b>
                             <b class="col-sm-3">PDS ID No :</b>
-                            <b class="col-sm-8">{{ $teacher->user->pds_id}}</b>
+                            <b class="col-sm-8">{{ $staff->user->pds_id ?? 'N/A'}}</b>
                             <b class="col-sm-3">NID No :</b>
-                            <b class="col-sm-8">{{ $teacher->nid}}</b>
+                            <b class="col-sm-8">{{ $staff->nid ?? 'N/A'}}</b>
                             <b class="col-sm-3">Date Of Birth :</b>
-                            <b class="col-sm-8">{{ $teacher->date_of_birth ?? 'N/A' }}</b>
+                            <b class="col-sm-8">{{ $staff->date_of_birth ?? 'N/A' }}</b>
                             <b class="col-sm-3">Religion :</b>
-                            <b class="col-sm-8">{{ $teacher->religion ?? 'N/A'}}</b>
+                            <b class="col-sm-8">{{ $staff->religion ?? 'N/A'}}</b>
                             <b class="col-sm-3">Gender :</b>
                             <b class="col-sm-8">
-                                @if ($teacher->gender == 'mail')
+                                @if ($staff->gender == 'mail')
                                     Mail
-                                @elseif($teacher->gender == 'femail')
+                                @elseif($staff->gender == 'femail')
                                     Femail
                                 @else
                                     N/A
                                 @endif
                             </b>
                             <b class="col-sm-3">Join Date :</b>
-                            <b class="col-sm-8">{{ $teacher->join_date ?? 'N/A' }}</b>
+                            <b class="col-sm-8">{{ $staff->join_date ?? 'N/A' }}</b>
                             <b class="col-sm-3">Shift :</b>
-                            <b class="col-sm-8">{{ $teacher->shift ?? 'N/A' }}</b>
+                            <b class="col-sm-8">{{ $staff->shift ?? 'N/A' }}</b>
                             <b class="col-sm-3">Blood Group :</b>
-                            <b class="col-sm-8">{{ $teacher->blood ?? 'N/A' }}</b>
+                            <b class="col-sm-8">{{ $staff->blood ?? 'N/A' }}</b>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-5">
@@ -119,7 +116,7 @@
                         <div class="row">
                             <b class="col-sm-2">Account Status :</b>
                             <b class="col-sm-7">
-                                @if ($teacher->user->is_active == 1)
+                                @if ($staff->user->is_active == 1)
                                 <span class="btn btn-sm btn-success">Active</span>
                                 @else
                                 <span class="btn btn-sm btn-danger">Inactive</span>

@@ -31,7 +31,6 @@ class StudentController extends Controller
     public function studentId()
     {
         $studentId = random_int(100000, 999999);
-        // return $studentId;
         return response()->json([
             'message',
             'id' => $studentId
@@ -72,11 +71,11 @@ class StudentController extends Controller
     }
     public function destroy(Student $student)
     {
-        $user = UserRepository::query()->where('id', $student->user_id)->first();
-        $user->delete();
-        $address = AddressRepository::query()->where('user_id', $student->user_id)->first();
-        $address->delete();
+        $address = AddressRepository::query()->where('user_id', $student->user->id)->first();
         $student->delete();
+        $address->delete();
+        $student->user->delete();
+
         return back()->with('success', 'Student is deleted successfully!');
     }
 

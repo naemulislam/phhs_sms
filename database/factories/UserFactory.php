@@ -19,10 +19,14 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $studentId = random_int(100000, 999999);
+        $pdsId = random_int(100000, 999999);
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->phoneNumber(),
+            'student_id' => $studentId,
+            'pds_id' => $pdsId,
             'address' => $this->faker->address(),
             'profile_id' => Media::factory()->create(),
             'email_verified_at' => now(),

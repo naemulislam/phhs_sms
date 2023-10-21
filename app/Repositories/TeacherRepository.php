@@ -38,4 +38,40 @@ class TeacherRepository extends Repository
         return $create;
 
     }
+    public static function updateByRequest(TeacherRequest $request, Teacher $teacher){
+        $imageId = null;
+        if ($teacher->image) {
+            if ($request->hasFile('image')) {
+                $image = MediaRepository::updateByRequest(
+                    $request->image,
+                    self::$path,
+                    'image',
+                    $teacher->image
+                );
+                $imageId = $image->id;
+            }
+        }else{
+            if ($request->hasFile('image')) {
+                $image =  MediaRepository::storeByRequest(
+                    $request->image,
+                    self::$path,
+                    'image'
+                );
+                $imageId = $image->id;
+            }
+        }
+        $update = self::update($teacher,[
+            'profile_id' => $imageId ?? $teacher->profile_id,
+            'designation' => $request->designation,
+            'subject_id' => $request->subject_id,
+            'shift' => $request->shift,
+            'blood' => $request->blood,
+            'gender' => $request->gender,
+            'religion' => $request->religion,
+            'nid' => $request->nid,
+            'date_of_birth' => $request->date_of_birth,
+            'join_date' => $request->join_date,
+        ]);
+        return $update;
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\GroupController;
+use App\Http\Controllers\Backend\StaffController;
 use App\Http\Controllers\Backend\StudentController;
 use App\Http\Controllers\Backend\SubjectController;
 use App\Http\Controllers\Backend\TeacherController;
@@ -115,6 +116,17 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         Route::put('/teacher/update/{teacher}','update')->name('teacher.update');
         Route::get('/teacher/destroy/{teacher}','destroy')->name('teacher.destroy');
         Route::post('/teacher/status/{teacher}','status')->name('teacher.status');
+    });
+    //Staff Route
+    Route::controller(StaffController::class)->group(function(){
+        Route::get('/staff','index')->name('staff.index');
+        Route::get('/staff/create','create')->name('staff.create');
+        Route::post('/staff/store','store')->name('staff.store');
+        Route::get('/staff/show/{staff}','show')->name('staff.show');
+        Route::get('/staff/edit/{staff}','edit')->name('staff.edit');
+        Route::put('/staff/update/{staff}','update')->name('staff.update');
+        Route::get('/staff/destroy/{staff}','destroy')->name('staff.destroy');
+        Route::post('/staff/status/{staff}','status')->name('staff.status');
         // Route::get('/student/id','studentId')->name('id.generate');
     });
 });

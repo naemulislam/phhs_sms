@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Teacher list')
+@section('title', 'Staff list')
 @section('content')
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -11,7 +11,7 @@
                     <!--begin::Page Heading-->
                     <div class="d-flex align-items-baseline flex-wrap mr-5">
                         <!--begin::Page Title-->
-                        <h5 class="text-dark font-weight-bold my-1 mr-5">Teacher Active List</h5>
+                        <h5 class="text-dark font-weight-bold my-1 mr-5">Staff Active List</h5>
                         <!--end::Page Title-->
                     </div>
                     <!--end::Page Heading-->
@@ -28,13 +28,13 @@
                 <div class="card card-custom">
                     <div class="card-header flex-wrap py-5">
                         <div class="card-title">
-                            <h3 class="card-label">Teacher List
+                            <h3 class="card-label">Staff List
                                 <span class="d-block text-muted pt-2 font-size-sm">All teacher active here</span>
                             </h3>
                         </div>
                         <div class="card-toolbar">
                             <!--begin::Button-->
-                            <a href="{{ route('teacher.create') }}" class="btn btn-primary font-weight-bolder">
+                            <a href="{{ route('staff.create') }}" class="btn btn-primary font-weight-bolder">
                                 <span class="svg-icon svg-icon-md">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -48,7 +48,7 @@
                                         </g>
                                     </svg>
                                     <!--end::Svg Icon-->
-                                </span>Create New Teacher</a>
+                                </span>Create New Staff</a>
                             <!--end::Button-->
                         </div>
                     </div>
@@ -60,14 +60,14 @@
                                     <th>SL</th>
                                     <th>Photo</th>
                                     <th>Name</th>
-                                    <th>Subject</th>
                                     <th>Designation</th>
+                                    <th>Shift</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($teachers as $row)
+                                @foreach ($staffs as $row)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
@@ -75,8 +75,8 @@
                                                 src="{{$row->profile_id? $row->image->file: asset('defaults/noimage/no_img.jpg')}}" alt="">
                                         </td>
                                         <td>{{ $row->user->name }}</td>
-                                        <td>{{ $row->subject->name }}</td>
                                         <td>{{ $row->designation }}</td>
+                                        <td>{{ $row->shift }}</td>
                                         <td>
                                             @if ($row->user->is_active == 1)
                                                 <a href="#"
@@ -91,13 +91,13 @@
                                         </td>
 
                                         <td class="d-flex">
-                                            <a href="{{ route('teacher.show', $row->id) }}"
+                                            <a href="{{ route('staff.show', $row->id) }}"
                                                 class="btn btn-icon btn-success btn-hover-primary btn-xs mx-3"><i
                                                     class="fa fa-eye"></i></a>
-                                            <a href="{{ route('teacher.edit', $row->id) }}"
+                                            <a href="{{ route('staff.edit', $row->id) }}"
                                                 class="btn btn-icon btn-success btn-hover-primary btn-xs mx-3"><i
                                                     class="fa fa-edit"></i></a>
-                                                    <a id="delete" href="{{ route('teacher.destroy',$row->id)}}" class="btn btn-icon btn-danger btn-hover-primary btn-xs mx-3">
+                                                    <a id="delete" href="{{ route('staff.destroy',$row->id)}}" class="btn btn-icon btn-danger btn-hover-primary btn-xs mx-3">
                                                         <i class="fa fa-trash"></i>
                                         </td>
                                     </tr>
@@ -113,7 +113,7 @@
                                                         <i class="fa fa-close"></i>
                                                     </button>
                                                 </div>
-                                                <form action="{{ route('teacher.status', $row->id) }}" method="post">
+                                                <form action="{{ route('staff.status', $row->id) }}" method="post">
                                                     @csrf
                                                     <div class="modal-body">
                                                         <div class="form-group">

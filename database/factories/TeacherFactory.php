@@ -22,13 +22,13 @@ class TeacherFactory extends Factory
     {
         $user = $this->faker->randomElement(UserRepository::query()->where('role','teacher')->get());
         $subjects = $this->faker->randomElement(SubjectRepository::getAll());
-        $pdsId = mt_rand(10000, 999999);
+        $nid = mt_rand(1000000000, 9999999999);
         return [
             'user_id' => $user->id,
             'profile_id' => Media::factory()->create(),
             'designation' => 'Teacher',
             'subject_id' => $subjects->id,
-            'pds' => $pdsId,
+            'nid' => $nid,
             'shift' => 'Morning',
             'join_date' => $this->faker->date(),
         ];

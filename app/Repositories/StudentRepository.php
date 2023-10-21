@@ -53,23 +53,25 @@ class StudentRepository extends Repository
         return $create;
     }
     public static function updateByRequest(AdmissionRequest $request, Student $student){
+        $imageId = null;
         if ($student->image) {
             if ($request->hasFile('image')) {
-                $imageId = MediaRepository::updateByRequest(
+                $image = MediaRepository::updateByRequest(
                     $request->image,
                     self::$path,
                     'image',
                     $student->image
                 );
+                $imageId = $image->id;
             }
         }else{
-            $imageId = null;
             if ($request->hasFile('image')) {
-                $imageId =  MediaRepository::storeByRequest(
+                $image =  MediaRepository::storeByRequest(
                     $request->image,
                     self::$path,
                     'image'
                 );
+                $imageId = $image->id;
             }
         }
         $update = self::update($student,[
@@ -87,7 +89,7 @@ class StudentRepository extends Repository
             'type' => $request->type,
             'blood' => $request->blood,
             'phone' => $request->phone,
-            'image_id' => $imageId? $imageId->id: $student->image_id,
+            'image_id' => $imageId ?? $student->image_id,
             //Guardian Information
             'father_name' => $request->father_name,
             'father_phone' => $request->father_phone,

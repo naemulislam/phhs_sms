@@ -19,13 +19,13 @@ class StaffFactory extends Factory
     public function definition(): array
     {
         $user = $this->faker->randomElement(UserRepository::query()->where('role','staff')->get());
-        $pdsId = mt_rand(10000, 999999);
+        $nid = mt_rand(1000000000, 9999999999);
         return [
             'user_id' => $user->id,
             'profile_id' => Media::factory()->create(),
             'designation' => 'Staff',
-            'pds' => $pdsId,
             'shift' => 'Morning',
+            'nid' => $nid,
             'join_date' => $this->faker->date(),
         ];
     }

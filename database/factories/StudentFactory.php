@@ -24,7 +24,6 @@ class StudentFactory extends Factory
         $groups = $this->faker->randomElement(GroupRepository::getAll());
         $nid = mt_rand(10000, 9999999999);
         $birthRegNo = mt_rand(1000,9999999999);
-        // dd($students);
         return [
             'applicant_name'=> $this->faker->name(),
             'user_id' =>$students->id,
@@ -38,7 +37,7 @@ class StudentFactory extends Factory
             'religion' => 'Islam',
             'shift' => 'morning',
             'group_id' => $groups->id,
-            'profile_id' => Media::factory()->create(),
+            'image_id' => Media::factory()->create(),
         ];
     }
 }

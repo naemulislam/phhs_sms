@@ -38,7 +38,7 @@ class AddressRepository extends Repository
         ]);
         return $create;
     }
-    public static function updateByRequest(AdmissionRequest $request, $userId)
+    public static function updateByRequest(Request $request, $userId)
     {
         $address = self::query()->where('user_id', $userId)->first();
         $permanentVill = $request->permanent_vill;

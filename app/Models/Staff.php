@@ -9,4 +9,10 @@ class Staff extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    public function image(){
+        return $this->belongsTo(Media::class,'profile_id');
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

@@ -176,7 +176,8 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="">Designation</label>
+                                                <label for="">Designation <span
+                                                    class="text-danger">*</span></label>
                                                 <input type="tex" class="form-control" name="designation"
                                                     placeholder="Enter designation" value="{{ old('designation') }}">
                                                     @error('designation')
