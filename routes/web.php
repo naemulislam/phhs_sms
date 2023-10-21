@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\SubjectController;
 use App\Http\Controllers\Backend\TeacherController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\LoginController;
+use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
@@ -72,6 +73,10 @@ Route::controller(LoginController::class)->group(function(){
     Route::get('/user/login', 'userLogin')->name('user.login');
     Route::post('/user/login/store', 'userLoginStore')->name('userLogin.store');
     Route::get('/user/logout', 'userLogout')->name('user.logout');
+});
+Route::controller(RegisterController::class)->group(function(){
+    Route::post('/school/portal/register','portalRegister')->name('portal.register');
+    Route::post('/student/portal/register','studentRegister')->name('student.register');
 });
 //School Dashboard
 Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function(){

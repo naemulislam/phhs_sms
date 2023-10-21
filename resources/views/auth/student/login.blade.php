@@ -1,11 +1,10 @@
 @extends('auth.layout.master')
-@section('title','Student login')
+@section('title', 'Student login')
 @section('content')
     <!--begin::Main-->
     <div class="d-flex flex-column flex-root">
         <!--begin::Login-->
-        <div class="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white"
-            id="kt_login">
+        <div class="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white" id="kt_login">
             <!--begin::Aside-->
             <div class="login-aside d-flex flex-column flex-row-auto login-image" style="">
                 <!--begin::Aside Top-->
@@ -31,7 +30,7 @@
                     <!--begin::Signin-->
                     <div class="login-form login-signin">
                         <!--begin::Form-->
-                        <form action="{{ route('student.login')}}" method="POST" class="form" id="kt_login_signin_form">
+                        <form action="{{ route('student.login') }}" method="POST" class="form" id="kt_login_signin_form">
                             @csrf
                             <!--begin::Title-->
                             <div class="pb-13 pt-lg-0 pt-5">
@@ -43,11 +42,12 @@
                             <!--begin::Title-->
                             <!--begin::Form group-->
                             <div class="form-group">
-                                <label class="font-size-h6 font-weight-bolder text-dark">Email/Student Id</label>
-                                <input class="form-control form-control-solid h-auto py-6 px-6 rounded-lg"
-                                    type="email" name="email" placeholder="Enter your email or student id" />
-                                    <div style='color:red; padding: 0 5px;'>
-                                        {{ $errors->has('email') ? $errors->first('email') : '' }}</div>
+                                <label class="font-size-h6 font-weight-bolder text-dark">Student ID</label>
+                                <input class="form-control form-control-solid h-auto py-6 px-6 rounded-lg" type="number"
+                                    name="student_id" placeholder="Enter your student ID" />
+                                @error('student_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <!--end::Form group-->
                             <!--begin::Form group-->
@@ -58,10 +58,11 @@
                                         class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5"
                                         id="kt_login_forgot">Forgot Password ?</a>
                                 </div>
-                                <input class="form-control form-control-solid h-auto py-6 px-6 rounded-lg"
-                                    type="password" name="password" placeholder="Enter your password" />
-                                    <div style='color:red; padding: 0 5px;'>
-                                        {{ $errors->has('password') ? $errors->first('password') : '' }}</div>
+                                <input class="form-control form-control-solid h-auto py-6 px-6 rounded-lg" type="password"
+                                    name="password" placeholder="Enter your password" />
+                                @error('password')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <!--end::Form group-->
                             <!--begin::Action-->
@@ -79,67 +80,37 @@
                     <!--begin::Signup-->
                     <div class="login-form login-signup">
                         <!--begin::Form-->
-                        <form class="form" id="kt_login_signup_form">
-                            <!--begin::Title-->
+                        <form class="form" id="kt_login_signup_form" action="{{ route('student.register') }}"
+                            method="POST">
+                            @csrf
                             <div class="pb-13 pt-lg-0 pt-5">
-                                <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Sign Up As Student
-                                </h3>
-                                <p class="text-muted font-weight-bold font-size-h4">Enter your details to create your
-                                    account</p>
-                            </div>
-                            <!--end::Title-->
-                            <!--begin::Form group-->
-                            <div class="form-group">
-                                <label for="">Class<span class="text-danger">*</span></label>
-                                <select class="form-control" name="educlass">
-                                    <option>select your class</option>
-                                    <option>Calss-6</option>
-                                    <option>Calss-7</option>
-                                    <option>Calss-8</option>
-                                    <option>Calss-9</option>
-                                    <option>Calss-10</option>
-                                </select>
-                                <div style='color:red; padding: 0 5px;'>
-                                    {{ $errors->has('educlass') ? $errors->first('educlass') : '' }}</div>
-                            </div>
-                            <!--end::Form group-->
-                            <!--begin::Form group-->
-                            <div class="form-group">
-                                <label for="">Roll<span class="text-danger">*</span></label>
-                                <input class="form-control" type="number" placeholder="Type your roll" name="roll" />
-                                <div style="color:red;padding:0 5px;">
-                                    {{ $errors->has('roll') ? $errors->first('roll') : '' }}</div>
+                                <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Check your account</h3>
                             </div>
                             <div class="form-group">
-                                <label for="">Email (optional)</label>
-                                <input class="form-control" type="email" placeholder="Type your email" name="email" />
-                                <div style='color:red; padding: 0 5px;'>
-                                    {{ $errors->has('email') ? $errors->first('email') : '' }}</div>
+                                <label for="">Student ID<span class="text-danger">*</span></label>
+                                <input class="form-control" type="number" placeholder="type your student ID"
+                                    name="signup_student_id" />
+                                @error('signup_student_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-
                             <div class="form-group">
                                 <label for="">Password<span class="text-danger">*</span></label>
-                                <input class="form-control" type="password" placeholder="Password"
-                                    name="password" />
-                                <div style='color:red; padding: 0 5px;'>
-                                    {{ $errors->has('password') ? $errors->first('password') : '' }}</div>
+                                <input class="form-control" type="password" placeholder="Password" name="signup_password" />
+                                @error('signup_password')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-                            <!--end::Form group-->
-                            <!--begin::Form group-->
                             <div class="form-group">
                                 <label for="">Confirm password<span class="text-danger">*</span></label>
                                 <input class="form-control" type="password" placeholder="Confirm password"
                                     name="password_confirmation" />
-                                <div style='color:red; padding: 0 5px;'>
-                                    {{ $errors->has('password_confirmation') ? $errors->first('password_confirmation') : '' }}
-                                </div>
+                                @error('password_confirmation')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-                            <!--end::Form group-->
-                            <!--begin::Form group-->
-                            <!--end::Form group-->
-                            <!--begin::Form group-->
                             <div class="form-group d-flex flex-wrap pb-lg-0 pb-3">
-                                <button type="button" id="kt_login_signup_submit"
+                                <button type="submit" id="kt_login_signup_submit"
                                     class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4">Submit</button>
                                 <button type="button" id="kt_login_signup_cancel"
                                     class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3">Cancel</button>

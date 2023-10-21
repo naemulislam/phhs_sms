@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\GroupRepository;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\returnSelf;
@@ -25,26 +26,15 @@ class LoginController extends Controller
         ]);
 
         if (auth()->attempt($request->only('email', 'password'))) {
-            $notification = [
-                'message' => 'successfully Login!',
-                'alert-type' => 'success'
-            ];
-            return to_route('school.dashboard')->with($notification);
+
+            return to_route('school.dashboard')->with('success', 'successfully Login!');
         }
-        $notification = [
-            'message' => 'Oppes! You have entered invalid credentials',
-            'alert-type' => 'error'
-        ];
-        return to_route('school.portal')->with($notification);
+        return to_route('school.portal')->with('error','Oppes! You have entered invalid credentials');
     }
     public function schoolPortalLogout()
     {
         auth()->logout();
-        $notification = [
-            'message' => 'Logout successfully!',
-            'alert-type' => 'success'
-        ];
-        return to_route('school.portal')->with($notification);
+        return to_route('school.portal')->with('success', 'Logout successfully!');
     }
     //student portal index
     public function studentPortal()
@@ -57,31 +47,19 @@ class LoginController extends Controller
     public function studentPortalStore(Request $request)
     {
         $request->validate([
-            'email' => 'required',
+            'student_id' => 'required|max:10',
             'password' => 'required',
         ]);
 
-        if (auth()->attempt($request->only('email', 'password'))) {
-            $notification = [
-                'message' => 'successfully Login!',
-                'alert-type' => 'success'
-            ];
-            return to_route('student.dashboard')->with($notification);
+        if (auth()->attempt($request->only('student_id', 'password'))) {
+            return to_route('student.dashboard')->with('success','successfully Login!');
         }
-        $notification = [
-            'message' => 'Oppes! You have entered invalid credentials',
-            'alert-type' => 'error'
-        ];
-        return to_route('student.portal')->with($notification);
+        return to_route('student.portal')->with('error','Oppes! You have entered invalid credentials');
     }
     public function studentPortalLogout()
     {
         auth()->logout();
-        $notification = [
-            'message' => 'Logout successfully!',
-            'alert-type' => 'success'
-        ];
-        return to_route('student.portal')->with($notification);
+        return to_route('student.portal')->with('success', 'Logout successfully!');
     }
     //user login index
     public function userLogin()
@@ -99,25 +77,13 @@ class LoginController extends Controller
         ]);
 
         if (auth()->attempt($request->only('email', 'password'))) {
-            $notification = [
-                'message' => 'successfully Login!',
-                'alert-type' => 'success'
-            ];
-            return to_route('user.dashboard')->with($notification);
+            return to_route('user.dashboard')->with('success', 'successfully Login!');
         }
-        $notification = [
-            'message' => 'Oppes! You have entered invalid credentials',
-            'alert-type' => 'error'
-        ];
-        return to_route('user.login')->with($notification);
+        return to_route('user.login')->with('error', 'Oppes! You have entered invalid credentials');
     }
     public function userLogout()
     {
         auth()->logout();
-        $notification = [
-            'message' => 'Logout successfully!',
-            'alert-type' => 'success'
-        ];
-        return to_route('user.login')->with($notification);
+        return to_route('user.login')->with('success', 'Logout successfully!');
     }
 }

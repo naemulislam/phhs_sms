@@ -37,7 +37,7 @@
 <body id="kt_body"
     class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
     <!--begin::Main-->
-        @yield('content')
+    @yield('content')
     <!--end::Main-->
     <!--end::Global Config-->
     <!--begin::Global Theme Bundle(used by all pages)-->
@@ -51,25 +51,17 @@
     <!-- Toastr -->
     <script src="{{ asset('defaults/toastr/toastr.min.js') }}"></script>
 
-    <script>
-        @if (Session::has('message'))
-            var type = "{{ Session::get('alert-type', 'info') }}"
+    @if (session('success'))
+        <script>
+            toastr.success("{{ session('success') }}");
+        </script>
+    @endif
+    @if (session('error'))
+        <script>
+            toastr.error("{{ session('error') }}");
+        </script>
+    @endif
 
-            switch (type) {
-                case 'info':
-                    toastr.info("{{ Session::get('message') }}");
-                    break;
-                case 'success':
-                    toastr.success("{{ Session::get('message') }}");
-                    break;
-                case 'warning':
-                    toastr.warning("{{ Session::get('message') }}");
-                    break;
-                case 'error':
-                    toastr.error("{{ Session::get('message') }}");
-                    break;
-            }
-        @endif
-    </script>
 </body>
+
 </html>
