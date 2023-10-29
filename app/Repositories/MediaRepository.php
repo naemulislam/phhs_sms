@@ -59,7 +59,6 @@ class MediaRepository extends Repository
         ], [
             'type' => $type,
             'src' => $src,
-            'extension' => $extension,
             'path' => $path,
         ]);
     }

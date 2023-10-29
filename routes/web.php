@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\GroupController;
+use App\Http\Controllers\Backend\NoticeController;
+use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\StaffController;
 use App\Http\Controllers\Backend\StudentController;
 use App\Http\Controllers\Backend\SubjectController;
@@ -10,6 +12,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\LoginController;
 use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\GeneralSettingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
 use Illuminate\Support\Facades\Artisan;
@@ -132,7 +135,30 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         Route::put('/staff/update/{staff}','update')->name('staff.update');
         Route::get('/staff/destroy/{staff}','destroy')->name('staff.destroy');
         Route::post('/staff/status/{staff}','status')->name('staff.status');
-        // Route::get('/student/id','studentId')->name('id.generate');
+    });
+    //Slider Route
+    Route::controller(SliderController::class)->group(function(){
+        Route::get('/slider','index')->name('slider.index');
+        Route::get('/slider/create','create')->name('slider.create');
+        Route::post('/slider/store','store')->name('slider.store');
+        Route::get('/slider/edit/{slider}','edit')->name('slider.edit');
+        Route::put('/slider/update/{slider}','update')->name('slider.update');
+        Route::get('/slider/destroy/{slider}','destroy')->name('slider.destroy');
+        Route::post('/slider/status/{slider}','status')->name('slider.status');
+    });
+    //Notice Route
+    Route::controller(NoticeController::class)->group(function(){
+        Route::get('/notice','index')->name('notice.index');
+        Route::get('/notice/create','create')->name('notice.create');
+        Route::post('/notice/store','store')->name('notice.store');
+        Route::get('/notice/edit/{notice}','edit')->name('notice.edit');
+        Route::put('/notice/update/{notice}','update')->name('notice.update');
+        Route::get('/notice/destroy/{notice}','destroy')->name('notice.destroy');
+        Route::post('/notice/status/{notice}','status')->name('notice.status');
+    });
+    Route::controller(GeneralSettingController::class)->group(function(){
+        Route::get('/general/setting','index')->name('settings.index');
+        Route::post('/general/setting/update/{setting?}','update')->name('settings.update');
     });
 });
 

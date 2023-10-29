@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\GroupRepository;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\returnSelf;
@@ -27,7 +26,7 @@ class LoginController extends Controller
 
         if (auth()->attempt($request->only('email', 'password'))) {
 
-            return to_route('school.dashboard')->with('success', 'successfully Login!');
+            return to_route('school.dashboard')->with('success', 'Successfully Login!');
         }
         return to_route('school.portal')->with('error','Oppes! You have entered invalid credentials');
     }
@@ -52,7 +51,7 @@ class LoginController extends Controller
         ]);
 
         if (auth()->attempt($request->only('student_id', 'password'))) {
-            return to_route('student.dashboard')->with('success','successfully Login!');
+            return to_route('student.dashboard')->with('success','Successfully Login!');
         }
         return to_route('student.portal')->with('error','Oppes! You have entered invalid credentials');
     }
@@ -77,7 +76,7 @@ class LoginController extends Controller
         ]);
 
         if (auth()->attempt($request->only('email', 'password'))) {
-            return to_route('user.dashboard')->with('success', 'successfully Login!');
+            return to_route('user.dashboard')->with('success', 'Successfully Login!');
         }
         return to_route('user.login')->with('error', 'Oppes! You have entered invalid credentials');
     }
