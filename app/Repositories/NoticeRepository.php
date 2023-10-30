@@ -11,7 +11,7 @@ class NoticeRepository extends Repository
     {
         return Notice::class;
     }
-    public static function storyByRequest(NoticeRequest $request){
+    public static function storeByRequest(NoticeRequest $request){
         $path = null;
         if($request->hasFile('document')){
             $path = Storage::put('/'.trim('/notice','/'),$request->document,'public');
@@ -23,6 +23,29 @@ class NoticeRepository extends Repository
             'type' => $request->type,
             'document' => $path
         ]);
+        return $create;
+    }
+    public static function updateByRequest(NoticeRequest $request, Notice $notice){
+        if($notice->document){
+        if($request->hasFile('document')){
+            $path = Storage::put('/'.trim('/notice','/'),$request->document,'public');
+            if(Storage::exists($notice->document)){
+                Storage::delete($notice->document);
+            }
+        }
+    }else{
+        if($request->hasFile('document')){
+            $path = Storage::put('/'.trim('/notice','/'),$request->document,'public');
+        }
+    }
+        $update = self::update($notice,[
+            'title' => $request->title,
+            'date' => $request->date,
+            'description' => $request->description,
+            'type' => $request->type,
+            'document' => $path ?? $notice->document
+        ]);
+        return $update;
     }
 
 }

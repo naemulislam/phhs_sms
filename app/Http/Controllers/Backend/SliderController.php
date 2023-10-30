@@ -9,19 +9,22 @@ use Illuminate\Support\Facades\Storage;
 
 class SliderController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $sliders = Slider::latest()->get();
         return view('backend.dashboard.slider.index', compact('sliders'));
     }
-    public function create(){
+    public function create()
+    {
         return view('backend.dashboard.slider.create');
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
-            'image'=> 'required|image|mimes:png,jpg,jpeg'
+            'image' => 'required|image|mimes:png,jpg,jpeg'
         ]);
-        if($request->hasFile('image')){
-            $path = Storage::put('/'.trim('/slider', '/'), $request->image, 'public');
+        if ($request->hasFile('image')) {
+            $path = Storage::put('/' . trim('/slider', '/'), $request->image, 'public');
         }
         Slider::create([
             'image' => $path,
@@ -30,18 +33,20 @@ class SliderController extends Controller
         ]);
         return back()->with('success', 'Slider is created successfully!');
     }
-    public function edit(Slider $slider){
-        return view('backend.dashboard.slider.edit',compact('slider'));
+    public function edit(Slider $slider)
+    {
+        return view('backend.dashboard.slider.edit', compact('slider'));
     }
-    public function update(Request $request, Slider $slider){
+    public function update(Request $request, Slider $slider)
+    {
         $request->validate([
-            'image'=> 'nullable|image|mimes:png,jpg,jpeg'
+            'image' => 'nullable|image|mimes:png,jpg,jpeg'
         ]);
         // dd($slider->image);
-        if($request->hasFile('image')){
-            $path = Storage::put('/'.trim('/slider', '/'), $request->image, 'public');
+        if ($request->hasFile('image')) {
+            $path = Storage::put('/' . trim('/slider', '/'), $request->image, 'public');
 
-            if(Storage::exists($slider->image)){
+            if (Storage::exists($slider->image)) {
                 Storage::delete($slider->image);
             }
         }
@@ -52,7 +57,11 @@ class SliderController extends Controller
         ]);
         return back()->with('success', 'Slider is updated successfully!');
     }
-    public function destroy(Slider $slider){
+    public function destroy(Slider $slider)
+    {
+        if (Storage::exists($slider->image)) {
+            Storage::delete($slider->image);
+        }
         $slider->delete();
         return back()->with('success', 'Slider is deleted successfully!');
     }

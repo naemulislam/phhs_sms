@@ -1,9 +1,14 @@
 <?php
 
+use App\Http\Controllers\Backend\AchievementController;
+use App\Http\Controllers\Backend\ClassRoutineController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\ExamRoutineController;
 use App\Http\Controllers\Backend\GroupController;
 use App\Http\Controllers\Backend\NoticeController;
+use App\Http\Controllers\Backend\ResultController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\SlybusController;
 use App\Http\Controllers\Backend\StaffController;
 use App\Http\Controllers\Backend\StudentController;
 use App\Http\Controllers\Backend\SubjectController;
@@ -159,6 +164,48 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
     Route::controller(GeneralSettingController::class)->group(function(){
         Route::get('/general/setting','index')->name('settings.index');
         Route::post('/general/setting/update/{setting?}','update')->name('settings.update');
+    });
+    //Class routine route
+    Route::controller(ClassRoutineController::class)->group(function(){
+        Route::get('/class/routine','index')->name('class.routine.index');
+        Route::post('/class/routine/store','store')->name('class.routine.store');
+        Route::put('/class/routine/update/{classRoutine}','update')->name('class.routine.update');
+        Route::get('/class/routine/destroy/{classRoutine}','destroy')->name('class.routine.destroy');
+        Route::post('/class/routine/status/{classRoutine}','status')->name('class.routine.status');
+    });
+    //Exam routine route
+    Route::controller(ExamRoutineController::class)->group(function(){
+        Route::get('/exam/routine','index')->name('exam.routine.index');
+        Route::post('/exam/routine/store','store')->name('exam.routine.store');
+        Route::put('/exam/routine/update/{examRoutine}','update')->name('exam.routine.update');
+        Route::get('/exam/routine/destroy/{examRoutine}','destroy')->name('exam.routine.destroy');
+        Route::post('/exam/routine/status/{examRoutine}','status')->name('exam.routine.status');
+    });
+    //Slybus route
+    Route::controller(SlybusController::class)->group(function(){
+        Route::get('/slybus','index')->name('slybus.index');
+        Route::post('/slybus/store','store')->name('slybus.store');
+        Route::put('/slybus/update/{slybus}','update')->name('slybus.update');
+        Route::get('/slybus/destroy/{slybus}','destroy')->name('slybus.destroy');
+        Route::post('/slybus/status/{slybus}','status')->name('slybus.status');
+    });
+    //Result route
+    Route::controller(ResultController::class)->group(function(){
+        Route::get('/result','index')->name('result.index');
+        Route::post('/result/store','store')->name('result.store');
+        Route::put('/result/update/{result}','update')->name('result.update');
+        Route::get('/result/destroy/{result}','destroy')->name('result.destroy');
+        Route::post('/result/status/{result}','status')->name('result.status');
+    });
+    //Achievement route
+    Route::controller(AchievementController::class)->group(function(){
+        Route::get('/achievement','index')->name('achievement.index');
+        Route::get('/achievement/create','create')->name('achievement.create');
+        Route::post('/achievement/store','store')->name('achievement.store');
+        Route::get('/achievement/edit/{achievement}','edit')->name('achievement.edit');
+        Route::put('/achievement/update/{achievement}','update')->name('achievement.update');
+        Route::get('/achievement/destroy/{achievement}','destroy')->name('achievement.destroy');
+        Route::post('/achievement/status/{achievement}','status')->name('achievement.status');
     });
 });
 

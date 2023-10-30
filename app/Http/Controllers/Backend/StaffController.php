@@ -7,9 +7,11 @@ use App\Http\Requests\StaffRequest;
 use App\Models\Staff;
 use App\Models\User;
 use App\Repositories\AddressRepository;
+use App\Repositories\MediaRepository;
 use App\Repositories\StaffRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StaffController extends Controller
 {
@@ -61,8 +63,13 @@ class StaffController extends Controller
     }
     public function destroy(Staff $staff)
     {
+        $media = MediaRepository::find($staff->profile_id);
+        if (Storage::exists($media->src)) {
+            Storage::delete($media->src);
+        }
         $address = AddressRepository::query()->where('user_id', $staff->user->id)->first();
         $staff->delete();
+        $media->delete();
         $address->delete();
         $staff->user->delete();
         return back()->with('success', 'Staff is deleted successfully!');

@@ -10,10 +10,12 @@ use App\Models\Subject;
 use App\Models\User;
 use App\Repositories\AddressRepository;
 use App\Repositories\GroupRepository;
+use App\Repositories\MediaRepository;
 use App\Repositories\StudentRepository;
 use App\Repositories\SubjectRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -48,16 +50,16 @@ class StudentController extends Controller
         AddressRepository::storeByRequest($request, $user->id);
         return back()->with('success', 'Student is created successfully!');
     }
-    public function show( Student $student)
+    public function show(Student $student)
     {
-        $address = AddressRepository::query()->where('user_id',$student->user->id)->first();
-        return view('backend.dashboard.student.show_dtls', compact('student','address'));
+        $address = AddressRepository::query()->where('user_id', $student->user->id)->first();
+        return view('backend.dashboard.student.show_dtls', compact('student', 'address'));
     }
-    public function edit( Student $student)
+    public function edit(Student $student)
     {
         $groups = GroupRepository::query()->where('is_active', true)->get();
-        $address = AddressRepository::query()->where('user_id',$student->user->id)->first();
-        return view('backend.dashboard.student.edit', compact('groups','student','address'));
+        $address = AddressRepository::query()->where('user_id', $student->user->id)->first();
+        return view('backend.dashboard.student.edit', compact('groups', 'student', 'address'));
     }
     public function update(AdmissionRequest $request, Student $student)
     {
@@ -71,8 +73,13 @@ class StudentController extends Controller
     }
     public function destroy(Student $student)
     {
+        $media = MediaRepository::find($student->image_id);
+        if (Storage::exists($media->src)) {
+            Storage::delete($media->src);
+        }
         $address = AddressRepository::query()->where('user_id', $student->user->id)->first();
         $student->delete();
+        $media->delete();
         $address->delete();
         $student->user->delete();
 
