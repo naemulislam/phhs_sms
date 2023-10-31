@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Achievement')
+@section('title', 'News')
 @section('content')
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -17,7 +17,7 @@
                     <!--begin::Page Heading-->
                     <div class="d-flex align-items-baseline flex-wrap mr-5">
                         <!--begin::Page Title-->
-                        <h5 class="text-dark font-weight-bold my-1 mr-5">Our Achievement</h5>
+                        <h5 class="text-dark font-weight-bold my-1 mr-5">News and Events</h5>
                         <!--end::Page Title-->
                     </div>
                     <!--end::Page Heading-->
@@ -35,10 +35,10 @@
                         <!--begin::Card-->
                         <div class="card card-custom gutter-b example example-compact">
                             <div class="card-header">
-                                <h3 class="card-title">Edit Achievement</h3>
+                                <h3 class="card-title">Edit News</h3>
                                 <div class="card-toolbar">
                                     <!--begin::Button-->
-                                    <a href="{{ route('achievement.index') }}"
+                                    <a href="{{ route('news.index') }}"
                                         class="btn btn-primary btn-sm font-weight-bolder">
                                         < Back</a>
                                             <!--end::Button-->
@@ -46,7 +46,7 @@
                             </div>
                             <!--begin::Form-->
                             <div class="card-body">
-                                <form action="{{ route('achievement.update',$achievement->id) }}" method="post"
+                                <form action="{{ route('news.update',$news->id) }}" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('put')
@@ -54,8 +54,8 @@
                                         <div class="col-sm-8">
                                             <div class="form-group">
                                                 <label for="">Title <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" placeholder="Enter achievement title"
-                                                    name="title" value="{{ $achievement->title }}">
+                                                <input type="text" class="form-control" placeholder="Enter news title"
+                                                    name="title" value="{{ $news->title }}">
                                                 @error('title')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -65,7 +65,7 @@
                                             <div class="form-group">
                                                 <label for="">Date <span class="text-danger">*</span></label>
                                                 <input type="date" class="form-control" name="date"
-                                                    value="{{ $achievement->date }}">
+                                                    value="{{ $news->date }}">
                                                 @error('date')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -76,7 +76,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Description</label>
-                                                <textarea id="summernote" name="description" class="form-control">{!! $achievement->description !!}</textarea>
+                                                <textarea id="summernote" name="description" class="form-control">{!! $news->description !!}</textarea>
                                                 @error('description')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -98,7 +98,7 @@
                                     <div class="row mb-4">
                                         <div class="col-md-6">
                                             <label>current Image</label>
-                                            <img class="previewImage" src="{{ $achievement->image->file}}" />
+                                            <img class="previewImage" src="{{ $news->image->file}}" />
                                         </div>
                                         <div class="col-md-6">
                                             <label>Preview Image</label>
@@ -129,7 +129,7 @@
 @push('scripts')
     <script>
         $('#summernote').summernote({
-            placeholder: 'Type some description about achievement..',
+            placeholder: 'Type some description about news..',
             height: 120,
         });
     </script>

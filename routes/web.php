@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\Backend\AchievementController;
+use App\Http\Controllers\Backend\CampasController;
 use App\Http\Controllers\Backend\ClassRoutineController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ExamRoutineController;
 use App\Http\Controllers\Backend\GroupController;
+use App\Http\Controllers\Backend\InstituteController;
+use App\Http\Controllers\Backend\NewsController;
 use App\Http\Controllers\Backend\NoticeController;
 use App\Http\Controllers\Backend\ResultController;
 use App\Http\Controllers\Backend\SliderController;
@@ -151,6 +154,16 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         Route::get('/slider/destroy/{slider}','destroy')->name('slider.destroy');
         Route::post('/slider/status/{slider}','status')->name('slider.status');
     });
+    //Campas Route
+    Route::controller(CampasController::class)->group(function(){
+        Route::get('/campas','index')->name('campas.index');
+        Route::get('/campas/create','create')->name('campas.create');
+        Route::post('/campas/store','store')->name('campas.store');
+        Route::get('/campas/edit/{campas}','edit')->name('campas.edit');
+        Route::put('/campas/update/{campas}','update')->name('campas.update');
+        Route::get('/campas/destroy/{campas}','destroy')->name('campas.destroy');
+        Route::post('/campas/status/{campas}','status')->name('campas.status');
+    });
     //Notice Route
     Route::controller(NoticeController::class)->group(function(){
         Route::get('/notice','index')->name('notice.index');
@@ -161,9 +174,15 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         Route::get('/notice/destroy/{notice}','destroy')->name('notice.destroy');
         Route::post('/notice/status/{notice}','status')->name('notice.status');
     });
+    //General Setting
     Route::controller(GeneralSettingController::class)->group(function(){
         Route::get('/general/setting','index')->name('settings.index');
         Route::post('/general/setting/update/{setting?}','update')->name('settings.update');
+    });
+    //General Setting
+    Route::controller(InstituteController::class)->group(function(){
+        Route::get('/institute/history','index')->name('institute.index');
+        Route::post('/institute/history/update/{institute?}','update')->name('institute.update');
     });
     //Class routine route
     Route::controller(ClassRoutineController::class)->group(function(){
@@ -196,6 +215,16 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         Route::put('/result/update/{result}','update')->name('result.update');
         Route::get('/result/destroy/{result}','destroy')->name('result.destroy');
         Route::post('/result/status/{result}','status')->name('result.status');
+    });
+    //News route
+    Route::controller(NewsController::class)->group(function(){
+        Route::get('/news','index')->name('news.index');
+        Route::get('/news/create','create')->name('news.create');
+        Route::post('/news/store','store')->name('news.store');
+        Route::get('/news/edit/{news}','edit')->name('news.edit');
+        Route::put('/news/update/{news}','update')->name('news.update');
+        Route::get('/news/destroy/{news}','destroy')->name('news.destroy');
+        Route::post('/news/status/{news}','status')->name('news.status');
     });
     //Achievement route
     Route::controller(AchievementController::class)->group(function(){

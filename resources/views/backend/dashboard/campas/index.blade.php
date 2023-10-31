@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title','Sliders')
+@section('title','Campas')
 @section('content')
 <!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -11,7 +11,7 @@
                 <!--begin::Page Heading-->
                 <div class="d-flex align-items-baseline flex-wrap mr-5">
                     <!--begin::Page Title-->
-                    <h5 class="text-dark font-weight-bold my-1 mr-5">Sliders</h5>
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">Campas</h5>
                 </div>
                 <!--end::Page Heading-->
             </div>
@@ -27,13 +27,13 @@
             <div class="card card-custom">
                 <div class="card-header flex-wrap py-5">
                     <div class="card-title">
-                        <h3 class="card-label">Slider List
-                            <span class="d-block text-muted pt-2 font-size-sm">All slider here</span>
+                        <h3 class="card-label">Campas List
+                            <span class="d-block text-muted pt-2 font-size-sm">All campas here</span>
                         </h3>
                     </div>
                     <div class="card-toolbar">
                         <!--begin::Button-->
-                        <a href="{{ route('slider.create')}}"  class="btn btn-primary font-weight-bolder">
+                        <a href="{{ route('campas.create')}}"  class="btn btn-primary font-weight-bolder">
                             <span class="svg-icon svg-icon-md">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -44,7 +44,7 @@
                                     </g>
                                 </svg>
                                 <!--end::Svg Icon-->
-                            </span>New Slider</a>
+                            </span>New Campas</a>
                         <!--end::Button-->
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($sliders as $row)
+                            @foreach($campas as $row)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>
@@ -86,10 +86,10 @@
                                     @endif
                                 </td>
                                 <td class="d-flex">
-                                    <a href="{{route('slider.edit',$row->id)}}" class="btn btn-icon btn-info btn-hover-primary btn-xs mx-3"><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('campas.edit',$row->id)}}" class="btn btn-icon btn-info btn-hover-primary btn-xs mx-3"><i class="fa fa-edit"></i></a>
 
 
-                                    <a id="delete" href="{{ route('slider.destroy',$row->id)}}" class="btn btn-icon btn-danger btn-hover-primary btn-xs mx-3">
+                                    <a id="delete" href="{{ route('campas.destroy',$row->id)}}" class="btn btn-icon btn-danger btn-hover-primary btn-xs mx-3">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </td>
@@ -105,7 +105,7 @@
                                                 <i class="fa fa-close"></i>
                                             </button>
                                         </div>
-                                        <form action="{{ route('slider.status',$row->id)}}" method="post">
+                                        <form action="{{ route('campas.status',$row->id)}}" method="post">
                                             @csrf
                                             <div class="modal-body">
                                                 <div class="form-group">

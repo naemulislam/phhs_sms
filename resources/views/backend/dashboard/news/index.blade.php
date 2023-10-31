@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title','Sliders')
+@section('title','News')
 @section('content')
 <!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -11,7 +11,7 @@
                 <!--begin::Page Heading-->
                 <div class="d-flex align-items-baseline flex-wrap mr-5">
                     <!--begin::Page Title-->
-                    <h5 class="text-dark font-weight-bold my-1 mr-5">Sliders</h5>
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">News</h5>
                 </div>
                 <!--end::Page Heading-->
             </div>
@@ -27,13 +27,13 @@
             <div class="card card-custom">
                 <div class="card-header flex-wrap py-5">
                     <div class="card-title">
-                        <h3 class="card-label">Slider List
-                            <span class="d-block text-muted pt-2 font-size-sm">All slider here</span>
+                        <h3 class="card-label">News and Events List
+                            <span class="d-block text-muted pt-2 font-size-sm">All news here</span>
                         </h3>
                     </div>
                     <div class="card-toolbar">
                         <!--begin::Button-->
-                        <a href="{{ route('slider.create')}}"  class="btn btn-primary font-weight-bolder">
+                        <a href="{{ route('news.create')}}"  class="btn btn-primary font-weight-bolder">
                             <span class="svg-icon svg-icon-md">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -44,7 +44,7 @@
                                     </g>
                                 </svg>
                                 <!--end::Svg Icon-->
-                            </span>New Slider</a>
+                            </span>New Events</a>
                         <!--end::Button-->
                     </div>
                 </div>
@@ -55,29 +55,27 @@
                             <tr>
                                 <th>SL</th>
                                 <th>image</th>
+                                <th>Title</th>
+                                <th>Date</th>
                                 <th>Description</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($sliders as $row)
+                            @foreach($newss as $row)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>
-                                    @if($row->image)
-                            <img style="width:150px ;" src= "{{ asset('storage/'.$row->image)}}" alt="">
+                                    @if($row->image_id)
+                                    <img style="width:70px;" src= "{{ $row->image->file }}" alt="">
                                     @else
-                                    <img style="width:150px ;" src= "{{asset('defaults/noimage/no_img.jpg')}}" alt="">
+                                    <img style="width:70px;" src= "{{asset('defaults/noimage/no_img.jpg')}}" alt="">
                                     @endif
                                 </td>
-                                <td>
-                                    @if ($row->description)
-                                    {{$row->description}}
-                                    @else
-                                    Not added yet..
-                                    @endif
-                                </td>
+                                <td>{{$row->title}}</td>
+                                <td>{{$row->date}}</td>
+                                <td><a href="#" class="btn label label-lg label-light-secondary label-inline text-danger p-3" data-toggle="modal" data-target="#row_description_{{$row->id}}"> See Description</a></td>
                                 <td>
                                     @if($row->is_active == 1)
                                     <a href="#" class="btn label label-lg label-light-success label-inline" data-toggle="modal" data-target="#row_status_{{$row->id}}"> Active</a>
@@ -86,15 +84,14 @@
                                     @endif
                                 </td>
                                 <td class="d-flex">
-                                    <a href="{{route('slider.edit',$row->id)}}" class="btn btn-icon btn-info btn-hover-primary btn-xs mx-3"><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('news.edit',$row->id)}}" class="btn btn-icon btn-info btn-hover-primary btn-xs mx-3"><i class="fa fa-edit"></i></a>
 
 
-                                    <a id="delete" href="{{ route('slider.destroy',$row->id)}}" class="btn btn-icon btn-danger btn-hover-primary btn-xs mx-3">
+                                    <a id="delete" href="{{ route('news.destroy',$row->id)}}" class="btn btn-icon btn-danger btn-hover-primary btn-xs mx-3">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>
-
                             <!--Row Status -->
                             <div class="modal fade" data-backdrop="static" id="row_status_{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -105,7 +102,7 @@
                                                 <i class="fa fa-close"></i>
                                             </button>
                                         </div>
-                                        <form action="{{ route('slider.status',$row->id)}}" method="post">
+                                        <form action="{{ route('news.status',$row->id)}}" method="post">
                                             @csrf
                                             <div class="modal-body">
                                                 <div class="form-group">
@@ -126,6 +123,30 @@
                                                 <button type="submit" class="btn btn-primary">Save Changes</button>
                                             </div>
                                         </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Description -->
+                            <div class="modal fade" data-backdrop="static" id="row_description_{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Description</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <i class="fa fa-close"></i>
+                                            </button>
+                                        </div>
+                                            @csrf
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <p>{!!  $row->description !!}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
