@@ -184,38 +184,39 @@
                     </div>
                 </div>
                 <div class="form">
-                    <form>
+                    <form action="{{ route('contact.store')}}" method="POST">
+                        @csrf
                         <div class="row mb-3">
-                            <div class="col-md-4">
-                                <input type="text" name="name" class="form-control" placeholder="Enter Name">
-                                <div style="color: red; padding:0 5px;">
-                                    {{ $errors->has('name') ? $errors->first('name') : '' }}
-                                </div>
+                            <div class="col-md-4 mb-3">
+                                <input type="text" name="name" class="form-control" placeholder="Enter your name">
+                                @error('name')
+                                <span class="text-danger">{{ $message}}</span>
+                                @enderror
                             </div>
-                            <div class="col-md-4">
-                                <input type="email" name="email" class="form-control" placeholder="Enter Email">
-                                <div style="color: red; padding:0 5px;">
-                                    {{ $errors->has('email') ? $errors->first('email') : '' }}
-                                </div>
+                            <div class="col-md-4 mb-3">
+                                <input type="email" name="email" class="form-control" placeholder="Enter your email">
+                                @error('email')
+                                <span class="text-danger">{{ $message}}</span>
+                                @enderror
                             </div>
-                            <div class="col-md-4">
-                                <input type="text" name="subject" class="form-control" placeholder="Enter Subject">
-                                <div style="color: red; padding:0 5px;">
-                                    {{ $errors->has('subject') ? $errors->first('subject') : '' }}
-                                </div>
+                            <div class="col-md-4 mb-3">
+                                <input type="text" name="subject" class="form-control" placeholder="Enter subject">
+                                @error('subject')
+                                <span class="text-danger">{{ $message}}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <textarea name="message" class="form-control" placeholder="Write your message here.." style="height: 200px;"></textarea>
-                                <div style="color: red; padding:0 5px;">
-                                    {{ $errors->has('message') ? $errors->first('message') : '' }}
-                                </div>
+                                @error('message')
+                                <span class="text-danger">{{ $message}}</span>
+                                @enderror
 
                             </div>
 
                         </div>
-                        <button class="btn btn-success mt-4" type="button">Send Message</button>
+                        <button class="btn btn-success mt-4" type="submit">Send Message</button>
                     </form>
                 </div>
                 <div class="row mt-3">

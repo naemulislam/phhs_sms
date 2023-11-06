@@ -3,8 +3,11 @@
 use App\Http\Controllers\Backend\AchievementController;
 use App\Http\Controllers\Backend\CampasController;
 use App\Http\Controllers\Backend\ClassRoutineController;
+use App\Http\Controllers\Backend\ComputerLabController;
+use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ExamRoutineController;
+use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\GroupController;
 use App\Http\Controllers\Backend\InstituteController;
 use App\Http\Controllers\Backend\NewsController;
@@ -21,7 +24,6 @@ use App\Http\Controllers\Frontend\LoginController;
 use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\GeneralSettingController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -179,10 +181,15 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         Route::get('/general/setting','index')->name('settings.index');
         Route::post('/general/setting/update/{setting?}','update')->name('settings.update');
     });
-    //General Setting
+    //Institute History
     Route::controller(InstituteController::class)->group(function(){
         Route::get('/institute/history','index')->name('institute.index');
         Route::post('/institute/history/update/{institute?}','update')->name('institute.update');
+    });
+    //Computer Lab
+    Route::controller(ComputerLabController::class)->group(function(){
+        Route::get('/computer-lab','index')->name('computerLab.index');
+        Route::post('/computer-lab/update/{computerLab?}','update')->name('computerLab.update');
     });
     //Class routine route
     Route::controller(ClassRoutineController::class)->group(function(){
@@ -235,6 +242,22 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         Route::put('/achievement/update/{achievement}','update')->name('achievement.update');
         Route::get('/achievement/destroy/{achievement}','destroy')->name('achievement.destroy');
         Route::post('/achievement/status/{achievement}','status')->name('achievement.status');
+    });
+    //Gallery route
+    Route::controller(GalleryController::class)->group(function(){
+        Route::get('/gallery','index')->name('gallery.index');
+        Route::get('/gallery/create','create')->name('gallery.create');
+        Route::post('/gallery/store','store')->name('gallery.store');
+        Route::get('/gallery/edit/{gallery}','edit')->name('gallery.edit');
+        Route::put('/gallery/update/{gallery}','update')->name('gallery.update');
+        Route::get('/gallery/destroy/{gallery}','destroy')->name('gallery.destroy');
+        Route::post('/gallery/status/{gallery}','status')->name('gallery.status');
+    });
+    //Contact route
+    Route::controller(ContactController::class)->group(function(){
+        Route::get('/message','index')->name('message.index');
+        Route::get('/message/destroy/{contact}','destroy')->name('message.destroy');
+        Route::post('/message/status/{contact}','status')->name('message.status');
     });
 });
 

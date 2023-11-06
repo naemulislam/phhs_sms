@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ContactRequest;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -70,5 +72,16 @@ class HomeController extends Controller
     //Annual result page show
     public function annualResult(){
         return view('frontend.yearly_result');
+    }
+    public function contactStore(ContactRequest $request){
+        Contact::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'is_seen' => true
+        ]);
+        return back()->with('success','Message send successfully!');
+
     }
 }

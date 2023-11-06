@@ -16,7 +16,7 @@
         <div class="container">
             <div class="row py-5 self-end">
                 <div class="col-lg-10 mx-auto">
-                    
+
                         <nav>
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active" id="nav-class6-tab" data-toggle="tab" href="#nav-class6"
@@ -32,7 +32,7 @@
                                     role="tab" aria-controls="nav-class9" aria-selected="false">Class-9</a>
 
                                 <a class="nav-item nav-link" id="nav-class10-tab" data-toggle="tab" href="#nav-class10"
-                                    role="tab" aria-controls="nav-class10" aria-selected="false">Class-10</a>
+                                    role="tab" aria-controls="nav-class10" aria-selected="false">SSC</a>
                             </div>
                         </nav>
                         <div class="result-box">

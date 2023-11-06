@@ -108,30 +108,18 @@
     <script src="{{ asset('frontend') }}/assets/js/simple-lightbox.min.js"></script>
 
     <!-- Toastr -->
-
-
+    @if (Session::has('success'))
     <script>
-        @if (Session::has('message'))
-            var type = "{{ Session::get('alert-type', 'info') }}"
-
-            switch (type) {
-                case 'info':
-                    toastr.info("{{ Session::get('message') }}");
-                    break;
-                case 'success':
-                    toastr.success("{{ Session::get('message') }}");
-                    break;
-                case 'warning':
-                    toastr.warning("{{ Session::get('message') }}");
-                    break;
-                case 'error':
-                    toastr.error("{{ Session::get('message') }}");
-                    break;
-            }
-        @endif
+        toastr.success("{{ Session::get('success') }}");
     </script>
+    @endif
+    @if (Session::has('error'))
+    <script>
+        toastr.success("{{ Session::get('error') }}");
+    </script>
+    @endif
+    
     @yield('customjs')
-
     <script>
         $(document).ready(function() {
 
@@ -147,8 +135,6 @@
 
         });
     </script>
-
-
     <script>
         $(document).ready(function() {
             // Add minus icon for collapse element which is open by default
@@ -166,49 +152,6 @@
             $('.mmenu-btn').click(function() {
                 $(this).toggleClass("menu-link-active");
 
-            });
-        });
-    </script>
-    {{-- <script>
-        const marquees = [...document.querySelectorAll('.marquee')];
-        marquees.forEach((marquee) => {
-            marquee.innerHTML = marquee.innerHTML + '&nbsp;'.repeat(5);
-            marquee.i = 0;
-            marquee.step = 3;
-            marquee.width = (marquee.clientWidth + 1);
-            marquee.style.position = '';
-            marquee.innerHTML = `${marquee.innerHTML}&nbsp;`.repeat(1);
-            marquee.addEventListener('mouseenter', () => marquee.step = 0, false);
-            marquee.addEventListener('mouseleave', () => marquee.step = 3, false);
-        });
-
-        setInterval(move, 100);
-
-        function move() {
-            marquees
-                .forEach((marquee) => {
-                    marquee.style.marginLeft = `-${marquee.i}px`;;
-                    marquee.i = marquee.i < marquee.width ? marquee.i + marquee.step : 1;
-                });
-        }
-    </script> --}}
-    <script>
-        $(document).ready(function() {
-            let animationInterval;
-            let textPosition = 0;
-            const speed = 5; // Adjust the speed of the animation
-
-            function moveText() {
-                textPosition += speed;
-                $('#moving-text').css('left', textPosition);
-            }
-
-            $(document).mousedown(function() {
-                animationInterval = setInterval(moveText, 10);
-            });
-
-            $(document).mouseup(function() {
-                clearInterval(animationInterval);
             });
         });
     </script>

@@ -15,8 +15,9 @@ class InstituteRepository extends Repository
     }
     public static function updateByRequest(Request $request, Institute $institute)
     {
+        $imageFile = null;
         if ($request->hasFile('image')) {
-            $image = Storage::put('/' . trim(self::$path, '/'), $request->image, 'public');
+            $imageFile = Storage::put('/' . trim(self::$path, '/'), $request->image, 'public');
             if ($institute->id > 0) {
                 if (Storage::exists($institute->image)) {
                     Storage::delete($institute->image);
@@ -29,7 +30,7 @@ class InstituteRepository extends Repository
             ],
             [
                 'description' => $request->description,
-                'image' => $image ?? $institute->image
+                'image' => $imageFile ?? $institute->image
             ]
         );
         return $update;
