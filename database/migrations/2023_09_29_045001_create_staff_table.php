@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
-            $table->foreignId('profile_id')->nullable()->constrained((new Media())->getTable());
             $table->string('designation')->nullable();
             $table->string('shift')->nullable();
             $table->string('blood')->nullable();

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AchievementController;
 use App\Http\Controllers\Backend\CampasController;
 use App\Http\Controllers\Backend\ClassRoutineController;
+use App\Http\Controllers\Backend\CommitteeController;
 use App\Http\Controllers\Backend\ComputerLabController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\DashboardController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Backend\GroupController;
 use App\Http\Controllers\Backend\InstituteController;
 use App\Http\Controllers\Backend\NewsController;
 use App\Http\Controllers\Backend\NoticeController;
+use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\ResultController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SlybusController;
@@ -94,6 +96,9 @@ Route::controller(RegisterController::class)->group(function(){
 //School Dashboard
 Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function(){
     Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('school.dashboard');
+    Route::controller(ProfileController::class)->group(function(){
+        Route::get('/profile','profile')->name('profile');
+    });
     //Group Route
     Route::controller(GroupController::class)->group(function(){
         Route::get('/group','index')->name('group.index');
@@ -145,6 +150,17 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         Route::put('/staff/update/{staff}','update')->name('staff.update');
         Route::get('/staff/destroy/{staff}','destroy')->name('staff.destroy');
         Route::post('/staff/status/{staff}','status')->name('staff.status');
+    });
+    //Staff Route
+    Route::controller(CommitteeController::class)->group(function(){
+        Route::get('/committee','index')->name('committee.index');
+        Route::get('/committee/create','create')->name('committee.create');
+        Route::post('/committee/store','store')->name('committee.store');
+        Route::get('/committee/show/{committee}','show')->name('committee.show');
+        Route::get('/committee/edit/{committee}','edit')->name('committee.edit');
+        Route::put('/committee/update/{committee}','update')->name('committee.update');
+        Route::get('/committee/destroy/{committee}','destroy')->name('committee.destroy');
+        Route::post('/committee/status/{committee}','status')->name('committee.status');
     });
     //Slider Route
     Route::controller(SliderController::class)->group(function(){

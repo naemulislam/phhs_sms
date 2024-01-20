@@ -72,7 +72,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
                                             <img style="width:70px ;"
-                                                src="{{$row->profile_id? $row->image->file: asset('defaults/noimage/no_img.jpg')}}" alt="">
+                                                src="{{$row->user->profile_id? $row->user->image->file: asset('defaults/noimage/no_img.jpg')}}" alt="">
                                         </td>
                                         <td>{{ $row->user->name }}</td>
                                         <td>{{ $row->subject->name }}</td>

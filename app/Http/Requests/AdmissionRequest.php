@@ -33,6 +33,7 @@ class AdmissionRequest extends FormRequest
         }
         return [
             'name' => 'required|string|max:150',
+            'email' => 'nullable|email',
             'roll' => 'required|integer',
             'student_id' => 'required|integer',
             'birth_reg_no' => 'required|integer',

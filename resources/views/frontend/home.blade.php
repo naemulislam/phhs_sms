@@ -165,22 +165,14 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="notice-board py-3">
+                                    @foreach ($notices as $notice)
                                     <div class="notice">
-                                        <h3>অভিভাবক সম্মেলন মিটিং ০২-০৯-২৩</h3>
-                                        <p class="simple-text">This is the first important notice on the notice board. Please read it carefully.</p>
+                                        <h3>{{$notice->title}}</h3>
+                                        <p class="simple-text">{{$notice->description}}</p>
                                         <a href="{{ route('all.notice')}}" class="btn-notice">আরো পড়ুন..</a>
                                     </div>
-                                    <div class="notice">
-                                        <h3>Important Notice #2</h3>
-                                        <p class="simple-text">This is the second important notice on the notice board. Don't forget to check it
-                                            out.</p>
-                                        <a href="#" class="btn-notice">আরো পড়ুন..</a>
-                                    </div>
-                                    <div class="notice">
-                                        <h3>Important Notice #3</h3>
-                                        <p class="simple-text">Here's the third important notice. Make sure you are aware of its contents.</p>
-                                        <a href="#" class="btn-notice">আরো পড়ুন..</a>
-                                    </div>
+                                    @endforeach
+
                                     <div class="">
                                         <a href="{{route('all.notice')}}" class="btn-notice float-right">সকল নোটিশ <i
                                                 class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>

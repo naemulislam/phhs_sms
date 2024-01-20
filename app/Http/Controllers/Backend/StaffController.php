@@ -26,16 +26,9 @@ class StaffController extends Controller
     }
     public function store(StaffRequest $request)
     {
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'role' => 'staff',
-            'pds_id' => $request->pds_id,
-            'is_active' => true,
-        ]);
-        StaffRepository::storeByRequest($request, $user->id);
-        AddressRepository::storeByRequest($request, $user->id);
+        $userId = UserRepository::staffCreate($request);
+        StaffRepository::storeByRequest($request, $userId);
+        AddressRepository::storeByRequest($request, $userId);
         return back()->with('success', 'Staff is created successfully!');
     }
     public function show(Staff $staff)
@@ -50,28 +43,22 @@ class StaffController extends Controller
     }
     public function update(StaffRequest $request, Staff $staff)
     {
-        $user = UserRepository::query()->where('id', $staff->user_id)->first();
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'pds_id' => $request->pds_id,
-        ]);
+        UserRepository::updateStaff($request, $staff->user_id);
         StaffRepository::updateByRequest($request, $staff);
         AddressRepository::updateByRequest($request, $staff->user_id);
         return back()->with('success', 'Staff is updated successfully!');
     }
     public function destroy(Staff $staff)
     {
-        $media = MediaRepository::find($staff->profile_id);
+        $media = MediaRepository::find($staff->user->profile_id);
         if (Storage::exists($media->src)) {
             Storage::delete($media->src);
         }
         $address = AddressRepository::query()->where('user_id', $staff->user->id)->first();
         $staff->delete();
-        $media->delete();
         $address->delete();
         $staff->user->delete();
+        $media->delete();
         return back()->with('success', 'Staff is deleted successfully!');
     }
     public function status(Request $request, Staff $staff)

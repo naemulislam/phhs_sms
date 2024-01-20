@@ -25,7 +25,7 @@ class AddressRepository extends Repository
             $permanentDist = $request->present_dist;
         }
         $create = self::create([
-            'user_id' => $userId,
+            'user_id' => $userId->id,
             'present_vill' => $request->present_vill,
             'present_post' => $request->present_post,
             'present_upzilla' => $request->present_upzilla,

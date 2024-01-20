@@ -29,16 +29,9 @@ class TeacherController extends Controller
     }
     public function store(TeacherRequest $request)
     {
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'role' => 'teacher',
-            'pds_id' => $request->pds_id,
-            'is_active' => true,
-        ]);
-        TeacherRepository::storeByRequest($request, $user->id);
-        AddressRepository::storeByRequest($request, $user->id);
+        $userId = UserRepository::teacherCreate($request);
+        TeacherRepository::storeByRequest($request, $userId);
+        AddressRepository::storeByRequest($request, $userId);
         return back()->with('success', 'Teacher is created successfully!');
     }
     public function show(Teacher $teacher)
@@ -54,28 +47,22 @@ class TeacherController extends Controller
     }
     public function update(TeacherRequest $request, Teacher $teacher)
     {
-        $user = UserRepository::query()->where('id', $teacher->user_id)->first();
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'pds_id' => $request->pds_id,
-        ]);
+        UserRepository::updateTeacher($request, $teacher->user_id);
         TeacherRepository::updateByRequest($request, $teacher);
         AddressRepository::updateByRequest($request, $teacher->user_id);
         return back()->with('success', 'Teacher is updated successfully!');
     }
     public function destroy(Teacher $teacher)
     {
-        $media = MediaRepository::find($teacher->profile_id);
+        $media = MediaRepository::find($teacher->user->profile_id);
         if (Storage::exists($media->src)) {
             Storage::delete($media->src);
         }
         $address = AddressRepository::query()->where('user_id', $teacher->user->id)->first();
         $teacher->delete();
-        $media->delete();
         $address->delete();
         $teacher->user->delete();
+        $media->delete();
         return back()->with('success', 'Teacher is deleted successfully!');
     }
     public function status(Request $request, Teacher $teacher)

@@ -8,19 +8,17 @@
     <link rel="shortcut icon" href="{{ asset('frontend') }}/assets/images/logo/favicon-32x32.png" type="image/x-icon">
 
     <!-- Font Awesome cdn link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/font-awesome.min.css" />
     <!-- Owl-carosul css cdn link -->
 
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend') }}/assets/css/jpreview.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/owl.carousel.min.css" />
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" />
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/owl.theme.default.css" />
     <link rel="stylesheet" href="{{ asset('defaults/toastr/toastr.min.css') }}">
 
     <!-- Bootstrap css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/bootstrap_v4.min.css">
     {{-- lightbox css --}}
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/simple-lightbox.min.css" />
     <!--Social icon css link-->
@@ -96,13 +94,13 @@
     <script src="{{ asset('frontend') }}/assets/js/jquery.min.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> -->
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/bootstrap_v4.min.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/bootstrap-prettyfile.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/jpreview.js"></script>
 
     <script src="{{ asset('defaults/toastr/toastr.min.js') }}"></script>
     <!-- Owl-carosul js file cdn link -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/owl.carousel.min.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/owl-extra-code.js"></script>
     {{-- Lightbox js --}}
     <script src="{{ asset('frontend') }}/assets/js/simple-lightbox.min.js"></script>
@@ -118,7 +116,7 @@
         toastr.success("{{ Session::get('error') }}");
     </script>
     @endif
-    
+
     @yield('customjs')
     <script>
         $(document).ready(function() {

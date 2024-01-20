@@ -211,12 +211,22 @@
                                                     placeholder="Enter blood group" value="{{ old('blood') }}">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mb-3">
                                             <div class="form-group">
                                                 <label for="">Phone</label>
                                                 <input type="number" class="form-control" name="phone"
                                                     placeholder="Enter phone number" value="{{ old('phone') }}">
                                                     @error('phone')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="">Email</label>
+                                                <input type="email" class="form-control" name="email"
+                                                    placeholder="Enter email" value="{{ old('email') }}">
+                                                    @error('email')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>

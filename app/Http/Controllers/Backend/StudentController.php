@@ -4,15 +4,12 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdmissionRequest;
-use App\Models\Address;
 use App\Models\Student;
-use App\Models\Subject;
 use App\Models\User;
 use App\Repositories\AddressRepository;
 use App\Repositories\GroupRepository;
 use App\Repositories\MediaRepository;
 use App\Repositories\StudentRepository;
-use App\Repositories\SubjectRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -40,14 +37,9 @@ class StudentController extends Controller
     }
     public function store(AdmissionRequest $request)
     {
-        $user = User::create([
-            'name' => $request->name,
-            'role' => 'student',
-            'student_id' => $request->student_id,
-            'is_active' => true,
-        ]);
-        StudentRepository::storeByRequest($request, $user->id);
-        AddressRepository::storeByRequest($request, $user->id);
+        $userId = UserRepository::studentCreate($request);
+        StudentRepository::storeByRequest($request, $userId);
+        AddressRepository::storeByRequest($request, $userId);
         return back()->with('success', 'Student is created successfully!');
     }
     public function show(Student $student)
@@ -63,25 +55,25 @@ class StudentController extends Controller
     }
     public function update(AdmissionRequest $request, Student $student)
     {
-        $user = UserRepository::query()->where('id', $student->user_id)->first();
-        $user->update([
-            'student_id' => $request->student_id,
-        ]);
+        UserRepository::studentUpdate($request ,$student->user_id);
+        // $user->update([
+        //     'student_id' => $request->student_id,
+        // ]);
         StudentRepository::updateByRequest($request, $student);
         AddressRepository::updateByRequest($request, $student->user_id);
         return back()->with('success', 'Student is updated successfully!');
     }
     public function destroy(Student $student)
     {
-        $media = MediaRepository::find($student->image_id);
+        $media = MediaRepository::find($student->user->profile_id);
         if (Storage::exists($media->src)) {
             Storage::delete($media->src);
         }
         $address = AddressRepository::query()->where('user_id', $student->user->id)->first();
         $student->delete();
-        $media->delete();
         $address->delete();
         $student->user->delete();
+        $media->delete();
 
         return back()->with('success', 'Student is deleted successfully!');
     }

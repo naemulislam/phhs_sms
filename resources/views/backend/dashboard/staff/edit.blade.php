@@ -297,7 +297,7 @@
                                             <label>Image</label>
                                             <div class="imageBox">
                                                 <img style=""
-                                                    src="{{ $staff->profile_id ? $staff->image->file : asset('defaults/noimage/no_img.jpg') }}"
+                                                    src="{{ $staff->user->profile_id ? $staff->user->image->file : asset('defaults/noimage/no_img.jpg') }}"
                                                     alt="" class="small-previewImage">
                                             </div>
                                         </div>

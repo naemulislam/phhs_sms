@@ -7,24 +7,14 @@ use App\Models\Teacher;
 
 class TeacherRepository extends Repository
 {
-    public static $path = '/teacher';
     public static function model()
     {
         return Teacher::class;
     }
     public static function storeByRequest(TeacherRequest $request, $userId){
-        $imageId = null;
-        if($request->hasFile('image')){
-            $image = MediaRepository::storeByRequest(
-                $request->image,
-                self::$path,
-                'image'
-            );
-            $imageId = $image->id;
-        }
+
         $create = self::create([
-            'user_id' => $userId,
-            'profile_id' => $imageId,
+            'user_id' => $userId->id,
             'designation' => $request->designation,
             'subject_id' => $request->subject_id,
             'shift' => $request->shift,
@@ -39,29 +29,8 @@ class TeacherRepository extends Repository
 
     }
     public static function updateByRequest(TeacherRequest $request, Teacher $teacher){
-        $imageId = null;
-        if ($teacher->image) {
-            if ($request->hasFile('image')) {
-                $image = MediaRepository::updateByRequest(
-                    $request->image,
-                    self::$path,
-                    'image',
-                    $teacher->image
-                );
-                $imageId = $image->id;
-            }
-        }else{
-            if ($request->hasFile('image')) {
-                $image =  MediaRepository::storeByRequest(
-                    $request->image,
-                    self::$path,
-                    'image'
-                );
-                $imageId = $image->id;
-            }
-        }
+
         $update = self::update($teacher,[
-            'profile_id' => $imageId ?? $teacher->profile_id,
             'designation' => $request->designation,
             'subject_id' => $request->subject_id,
             'shift' => $request->shift,

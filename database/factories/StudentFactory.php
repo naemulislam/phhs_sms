@@ -37,7 +37,6 @@ class StudentFactory extends Factory
             'religion' => 'Islam',
             'shift' => 'morning',
             'group_id' => $groups->id,
-            'image_id' => Media::factory()->create(),
         ];
     }
 }

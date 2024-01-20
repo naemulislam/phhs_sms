@@ -47,7 +47,7 @@
                             <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">Email</label>
                                 <input class="form-control form-control-solid h-auto py-6 px-6 rounded-lg"
-                                    type="email" name="email" placeholder="Enter your pds id" />
+                                    type="email" name="email" placeholder="Enter your pds id" value="{{old('email')}}"/>
                                     @error('email')
                                     <span class="text-danger">{{ $message}}</span>
                                     @enderror

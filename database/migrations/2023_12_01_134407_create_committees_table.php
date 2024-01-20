@@ -1,8 +1,5 @@
 <?php
 
-use App\Models\Media;
-use App\Models\Subject;
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,18 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teachers', function (Blueprint $table) {
+        Schema::create('committees', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained();
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->string('designation')->nullable();
-            $table->foreignId('subject_id')->constrained((new Subject())->getTable());
-            $table->string('shift')->nullable();
-            $table->string('blood')->nullable();
             $table->string('gender')->nullable();
             $table->string('religion')->nullable();
             $table->string('nid')->nullable();
+            $table->longText('address')->nullable();
+            $table->string('image')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->date('join_date')->nullable();
+            $table->boolean('is_active')->default(1);
             $table->timestamps();
         });
     }
@@ -35,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('teachers');
+        Schema::dropIfExists('committees');
     }
 };

@@ -314,7 +314,7 @@
                                             <label>Image</label>
                                             <div class="imageBox">
                                                 <img style=""
-                                                    src="{{ $teacher->profile_id ? $teacher->image->file : asset('defaults/noimage/no_img.jpg') }}"
+                                                    src="{{ $teacher->user->profile_id ? $teacher->user->image->file : asset('defaults/noimage/no_img.jpg') }}"
                                                     alt="" class="small-previewImage">
                                             </div>
                                         </div>

@@ -7,23 +7,14 @@ use App\Models\Student;
 
 class StudentRepository extends Repository
 {
-    public static $path = '/student';
+
     public static function model()
     {
         return Student::class;
     }
     public static function storeByRequest(AdmissionRequest $request, $userId){
-        $imageId = null;
-        if ($request->hasFile('image')) {
-            $image = MediaRepository::storeByRequest(
-                $request->image,
-                self::$path,
-                'image'
-            );
-            $imageId = $image->id;
-        }
         $create = self::create([
-            'user_id' => $userId,
+            'user_id' => $userId->id,
             'applicant_name' => $request->name,
             'roll' => $request->roll,
             'group_id' => $request->group_id,
@@ -38,7 +29,6 @@ class StudentRepository extends Repository
             'type' => $request->type,
             'blood' => $request->blood,
             'phone' => $request->phone,
-            'image_id' => $imageId,
             //Guardian Information
             'father_name' => $request->father_name,
             'father_phone' => $request->father_phone,
@@ -53,27 +43,7 @@ class StudentRepository extends Repository
         return $create;
     }
     public static function updateByRequest(AdmissionRequest $request, Student $student){
-        $imageId = null;
-        if ($student->image) {
-            if ($request->hasFile('image')) {
-                $image = MediaRepository::updateByRequest(
-                    $request->image,
-                    self::$path,
-                    'image',
-                    $student->image
-                );
-                $imageId = $image->id;
-            }
-        }else{
-            if ($request->hasFile('image')) {
-                $image =  MediaRepository::storeByRequest(
-                    $request->image,
-                    self::$path,
-                    'image'
-                );
-                $imageId = $image->id;
-            }
-        }
+
         $update = self::update($student,[
             'applicant_name' => $request->name,
             'roll' => $request->roll,

@@ -22,7 +22,6 @@ class StaffFactory extends Factory
         $nid = mt_rand(1000000000, 9999999999);
         return [
             'user_id' => $user->id,
-            'profile_id' => Media::factory()->create(),
             'designation' => 'Staff',
             'shift' => 'Morning',
             'nid' => $nid,

@@ -46,7 +46,7 @@
                         <div class="row mb-3">
                             <div class="col-md-3 mx-auto">
                                 <div class="imageBox">
-                                    <img src="@if (!empty($staff->profile_id)) {{ asset($staff->image->file) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
+                                    <img src="@if (!empty($staff->user->profile_id)) {{ asset($staff->user->image->file) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                         alt="">
                                 </div>
                             </div>

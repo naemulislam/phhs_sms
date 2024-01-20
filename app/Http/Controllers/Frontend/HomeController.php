@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
+use App\Models\Notice;
+use App\Repositories\NoticeRepository;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     // Home page show
     public function index(){
-        return view('frontend.home');
+        $data['notices'] = NoticeRepository::query()->where('is_active',true)->get();
+        return view('frontend.home',$data);
     }
     // history page show
     public function history(){

@@ -110,15 +110,15 @@
                                         </td>
                                     </tr>
                                     <!--Row Status -->
-                                    <div class="modal fade" id="row_status_{{ $row->id }}" tabindex="-1"
+                                    <div class="modal fade" data-backdrop="static" id="row_status_{{ $row->id }}" tabindex="-1"
                                         role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">Status</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
+                                                        <i class="fa fa-close"></i>
                                                     </button>
                                                 </div>
                                                 <form action="{{ route('student.status', $row->id) }}" method="post">
