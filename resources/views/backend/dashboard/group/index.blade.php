@@ -6,6 +6,11 @@
             font-size: 18px;
         }
     </style>
+    @if(Session::has('error'))
+    <div class="alert alert-danger">
+      {{ Session::get('error')}}
+    </div>
+    @endif
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Subheader-->
