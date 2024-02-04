@@ -299,7 +299,15 @@
                 <div class="d-flex flex-column">
                     <a href="{{ route('school.dashboard') }}"
                         class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">{{ Auth()->user()->name }}</a>
-                    <div class="text-muted mt-1">Admin</div>
+                        @if(auth::user()->role == 'admin')
+                        <div class="text-muted mt-1">Admin</div>
+                        @elseif (auth::user()->role == 'teacher')
+                        <div class="text-muted mt-1">Teacher</div>
+                        @elseif (auth::user()->role == 'staff')
+                        <div class="text-muted mt-1">Staff</div>
+                        @else
+                        <div class="text-muted mt-1"></div>
+                        @endif
                     <div class="navi mt-2">
                         <a href="#" class="navi-item">
                             <span class="navi-link p-0 pb-2">
@@ -365,7 +373,7 @@
                 </a>
                 <!--end:Item-->
                 <!--begin::Item-->
-                <a href="" class="navi-item">
+                <a href="{{route('edit.password')}}" class="navi-item">
                     <div class="navi-link">
                         <div class="symbol symbol-40 bg-light mr-3">
                             <div class="symbol-label">

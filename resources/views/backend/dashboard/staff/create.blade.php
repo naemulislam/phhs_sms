@@ -132,8 +132,8 @@
                                                 <label for="">Gender <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="gender">
                                                     <option selected disabled>select gender</option>
-                                                    <option value="mail">Mail</option>
-                                                    <option value="femail">Femail</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
                                                 </select>
                                                 @error('gender')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -284,7 +284,7 @@
                                             <div class="form-group">
                                                 <label>Image</label>
                                                 <input type="file" name="image" class="form-control"
-                                                    onchange="loadFile(event)">
+                                                    onchange="loadFile(event)" accept=".png,.jpg,.jpeg">
                                             </div>
                                         </div>
                                         <div class="imageBox">

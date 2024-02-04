@@ -136,8 +136,8 @@
                                                 <label for="">Gender <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="gender">
                                                     <option selected disabled>select gender</option>
-                                                    <option value="mail">Mail</option>
-                                                    <option value="femail">Femail</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
                                                 </select>
                                                 @error('gender')
                                                     <span class="text-danger">{{ $message }}</span>

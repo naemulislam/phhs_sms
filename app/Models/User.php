@@ -20,8 +20,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $guarded = ['id'];
-    public function address(){
+    public function userAddress(){
         return $this->hasOne(Address::class,'user_id');
+    }
+    public function teacher(){
+        return $this->hasOne(Teacher::class,'user_id');
+    }
+    public function staff(){
+        return $this->hasOne(Staff::class,'user_id');
     }
     public function image()
     {
