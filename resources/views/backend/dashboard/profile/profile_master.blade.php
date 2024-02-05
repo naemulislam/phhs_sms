@@ -3,7 +3,7 @@
 @section('content')
 
 @php
-    $routeName = \Request::route()->getName()
+    $routeName = \Request::route()->getName();
 @endphp
 
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">

@@ -132,6 +132,9 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         Route::get('/student/destroy/{student}','destroy')->name('student.destroy');
         Route::post('/student/status/{student}','status')->name('student.status');
         Route::get('/student/id','studentId')->name('id.generate');
+        //Student promote route
+        Route::get('/student/promote','studentPromote')->name('student.promote.index');
+        Route::post('/student/promote/store','promoteStore')->name('student.promote.store');
     });
     //Teacher Route
     Route::controller(TeacherController::class)->group(function(){

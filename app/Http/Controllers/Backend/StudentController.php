@@ -11,6 +11,7 @@ use App\Repositories\GroupRepository;
 use App\Repositories\MediaRepository;
 use App\Repositories\StudentRepository;
 use App\Repositories\UserRepository;
+use FFI;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,8 +20,12 @@ class StudentController extends Controller
     //get all students
     public function index()
     {
-        $students = StudentRepository::getAll();
-        return view('backend.dashboard.student.student_list', compact('students'));
+        $group = request()->group_id;
+        $students = StudentRepository::query()->when($group, function ($query) use ($group) {
+            $query->where('group_id', $group);
+        })->get();
+        $groups = GroupRepository::query()->where('is_active', true)->get();
+        return view('backend.dashboard.student.student_list', compact('students', 'groups'));
     }
     public function create()
     {
@@ -55,7 +60,7 @@ class StudentController extends Controller
     }
     public function update(AdmissionRequest $request, Student $student)
     {
-        UserRepository::studentUpdate($request ,$student->user_id);
+        UserRepository::studentUpdate($request, $student->user_id);
         // $user->update([
         //     'student_id' => $request->student_id,
         // ]);
@@ -89,5 +94,33 @@ class StudentController extends Controller
             'is_active' => $isActive,
         ]);
         return back()->with('success', 'Status is updated successfully!');
+    }
+    //Student Promote function bellow
+    public function studentPromote()
+    {
+        $group = request()->group_id;
+        $students = StudentRepository::query()->when($group, function ($query) use ($group) {
+            $query->where('group_id', $group);
+        })->get();
+        $groups = GroupRepository::query()->where('is_active', true)->get();
+        return view('backend.dashboard.promote_student.student_list', compact('students', 'groups'));
+    }
+    public function promoteStore(Request $request)
+    {
+        // $request->validate([
+        //     'roll' => 'required'
+        // ]);
+        if ($request->row_id == null) {
+            return back()->with('error', 'Plese select students!');
+        } else {
+            foreach ($request->row_id as $key => $value) {
+                $student = StudentRepository::find($value);
+                $student->update([
+                    'roll' => $request->roll[$key],
+                    'group_id' => $request->group_id[$key]
+                ]);
+            }
+            return back()->with('success', 'Students promoted successfully!');
+        }
     }
 }

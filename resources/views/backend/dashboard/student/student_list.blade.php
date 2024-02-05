@@ -41,6 +41,20 @@
                             </h3>
                         </div>
                         <div class="card-toolbar">
+                            <div class="dropdown mr-2">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @php
+                                        $requestGroupName = \App\Models\Group::where('id', request()->group_id)->first();
+                                    @endphp
+                                  {{$requestGroupName->name ?? 'Select Class'}}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" href="{{route('student.index')}}">All Class</a>
+                                  @foreach ($groups as $group )
+                                  <a class="dropdown-item" href="{{route('student.index',['group_id'=> $group->id])}}">{{$group->name}}</a>
+                                  @endforeach
+                                </div>
+                              </div>
                             <!--begin::Button-->
                             <a href="{{ route('student.create') }}" class="btn btn-primary font-weight-bolder">
                                 <span class="svg-icon svg-icon-md">
@@ -56,7 +70,7 @@
                                         </g>
                                     </svg>
                                     <!--end::Svg Icon-->
-                                </span>Student Admission</a>
+                                </span>New Student</a>
                             <!--end::Button-->
                         </div>
                     </div>

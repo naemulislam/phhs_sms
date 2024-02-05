@@ -1,4 +1,7 @@
-<li class="menu-item menu-item-active" aria-haspopup="true">
+@php
+    $routeName = request()->route()->getName();
+@endphp
+<li class="menu-item {{$routeName == 'school.dashboard'? 'menu-item-active': '' }}" aria-haspopup="true">
     <a href="{{ route('school.dashboard') }}" class="menu-link">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -52,7 +55,7 @@
                     <span class="menu-text">Academic</span>
                 </span>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'group.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('group.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -61,7 +64,7 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'subject.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('subject.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -70,7 +73,7 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'class.routine.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('class.routine.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -79,7 +82,7 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'exam.routine.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('exam.routine.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -138,9 +141,7 @@
                     <span class="menu-text">student</span>
                 </span>
             </li>
-
-
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('student.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -155,6 +156,15 @@
                         <span></span>
                     </i>
                     <span class="menu-text">Student admission</span>
+                    <i class="menu-arrow"></i>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{ route('student.promote.index')}}" class="menu-link menu-toggle">
+                    <i class="menu-bullet menu-bullet-line">
+                        <span></span>
+                    </i>
+                    <span class="menu-text">Student promote</span>
                     <i class="menu-arrow"></i>
                 </a>
             </li>
