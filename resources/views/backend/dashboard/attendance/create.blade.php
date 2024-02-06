@@ -1,4 +1,4 @@
-@extends('backend.layouts.dashboard')
+@extends('backend.layouts.master')
 @section('title', 'Create Attendance')
 @section('content')
 <!--begin::Content-->
@@ -37,53 +37,60 @@
                             <h3 class="card-title">Crate a Attendance</h3>
                             <div class="card-toolbar">
                                 <!--begin::Button-->
-                                <a href="{{route('admin.attendance.index') }}" class="btn btn-primary btn-sm font-weight-bolder">
+                                <a href="{{route('attendance.index') }}" class="btn btn-primary btn-sm font-weight-bolder">
                                     < Back</a>
                                         <!--end::Button-->
                             </div>
                         </div>
                         <!--begin::Form-->
                         <div class="card-body">
-                            <form action="{{ route('admin.attendance.store')}}" method="post">
+                            <form action="{{ route('attendance.store')}}" method="post">
                                 @csrf
-
-
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label for="">Class Group<span class="text-danger">*</span></label>
-                                            <select name="class_id" class="form-control js-select-result" id="adclass_id">
+                                            <label for="">Class Group <span class="text-danger">*</span></label>
+                                            <select name="group_id" class="form-control js-select-result" id="adclass_id">
                                                 <option>Select Class Group</option>
-                                                @foreach($class_group as $class)
-                                                <option value="{{$class->id}}">{{ $class->class_name}}</option>
+                                                @foreach($groups as $class)
+                                                <option value="{{$class->id}}">{{ $class->name}}</option>
                                                 @endforeach
                                             </select>
-
-                                            <div style='color:red; padding: 0 5px;'>{{($errors->has('class_id'))?($errors->first('class_id')):''}}</div>
+                                            @error('group_id')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
                                         </div>
                                     </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label for="">Date<span class="text-danger">*</span></label>
+                                            <label for="">Subject <span class="text-danger">*</span></label>
+                                            <select name="subject_id" class="form-control" id="subject_id">
+                                                {{-- <option></option> --}}
+                                            </select>
+                                            @error('group_id')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="">Date <span class="text-danger">*</span></label>
                                             <input type="date" class="form-control" name="attendance_date" value="<?php echo date('Y-m-d'); ?>">
-
-                                            <div style='color:red; padding: 0 5px;'>{{($errors->has('attendance_date'))?($errors->first('attendance_date')):''}}</div>
+                                            @error('attendance_date')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label for="">Time<span class="text-danger">*</span></label>
+                                            <label for="">Time <span class="text-danger">*</span></label>
                                             <input type="time" class="form-control" name="attendance_time">
-
-                                            <div style='color:red; padding: 0 5px;'>{{($errors->has('attendance_time')) ?($errors->first('attendance_time')):''}}</div>
+                                            @error('attendance_time')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
                                         </div>
                                     </div>
-
                                 </div>
-
                                 <div class="card-body">
                                     <!--begin: Datatable-->
                                     <table class="table table-separate table-head-custom table-checkable" id="">
@@ -130,36 +137,34 @@
     <!--end::Entry-->
 </div>
 <!--end::Content-->
+@endsection
 
-@section('customjs')
-
-
+@push('scripts')
 
 <!-- Add code -->
 <script>
     $(document).on('change', '#adclass_id', function() {
         var class_id = $(this).val();
+        // console.log(class_id);
         $.ajax({
             type: "get",
-            url: "{{url('/admin/dashboard/get/student')}}/" + class_id,
+            url: "{{url('/school/portal/get/subjects')}}/" + class_id,
             dataType: 'html',
             success: function(res) {
-                // var data = '';
-                // $.each(res, function(key, value) {
-                //     data +=
-                //         '<tr>' +
-                //         '<input type="hidden" name="admi_id[]" value='+value.id +'>'+
-                //         '<td>' + key + 1 + '</td>' +
-                //         '<td>' + value.student + '</td>' +
-                //         '<td>' + value.category + '</td>' +
-                //         '<td>' + value.class + '</td>' +
-                //         '<td>' + value.roll + '</td>' +
-                //         '<td>' +'<select class="form-control" name="pa[]">'
-                //         +'<option value="1">'+'Present'+'</option>'+
-                //         '<option value="0">'+'Absent'+'</option>'+
-                //         '</select>' + '</td>' +
-                //         '</tr>';
-                // });
+                $('#subject_id').html(res);
+            }
+        });
+    })
+</script>
+<script>
+    $(document).on('change', '#adclass_id', function() {
+        var class_id = $(this).val();
+        // console.log(class_id);
+        $.ajax({
+            type: "get",
+            url: "{{url('/school/portal/get/studentlist')}}/" + class_id,
+            dataType: 'html',
+            success: function(res) {
                 $('#table').html(res);
             }
         });
@@ -170,7 +175,4 @@
     var $disabledResults = $(".js-select-result");
     $disabledResults.select2();
 </script>
-@endsection
-
-
-@endsection
+@endpush

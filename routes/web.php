@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AchievementController;
+use App\Http\Controllers\Backend\AttendanceController;
 use App\Http\Controllers\Backend\CampasController;
 use App\Http\Controllers\Backend\ClassRoutineController;
 use App\Http\Controllers\Backend\CommitteeController;
@@ -135,6 +136,18 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         //Student promote route
         Route::get('/student/promote','studentPromote')->name('student.promote.index');
         Route::post('/student/promote/store','promoteStore')->name('student.promote.store');
+    });
+    // Student Attendance Route
+    Route::controller(AttendanceController::class)->group(function(){
+        Route::get('/student/attendance/index', 'index')->name('attendance.index');
+        Route::get('/student/attendance/create', 'create')->name('attendance.create');
+        Route::post('/student/attendance/store', 'store')->name('attendance.store');
+        Route::post('/student/attendance/update', 'update')->name('attendance.update');
+        Route::get('/student/attendance/show/{date}/{group}/{subject}', 'show')->name('attendance.show');
+        Route::get('/student/attendance/destroy/{date}/{group}/{subject}', 'destroy')->name('attendance.delete');
+        //get all students form ajax
+        Route::get('/get/subjects/{id}','getSubjects')->name('get.subject');
+        Route::get('/get/studentlist/{id}','getStudents')->name('get.student');
     });
     //Teacher Route
     Route::controller(TeacherController::class)->group(function(){
