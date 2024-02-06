@@ -88,7 +88,7 @@
                                             @endif
                                         </td>
                                         <td class="d-flex">
-                                            <a id="delete" href="{{ route('message.destroy', $row->id) }}"
+                                            <a id="delete" href=" @if (Auth::user()->role == 'admin'){{ route('message.destroy', $row->id) }} @endif"
                                                 class="btn btn-icon btn-danger btn-hover-primary btn-xs mx-3">
                                                 <i class="fa fa-trash"></i>
                                             </a>

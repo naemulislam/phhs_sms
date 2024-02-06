@@ -33,7 +33,7 @@
                     </div>
                     <div class="card-toolbar">
                         <!--begin::Button-->
-                        <a href="{{ route('subject.create')}}"  class="btn btn-primary font-weight-bolder">
+                        <a href="@if(Auth::user()->role == 'admin') {{ route('subject.create')}} @endif"  class="btn btn-primary font-weight-bolder">
                             <span class="svg-icon svg-icon-md">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -77,12 +77,18 @@
                                 <td>{{$row->code}}</td>
                                 <td>{{$row->group->name}}</td>
                                 <td>
-                                    @if($row->is_active == 1)
-                                    <a href="#" class="btn label label-lg label-light-success label-inline" data-toggle="modal" data-target="#row_status_{{$row->id}}"> Active</a>
+                                    @if ($row->is_active == 1)
+                                        <a href="#"
+                                            class="btn label label-lg label-light-success label-inline"
+                                            data-toggle="modal"  @if(Auth::user()->role == 'admin') data-target="#row_status_{{ $row->id }} @endif">
+                                            Active</a>
                                     @elseif($row->is_active == 0)
-                                    <a href="#" class="btn label label-lg label-light-danger label-inline" data-toggle="modal" data-target="#row_status_{{$row->id}}"> Inactive</a>
+                                        <a href="#" class="btn label label-lg label-light-danger label-inline"
+                                            data-toggle="modal"  @if(Auth::user()->role == 'admin')data-target="#row_status_{{ $row->id }}" @endif>
+                                            Inactive</a>
                                     @endif
                                 </td>
+                                @if(Auth::user()->role == 'admin')
                                 <td class="d-flex">
                                     <a href="{{route('subject.edit',$row->id)}}" class="btn btn-icon btn-info btn-hover-primary btn-xs mx-3"><i class="fa fa-edit"></i></a>
 
@@ -91,6 +97,9 @@
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </td>
+                                @else
+                                <td>You don't have permission to access</td>
+                                 @endif
                             </tr>
 
                             <!--Row Status -->

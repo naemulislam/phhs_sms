@@ -28,7 +28,15 @@
 </li>
 
 {{-- Academic section --}}
-<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+<li class="menu-item menu-item-submenu {{
+$routeName == 'group.index' ||
+$routeName == 'subject.index' ||
+$routeName == 'class.routine.index' ||
+$routeName == 'exam.routine.index' ||
+$routeName == 'slybus.index' ||
+$routeName == 'result.index'? 'menu-item-open':''
+}}
+" aria-haspopup="true" data-menu-toggle="hover">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -91,7 +99,7 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'slybus.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('slybus.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -100,7 +108,7 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'result.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('result.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -114,7 +122,13 @@
 </li>
 {{-- End section --}}
 {{-- Student management section --}}
-<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+<li class="menu-item menu-item-submenu
+{{
+    $routeName == 'student.index' ||
+    $routeName == 'student.create' ||
+    $routeName == 'student.promote.index'? 'menu-item-open':''
+    }}
+" aria-haspopup="true" data-menu-toggle="hover">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -125,7 +139,7 @@
                     <rect fill="#000000" x="4" y="4" width="7" height="7" rx="1.5" />
                     <path
                         d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z"
-                        fill="#000000" opacity="0.3" />
+                        fill="#000000" opacity="0.3"/>
                 </g>
             </svg>
             <!--end::Svg Icon-->
@@ -141,7 +155,7 @@
                     <span class="menu-text">student</span>
                 </span>
             </li>
-            <li class="menu-item menu-item-submenu menu-item-active" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'student.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('student.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -150,7 +164,8 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            @if(Auth::user()->role == 'admin')
+            <li class="menu-item menu-item-submenu {{$routeName == 'student.create'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('student.create')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -159,7 +174,7 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'student.promote.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('student.promote.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -168,6 +183,7 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
+            @endif
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
@@ -182,7 +198,12 @@
 </li>
 {{-- End section --}}
 {{-- Teacher management section --}}
-<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+<li class="menu-item menu-item-submenu
+{{
+    $routeName == 'teacher.index' ||
+    $routeName == 'teacher.create'? 'menu-item-open':''
+    }}
+" aria-haspopup="true" data-menu-toggle="hover">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -209,9 +230,7 @@
                     <span class="menu-text">teachers</span>
                 </span>
             </li>
-
-
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'teacher.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('teacher.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -220,7 +239,8 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            @if(Auth::user()->role == 'admin')
+            <li class="menu-item menu-item-submenu {{$routeName == 'teacher.create'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('teacher.create')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -229,12 +249,18 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
+            @endif
         </ul>
     </div>
 </li>
 {{-- End section --}}
 {{-- Staff management section --}}
-<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+<li class="menu-item menu-item-submenu
+{{
+    $routeName == 'staff.index' ||
+    $routeName == 'staff.create'? 'menu-item-open':''
+    }}
+" aria-haspopup="true" data-menu-toggle="hover">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -263,7 +289,7 @@
             </li>
 
 
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'staff.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('staff.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -272,7 +298,8 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            @if(Auth::user()->role == 'admin')
+            <li class="menu-item menu-item-submenu {{$routeName == 'staff.create'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('staff.create')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -281,12 +308,18 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
+            @endif
         </ul>
     </div>
 </li>
 {{-- End section --}}
 {{-- Committee management section --}}
-<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+<li class="menu-item menu-item-submenu
+{{
+    $routeName == 'committee.index' ||
+    $routeName == 'committee.create'? 'menu-item-open':''
+    }}
+" aria-haspopup="true" data-menu-toggle="hover">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -315,7 +348,7 @@
             </li>
 
 
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'committee.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('committee.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -324,7 +357,8 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            @if(Auth::user()->role == 'admin')
+            <li class="menu-item menu-item-submenu {{$routeName == 'committee.create'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('committee.create')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -333,12 +367,18 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
+            @endif
         </ul>
     </div>
 </li>
 {{-- End section --}}
 {{-- Notice management section --}}
-<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+<li class="menu-item menu-item-submenu
+{{
+    $routeName == 'notice.index' ||
+    $routeName == 'notice.create'? 'menu-item-open':''
+    }}
+" aria-haspopup="true" data-menu-toggle="hover">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -367,7 +407,7 @@
             </li>
 
 
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'notice.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('notice.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -376,7 +416,8 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            @if(Auth::user()->role == 'admin')
+            <li class="menu-item menu-item-submenu {{$routeName == 'notice.create'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('notice.create')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -385,12 +426,17 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
+            @endif
         </ul>
     </div>
 </li>
 {{-- End section --}}
 {{-- Message section --}}
-<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+<li class="menu-item menu-item-submenu
+{{
+    $routeName == 'message.index'? 'menu-item-open':''
+    }}
+" aria-haspopup="true" data-menu-toggle="hover">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -420,7 +466,7 @@
                     <span class="menu-text">message</span>
                 </span>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'message.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('message.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -434,7 +480,12 @@
 </li>
 {{-- End section --}}
 {{-- News section --}}
-<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+<li class="menu-item menu-item-submenu
+{{
+    $routeName == 'news.index' ||
+    $routeName == 'news.create'? 'menu-item-open':''
+    }}
+" aria-haspopup="true" data-menu-toggle="hover">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -461,7 +512,7 @@
                     <span class="menu-text">news</span>
                 </span>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'news.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('news.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -470,7 +521,8 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            @if(Auth::user()->role == 'admin')
+            <li class="menu-item menu-item-submenu {{$routeName == 'news.create'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('news.create')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -479,12 +531,18 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
+            @endif
         </ul>
     </div>
 </li>
 {{-- End section --}}
 {{-- Our Achivment section --}}
-<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+<li class="menu-item menu-item-submenu
+{{
+    $routeName == 'achievement.index' ||
+    $routeName == 'achievement.create'? 'menu-item-open':''
+    }}
+" aria-haspopup="true" data-menu-toggle="hover">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -511,9 +569,7 @@
                     <span class="menu-text">achiement</span>
                 </span>
             </li>
-
-
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'achievement.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('achievement.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -522,7 +578,8 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            @if(Auth::user()->role == 'admin')
+            <li class="menu-item menu-item-submenu {{$routeName == 'achievement.create'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('achievement.create')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -531,12 +588,18 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
+            @endif
         </ul>
     </div>
 </li>
 {{-- End section --}}
 {{-- Our Campas section --}}
-<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+<li class="menu-item menu-item-submenu
+{{
+    $routeName == 'campas.index' ||
+    $routeName == 'campas.create'? 'menu-item-open':''
+    }}
+" aria-haspopup="true" data-menu-toggle="hover">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -563,7 +626,7 @@
                     <span class="menu-text">capms</span>
                 </span>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'campas.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('campas.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -572,7 +635,8 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            @if(Auth::user()->role == 'admin')
+            <li class="menu-item menu-item-submenu {{$routeName == 'campas.create'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('campas.create')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -581,12 +645,18 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
+            @endif
         </ul>
     </div>
 </li>
 {{-- End section --}}
 {{-- Gallery section --}}
-<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+<li class="menu-item menu-item-submenu
+{{
+    $routeName == 'gallery.index' ||
+    $routeName == 'gallery.create'? 'menu-item-open':''
+    }}
+" aria-haspopup="true" data-menu-toggle="hover">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -613,7 +683,7 @@
                     <span class="menu-text">gallery</span>
                 </span>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'gallery.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('gallery.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -622,7 +692,8 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            @if(Auth::user()->role == 'admin')
+            <li class="menu-item menu-item-submenu {{$routeName == 'gallery.create'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('gallery.create')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -631,12 +702,21 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
+            @endif
         </ul>
     </div>
 </li>
 {{-- End section --}}
 {{-- Settings section --}}
-<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+@if(Auth::user()->role == 'admin')
+<li class="menu-item menu-item-submenu
+{{
+    $routeName == 'slider.index' ||
+    $routeName == 'settings.index' ||
+    $routeName == 'institute.index' ||
+    $routeName == 'computerLab.index'? 'menu-item-open':''
+    }}
+" aria-haspopup="true" data-menu-toggle="hover">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="svg-icon menu-icon">
             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -663,7 +743,7 @@
                     <span class="menu-text">setting</span>
                 </span>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'slider.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('slider.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -672,7 +752,7 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'settings.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('settings.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -681,7 +761,7 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'institute.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('institute.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -690,7 +770,7 @@
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{$routeName == 'computerLab.index'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('computerLab.index')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -702,4 +782,5 @@
         </ul>
     </div>
 </li>
+@endif
 {{-- End section --}}
