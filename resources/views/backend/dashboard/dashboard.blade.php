@@ -20,6 +20,14 @@
 		</div>
 	</div>
 	<!--end::Subheader-->
+    @php
+        $admins = \App\Repositories\UserRepository::query()->where('role', 'admin')->count();
+        $teachers = \App\Repositories\UserRepository::query()->where('role', 'teacher')->count();
+        $staffs = \App\Repositories\UserRepository::query()->where('role', 'staff')->count();
+        $students = \App\Repositories\UserRepository::query()->where('role', 'student')->count();
+        $users = \App\Repositories\UserRepository::query()->where('role', 'user')->count();
+        $groups = \App\Repositories\GroupRepository::query()->where('is_active', true)->count();
+    @endphp
 
 
 	<!--end::Entry-->
@@ -61,7 +69,7 @@
                                                 </svg>
                                                 <!--end::Svg Icon-->
                                             </span>
-                                            <a href="" class="text-warning font-weight-bold font-size-h6">Admin</a>
+                                            <a href="{{route('admin.index')}}" class="text-warning font-weight-bold font-size-h6">Admin ({{$admins}})</a>
                                         </div>
                                         <div class="col bg-light-primary px-6 py-8 rounded-xl mb-7">
                                             <span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
@@ -75,7 +83,7 @@
                                                 </svg>
                                                 <!--end::Svg Icon-->
                                             </span>
-                                            <a href="" class="text-primary font-weight-bold font-size-h6 mt-2">Teacher</a>
+                                            <a href="{{route('teacher.index')}}" class="text-primary font-weight-bold font-size-h6 mt-2">Teacher ({{$teachers}})</a>
                                         </div>
 
                                     </div>
@@ -96,7 +104,7 @@
                                                 </svg>
                                                 <!--end::Svg Icon-->
                                             </span>
-                                            <a href="" class="text-warning font-weight-bold font-size-h6">Students</a>
+                                            <a href="{{route('student.index')}}" class="text-warning font-weight-bold font-size-h6">Students ({{$students}})</a>
                                         </div>
                                         <div class="col bg-light-primary px-6 py-8 rounded-xl mb-7">
                                             <span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
@@ -110,7 +118,7 @@
                                                 </svg>
                                                 <!--end::Svg Icon-->
                                             </span>
-                                            <a href="#" class="text-primary font-weight-bold font-size-h6 mt-2">Staff</a>
+                                            <a href="{{route('staff.index')}}" class="text-primary font-weight-bold font-size-h6 mt-2">Staff ({{$staffs}})</a>
                                         </div>
 
                                     </div>
@@ -129,7 +137,7 @@
                                                 </svg>
                                                 <!--end::Svg Icon-->
                                             </span>
-                                            <a href="" class="text-danger font-weight-bold font-size-h6 mt-2">Class</a>
+                                            <a href="{{ route('group.index')}}" class="text-danger font-weight-bold font-size-h6 mt-2">Class ({{$groups}})</a>
                                         </div>
                                         <div class="col bg-light-success px-6 py-8 rounded-xl">
                                             <span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
@@ -143,7 +151,7 @@
                                                 </svg>
                                                 <!--end::Svg Icon-->
                                             </span>
-                                            <a href="#" class="text-success font-weight-bold font-size-h6 mt-2">Users</a>
+                                            <a href="#" class="text-success font-weight-bold font-size-h6 mt-2">Users ({{$users}})</a>
                                         </div>
                                     </div>
                                     <!--end::Row-->

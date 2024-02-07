@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
-    //index
     public function index()
     {
         $attendances = StudentAttendance::select('attendance_date', 'group_id', 'subject_id')->distinct()->get();
@@ -20,7 +19,6 @@ class AttendanceController extends Controller
     }
     public function create()
     {
-        // $students = StudentRepository::getAll();
         $groups = GroupRepository::query()->where('is_active', true)->get();
         return view('backend.dashboard.attendance.create', compact('groups'));
     }
@@ -47,7 +45,6 @@ class AttendanceController extends Controller
 
         $html = '';
         $stu['student'] = StudentRepository::query()->with('group', 'user')->where('group_id', $id)->where('status', 1)->Orderby('roll', 'asc')->get();
-        // $get_id = $data['student']->id;
 
         foreach ($stu['student'] as $key => $data) {
             $sl_num = $key + 1;
@@ -95,14 +92,11 @@ class AttendanceController extends Controller
     }
     public function store(Request $request)
     {
-        // dd($request->all());
         if (!empty($request->attendance)) {
 
             $count_student = StudentRepository::query()->where('status', 1)->where('group_id', $request->group_id)->count();
-            // dd($count_student);
 
             $count_atten = count($request->attendance);
-            // dd($count_atten);
             if ($count_student == $count_atten) {
 
                 $check_date = StudentAttendance::where('attendance_date', $request->attendance_date)->where('group_id', $request->group_id)->where('subject_id', $request->subject_id)
@@ -117,8 +111,6 @@ class AttendanceController extends Controller
                         'attendance_date' => 'required',
                         'attendance_time' => 'required'
                     ]);
-
-
                     foreach ($request->attendance as $studentid => $attendance) {
                         StudentAttendance::create([
                             'student_id' => $studentid,
@@ -142,7 +134,6 @@ class AttendanceController extends Controller
     }
     public function update(Request $request)
     {
-        // dd(count($request->attendance), $request->total_students);
         if (!empty($request->attendance)) {
             if (count($request->attendance) == $request->total_students) {
                 foreach ($request->attendance as $id => $attendance_status) {

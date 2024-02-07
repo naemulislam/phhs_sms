@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AchievementController;
+use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AttendanceController;
 use App\Http\Controllers\Backend\CampasController;
 use App\Http\Controllers\Backend\ClassRoutineController;
@@ -103,6 +104,16 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         Route::put('school-staff/profile/{user}','schoolStaffUpdate')->name('schoolStaff.update');
         Route::get('profile/edit-password','editPassword')->name('edit.password');
         Route::put('profile/edit-password/{user}','updatePassword')->name('update.password');
+    });
+    //create admin route
+    Route::controller(AdminController::class)->group(function(){
+        Route::get('admin/index','index')->name('admin.index');
+        Route::get('admin/create','create')->name('admin.create');
+        Route::post('admin/store','store')->name('admin.store');
+        Route::get('admin/edit/{user}','edit')->name('admin.edit');
+        Route::put('admin/update/{user}','update')->name('admin.update');
+        Route::get('admin/destroy/{user}','destroy')->name('admin.destroy');
+        Route::post('admin/status/{user}','status')->name('admin.status');
     });
     //Group Route
     Route::controller(GroupController::class)->group(function(){
