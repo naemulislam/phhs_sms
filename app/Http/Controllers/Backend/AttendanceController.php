@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Auth;
 class AttendanceController extends Controller
 {
     //index
-    public function index(){
-        $attendances = StudentAttendance::select('attendance_date','group_id','subject_id')->distinct()->get();
+    public function index()
+    {
+        $attendances = StudentAttendance::select('attendance_date', 'group_id', 'subject_id')->distinct()->get();
         return view('backend.dashboard.attendance.index_list', compact('attendances'));
     }
     public function create()
@@ -23,7 +24,8 @@ class AttendanceController extends Controller
         $groups = GroupRepository::query()->where('is_active', true)->get();
         return view('backend.dashboard.attendance.create', compact('groups'));
     }
-    public function show($date, $group, $subject){
+    public function show($date, $group, $subject)
+    {
         $attendance = StudentAttendance::where('attendance_date', $date)->where('group_id', $group)->where('subject_id', $subject)->get();
         return view('backend.dashboard.attendance.edit_atten', compact('attendance'));
     }
@@ -136,6 +138,39 @@ class AttendanceController extends Controller
 
             return back()->with('error', 'Please select student attendance!');
         }
-        return redirect()->back()->with('success', 'Attendance inserted successfully!');
+        return back()->with('success', 'Attendance inserted successfully!');
+    }
+    public function update(Request $request)
+    {
+        // dd(count($request->attendance), $request->total_students);
+        if (!empty($request->attendance)) {
+            if (count($request->attendance) == $request->total_students) {
+                foreach ($request->attendance as $id => $attendance_status) {
+                    $attendance = StudentAttendance::where('id', $id)->first();
+                    // dd($attendance);
+                    $attendance->update([
+                        'attendence_status' => $attendance_status,
+
+                    ]);
+                }
+                return back()->with('success', 'Attendance updated successfully!');
+            } else {
+                return back()->with('error', 'Student attendance missing!');
+            }
+        } else {
+            return back()->with('error', 'Please select student attendance!');
+        }
+    }
+    public function destroy($data, $group, $subject)
+    {
+        $attendances = StudentAttendance::where('attendance_date', $data)->where('group_id', $group)->where('subject_id', $subject)->get();
+        if ($attendances) {
+            foreach ($attendances as $attendance) {
+                $attendance->delete();
+            }
+            return back()->with('success', 'Attendance deleted successfully!');
+        } else {
+            return back()->with('error', 'Data Not Found!');
+        }
     }
 }

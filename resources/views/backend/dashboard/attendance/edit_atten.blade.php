@@ -43,7 +43,6 @@
                                         < Back</a>
                                             <!--end::Button-->
                                 </div>
-
                             </div>
 
                             <!--begin::Form-->
@@ -67,6 +66,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($attendance as $row)
+                                            <input type="hidden" name="total_students" value="{{count($attendance)}}">
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $row->student->applicant_name }}</td>
@@ -113,7 +113,6 @@
                                                         </span>
                                                     </td>
                                                     <td>{{ $row->attendance_date }}</td>
-
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -134,10 +133,4 @@
         <!--end::Entry-->
     </div>
     <!--end::Content-->
-
-@section('customjs')
-
-
-
-@endsection
 @endsection
