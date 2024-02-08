@@ -16,37 +16,13 @@
                 <div class="col-12">
                     <div class="slider">
                         <div class="owl-carousel owl-theme mainslider">
+                            @foreach ($sliders as $slider)
                             <div class="item">
                                 <div class="main-slider-box">
-                                    <img src="{{ asset('frontend/assets/images/slider/photo1.jpg') }}" alt="">
-                                </div>
-
-                            </div>
-                            <div class="item">
-                                <div class="main-slider-box">
-                                    <img src="{{ asset('frontend/assets/images/slider/photo2.jpg') }}" alt="">
+                                    <img src="{{asset('storage')}}/{{$slider->image}}" alt="">
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="main-slider-box">
-                                    <img src="{{ asset('frontend/assets/images/slider/photo3.jpg') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="main-slider-box">
-                                    <img src="{{ asset('frontend/assets/images/slider/photo4.jpg') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="main-slider-box">
-                                    <img src="{{ asset('frontend/assets/images/slider/photo5.jpg') }}" alt="">
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="main-slider-box">
-                                    <img src="{{ asset('frontend/assets/images/slider/photo6.jpg') }}" alt="">
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -61,7 +37,7 @@
                 <div class="col">
                     <div class="updateNews-box"><h5>News</h5></div>
                     <div class="updateNews-title">
-                        <a href="#"><marquee onmouseover="this.stop();" onmouseout="this.start();">Welcome to Purbo Hoktullah High School</marquee></a>
+                        <a href="#"><marquee onmouseover="this.stop();" onmouseout="this.start();">{{$headingNotic->title}}</marquee></a>
                     </div>
                 </div>
             </div>
@@ -75,7 +51,7 @@
             <div class="row common-shadow py-4">
                 <div class="col-md-6">
                     <div class="about-image">
-                        <img src="{{ asset('frontend') }}/assets/images/about/Computer-Room.jpg" alt=""
+                        <img src="{{ asset('storage') }}/{{$computerLab->image}}" alt=""
                             class="img-responsive">
                     </div>
                 </div>
@@ -85,7 +61,7 @@
                             <h3 class="">সমৃদ্ধ কম্পিউটার ল্যাবের বর্ণনা</h3>
                         </div>
 
-                        <p class="mb-3 simple-text">শিক্ষণার্থীদের ব্যবহারিক ক্লাসের জন্য তিনটি সমৃদ্ধ কম্পিউটার ল্যাব রয়েছে। তিনটি কম্পিউটার ল্যাবে মোট ৪০ (চল্লিশ) টি অত্যাধুনিক কম্পিউটার ও ল্যাপটপ, ইন্টারএ্যাকটিভ মাল্টিমিডিয়া স্ক্রীন এবং সাউন্ড সিস্টেমসহ তথ্য প্রযুক্তি সম্পর্কিত শিক্ষণ পরিচালনার জন্য অন্যান্য সকল সুবিধা রয়েছে। কম্পিউটার ল্যাবে LAN এবং WiFi এর ম্যাধ্যমে সার্বক্ষণিক ইন্টারনেট সুবিধা রয়েছে। একাডেমির শিক্ষণার্থীদের তথ্য প্রযুক্তি সংক্রান্ত বিভিন্ন ধরণের ধারনা ও একাডেমিক কাজের জন্য ক্লাস ও প্রশিক্ষণ পরিচালনার জন্য কম্পিউটার ল্যাব ব্যবহার করা হয়। </p>
+                        <p class="mb-3 simple-text">{!! $computerLab->description !!}</p>
                         <div>
                             <a href="#" class="btn-custom btn-sm">More..</a>
                         </div>
@@ -124,9 +100,9 @@
                                         মোসাম্মাৎ রাশিদা বেগমের ঐকান্তিক
                                         প্রচেষ্টায় জ্ঞানী, গুনী ও দানশীল ব্যক্তিদের সহযোগিতায় এলাকার গরীব, দুঃখী, মেহনতী
                                         মানুষের শিক্ষাবিস্তারের উদ্দেশ্যে পূর্ব
-                                        হকতুল্লাহ গ্রামে প্রতিষ্ঠিত হয় পূর্ব হকতুল্লাহ মাধ্যমিক বিদ্যালয়টি।</p>
+                                        হকতুল্লাহ গ্রামে প্রতিষ্ঠিত হয় পূর্ব হকতুল্লাহ মাধ্যমিক বিদ্যালয়টি।.....</p>
                                 </div>
-                                <a href="#" class="btn-notice float-right">আরো পড়ুন..</a>
+                                <a href="{{ route('principleInfo')}}" class="btn-notice float-right">আরো পড়ুন..</a>
                             </div>
                         </div>
 
@@ -138,18 +114,17 @@
                             </div>
                         </div>
                         <div class="row">
+                            @if($instituteCampases)
                             <div class="campus-owl owl-carousel owl-theme">
+                                @foreach ($instituteCampases as $campas )
                                 <div class="item">
-                                    <img src="{{ asset('frontend') }}/assets/images/campas/campus-1.jpg" alt="">
+                                    <img src="{{ asset('storage') }}/{{$campas->image}}" alt="">
                                 </div>
-                                <div class="item">
-                                    <img src="{{ asset('frontend') }}/assets/images/campas/campus-2.jpg" alt="">
-                                </div>
-                                <div class="item">
-                                    <img src="{{ asset('frontend') }}/assets/images/campas/campus-3.jpg" alt="">
-                                </div>
-
+                                @endforeach
                             </div>
+                            @else
+                            <h4>ক্যাম্পাস পিকচার এখনো যোগ করা হয়নি..।</h4>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -213,25 +188,25 @@
             <div class="row">
                 <div class="col-md-3 mb-3">
                     <div class="achive-box common-shadow">
-                        <span><i class="fa fa-graduation-cap"></i> ৩০০</span>
+                        <span><i class="fa fa-graduation-cap"></i> {{$setting->total_s}}</span>
                         <p>মোট শিক্ষার্থী</p>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <div class="achive-box common-shadow">
-                        <span><i class="fa fa-male"></i> ৪০</span>
+                        <span><i class="fa fa-male"></i> {{$setting->total_t}}</span>
                         <p>মোট শিক্ষক</p>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <div class="achive-box common-shadow">
-                        <span><i class="fa fa-users"></i> ১০</span>
+                        <span><i class="fa fa-users"></i> {{$setting->total_c}}</span>
                         <p>মোট ক্লাস রুম</p>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <div class="achive-box common-shadow">
-                        <span><i class="fa fa-flask"></i> ৩</span>
+                        <span><i class="fa fa-flask"></i> {{$setting->total_l}}</span>
                         <p>মোট ল্যাব</p>
                     </div>
                 </div>
@@ -251,61 +226,23 @@
                 </div>
             </div>
             <div class="row">
+                @foreach ($instituteNews as $news)
                 <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
                     <div class="card card-detles common-shadow">
                         <div class="news-img">
-                            <img src="{{ asset('frontend') }}/assets/images/latest-news/news1.jpg" alt="">
+                            <img src="{{$news->image->file}}" alt="">
                         </div>
                         <div class="card-body card-text">
                             <div class="news-title">
-                                <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
+                                <h3>{{$news->title}}</h3>
                                 <hr>
-                                <span><i class="fa fa-calendar" aria-hidden="true"></i> MAR 2, 2021</span>
-                                <p class="simple-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum consequatur rerum,
-                                    quaerat esse, consequuntur inventore ipsa tempore nihil voluptatem unde deserunt iste,
-                                    nemo culpa veritatis harum quos reprehenderit suscipit deleniti.</p>
+                                <span><i class="fa fa-calendar" aria-hidden="true"></i> {{$news->date}}</span>
+                                <p class="simple-text">{!! $news->description !!}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
-                    <div class="card card-detles common-shadow">
-                        <div class="news-img">
-                            <img src="{{ asset('frontend') }}/assets/images/latest-news/news2.jpg"
-                                alt="">
-
-                        </div>
-                        <div class="card-body card-text">
-                            <div class="news-title">
-                                <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
-                                <hr>
-                                <span><i class="fa fa-calendar" aria-hidden="true"></i> MAR 2, 2021</span>
-                                <p class="simple-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum consequatur rerum,
-                                    quaerat esse, consequuntur inventore ipsa tempore nihil voluptatem unde deserunt iste,
-                                    nemo culpa veritatis harum quos reprehenderit suscipit deleniti.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
-                    <div class="card card-detles common-shadow">
-                        <div class="news-img">
-                            <img src="{{ asset('frontend') }}/assets/images/latest-news/news3.jpg"
-                                alt="">
-
-                        </div>
-                        <div class="card-body card-text">
-                            <div class="news-title">
-                                <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
-                                <hr>
-                                <span><i class="fa fa-calendar" aria-hidden="true"></i> MAR 2, 2021</span>
-                                <p class="simple-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum consequatur rerum,
-                                    quaerat esse, consequuntur inventore ipsa tempore nihil voluptatem unde deserunt iste,
-                                    nemo culpa veritatis harum quos reprehenderit suscipit deleniti.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
         </div>
@@ -322,52 +259,23 @@
                 </div>
             </div>
             <div class="row">
+                @foreach ($instituteAchivements as $achivement)
                 <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
                     <div class="card card-detles common-shadow">
                         <div class="news-img">
-                            <img src="{{ asset('frontend') }}/assets/images/achievement/hasina.jpg" alt="">
+                            <img src="{{$achivement->image->file}}" alt="">
                         </div>
                         <div class="card-body card-text">
                             <div class="news-title">
-                                <h3>জাতীয় বৃক্ষরোপণ অভিযান</h3>
+                                <h3>{{$achivement->title}}</h3>
                                 <hr>
-                                <span><i class="fa fa-calendar" aria-hidden="true"></i> MAR 2, 2022</span>
+                                <span><i class="fa fa-calendar" aria-hidden="true"></i> {{$achivement->date}}</span>
+                                <p class="simple-text">{!! $achivement->description !!}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
-                    <div class="card card-detles common-shadow">
-                        <div class="news-img">
-                            <img src="{{ asset('frontend') }}/assets/images/achievement/tree-inner.jpg"
-                                alt="">
-
-                        </div>
-                        <div class="card-body card-text">
-                            <div class="news-title">
-                                <h3>বৃক্ষরোপণ 2023</h3>
-                                <hr>
-                                <span><i class="fa fa-calendar" aria-hidden="true"></i> MAR 2, 2023</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
-                    <div class="card card-detles common-shadow">
-                        <div class="news-img">
-                            <img src="{{ asset('frontend') }}/assets/images/achievement/tree-inner.jpg"
-                                alt="">
-
-                        </div>
-                        <div class="card-body card-text">
-                            <div class="news-title">
-                                <h3>বৃক্ষরোপণ 2022</h3>
-                                <hr>
-                                <span><i class="fa fa-calendar" aria-hidden="true"></i> MAR 2, 2021</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
         </div>
@@ -378,7 +286,6 @@
         <div class="container">
             <div class="row mb-3">
                 <div class="col-md-7 mx-auto">
-
                 </div>
             </div>
             <div class="row">
@@ -387,15 +294,21 @@
                         <div class="heading-title m-2">
                             <h3>Social Link</h3>
                         </div>
-                        <div class="link-box">
-                            <img src="{{ asset('frontend/assets/images/social/facebook.png')}}" alt=""><span>Facebook</span>
-                        </div>
-                        <div class="link-box">
-                            <img src="{{ asset('frontend/assets/images/social/youtube.png')}}" alt=""><span>Youtube</span>
-                        </div>
-                        <div class="link-box">
-                            <img src="{{ asset('frontend/assets/images/social/twitter.png')}}" alt=""><span>Twitter</span>
-                        </div>
+                        <a href="@if($setting->facebook) {{$setting->facebook}} @endif" target="_blank">
+                            <div class="link-box">
+                                <img src="{{ asset('frontend/assets/images/social/facebook.png')}}" alt=""><span>Facebook</span>
+                            </div>
+                        </a>
+                        <a href="@if($setting->youtube) {{$setting->youtube}} @endif" target="_blank">
+                            <div class="link-box">
+                                <img src="{{ asset('frontend/assets/images/social/youtube.png')}}" alt=""><span>Youtube</span>
+                            </div>
+                        </a>
+                        <a href="@if($setting->twitter) {{$setting->twitter}} @endif" target="_blank">
+                            <div class="link-box">
+                                <img src="{{ asset('frontend/assets/images/social/twitter.png')}}" alt=""><span>Twitter</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

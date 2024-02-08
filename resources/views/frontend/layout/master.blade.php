@@ -79,8 +79,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="copyright-text text-center">
-                        <p>Copyright © <?php echo date('Y'); ?> <a href="#"></a>- All Rights Reserved. Developed by <a
-                                href="#">Engr.Naemul Islam</a></p>
+                        <p>Copyright © <?php echo date('Y'); ?> - All Rights Reserved. Developed by <a
+                            target="_blank" href="https://naemulislam.github.io/portfolio/">Engr.Naemul Islam</a></p>
                     </div>
                 </div>
             </div>
@@ -117,7 +117,7 @@
     </script>
     @endif
 
-    @yield('customjs')
+    @stack('customjs')
     <script>
         $(document).ready(function() {
 

@@ -10,17 +10,15 @@
                                 <li><a href="{{ route('history')}}"><i class="fa fa-long-arrow-right"></i> প্রতিষ্ঠানের ইতিহাস</a></li>
                             </ul>
                         </div>
-
                     </li>
                     <li class="dd-btn1"><a href="#"> শিক্ষকদের তথ্য <i class="fa fa-angle-down"></i></a>
                         <div class="dropdown-menu1">
                             <ul>
                                 <li><a href="{{ route('principleInfo')}}"><i class="fa fa-long-arrow-right"></i> প্রধান শিক্ষক</a></li>
-                                <li><a href="#"><i class="fa fa-long-arrow-right"></i> প্রাক্তন প্রধান শিক্ষকগণ</a></li>
                                 <li><a href="{{ route('school.teachers')}}"><i class="fa fa-long-arrow-right"></i> শিক্ষকগণ </a></li>
+                                <li><a href="#"><i class="fa fa-long-arrow-right"></i> প্রাক্তন শিক্ষকগণ</a></li>
                             </ul>
                         </div>
-
                     </li>
                     <li class="dd-btn1"><a href="#">শিক্ষার্থীদের তথ্য <i class="fa fa-angle-down"></i></a>
 
@@ -33,9 +31,7 @@
                                 <li><a href="#"><i class="fa fa-long-arrow-right"></i> ক্লাস-10</a></li>
                             </ul>
                         </div>
-
                     </li>
-
                     <li class="dd-btn1"><a href="#">একাডেমিক তথ্য <i class="fa fa-angle-down"></i></a>
                         <div class="dropdown-menu1">
                             <ul>
@@ -46,7 +42,6 @@
                                 <li><a href="{{ route('academic.subject')}}"><i class="fa fa-long-arrow-right"></i> একাডেমিক বিষয় </a></li>
                             </ul>
                         </div>
-
                     </li>
                     <li class="dd-btn1"><a href="#">গ্যালারি <i class="fa fa-angle-down"></i></a>
                         <div class="dropdown-menu1">
@@ -55,7 +50,6 @@
                                 <li><a href="{{ route('video.gallery')}}"><i class="fa fa-long-arrow-right"></i> ভিডিও গ্যালারি  </a></li>
                             </ul>
                         </div>
-
                     </li>
                     <li class="dd-btn1"><a href="#">আরো <i class="fa fa-angle-down"></i></a>
 
@@ -69,7 +63,6 @@
                                 <li><a href="{{ route('annual.result')}}"><i class="fa fa-long-arrow-right"></i> ফলাফল পরিসংখ্যান</a></li>
                             </ul>
                         </div>
-
                     </li>
                     <li class="dd-btn1"><a href="#">পোর্টাল <i class="fa fa-angle-down"></i></a>
 
@@ -123,10 +116,9 @@
                     <div class="card-body">
                         <ul>
                             <li><a href="{{ route('principleInfo')}}"><i class="fa fa-long-arrow-right"></i> প্রধান শিক্ষক</a></li>
-                            <li><a href=""><i class="fa fa-long-arrow-right"></i> প্রাক্তন প্রধান শিক্ষকগণ</a></li>
                             <li><a href="{{ route('school.teachers')}}"><i class="fa fa-long-arrow-right"></i> শিক্ষকগণ</a>
                             </li>
-
+                            <li><a href=""><i class="fa fa-long-arrow-right"></i> প্রাক্তন শিক্ষকগণ</a></li>
                         </ul>
                     </div>
                 </div>

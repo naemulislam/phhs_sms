@@ -9,9 +9,9 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-md-7 mb-3 mx-auto">
+            <div class="col-md-6 mb-3 mx-auto">
                 <div class="history-img common-shadow">
-                    <img class="p-3 img-fluid" src="{{ asset('frontend/assets/images/others/history.jpeg')}}" alt="">
+                    <img class="p-3 img-fluid" src="{{ asset('storage')}}/{{$historyInstitute->image}}" alt="">
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
                         <h3 class="">প্রতিষ্ঠানের ইতিহাস</h3>
                     </div>
                     <div class="history-text p-3">
-                        <p>বাংলাদেশের দক্ষিণাঞ্চলে অবস্থিত পটুয়াখালী জেলাটি বঙ্গোপসাগরের উপকূল বিস্তৃত সাগর পাড়ের একটি অন্যতম পুরনো শহর। যে শহরটির আদুরে নাম ‘সাগরকন্যা’। অতীতে সাগরের জলোচ্ছ্বাসে এখানে চলেছে ভাঙ্গা-গড়ার খেলা। অসংখ্য নদ-নদী, খাল-বিল, দ্বীপ ও অরণ্যভূমির মধ্যে একদিন গড়ে উঠেছিল এই পটুয়াখালী শহর। </p>
+                        <p>{!! $historyInstitute->description !!}</p>
                     </div>
                 </div>
             </div>

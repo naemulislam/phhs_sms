@@ -1,5 +1,5 @@
 @extends('backend.dashboard.profile.profile_master')
-@section('title', 'Profile')
+@section('title', 'Teacher Profile')
 @section('profile_content')
 <div class="flex-row-fluid ml-lg-8">
     <!--begin::Card-->

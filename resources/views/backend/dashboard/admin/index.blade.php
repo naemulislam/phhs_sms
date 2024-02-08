@@ -33,7 +33,9 @@
                         </div>
                         <div class="card-toolbar">
                             <!--begin::Button-->
-                            <a href="{{route('admin.create')}}"
+                            <a href="@if(Auth::user()->role == 'admin')
+                            {{route('admin.create')}}
+                            @endif"
                                 class="btn btn-primary font-weight-bolder">
                                 <span class="svg-icon svg-icon-md">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->

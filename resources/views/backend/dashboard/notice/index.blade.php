@@ -33,7 +33,7 @@
                         </div>
                         <div class="card-toolbar">
                             <!--begin::Button-->
-                            <a href=" @if (Auth::user()->roll == 'admin') {{ route('notice.create') }} @endif"
+                            <a href=" @if (Auth::user()->role == 'admin') {{ route('notice.create')}} @endif"
                                 class="btn btn-primary font-weight-bolder">
                                 <span class="svg-icon svg-icon-md">
                                     <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
@@ -82,20 +82,20 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($row->is_active == 1)
+                                            @if ($notice->is_active == 1)
                                                 <a href="#"
                                                     class="btn label label-lg label-light-success label-inline"
                                                     data-toggle="modal"
-                                                    @if (Auth::user()->role == 'admin') data-target="#row_status_{{ $row->id }}" @endif>
+                                                    @if (Auth::user()->role == 'admin') data-target="#row_status_{{ $notice->id }}" @endif>
                                                     Active</a>
-                                            @elseif($row->is_active == 0)
+                                            @elseif($notice->is_active == 0)
                                                 <a href="#" class="btn label label-lg label-light-danger label-inline"
                                                     data-toggle="modal"
-                                                    @if (Auth::user()->role == 'admin') data-target="#row_status_{{ $row->id }}" @endif>
+                                                    @if (Auth::user()->role == 'admin') data-target="#row_status_{{ $notice->id }}" @endif>
                                                     Inactive</a>
                                             @endif
                                         </td>
-                                        @if (Auth::user()->roll == 'admin')
+                                        @if (Auth::user()->role == 'admin')
                                             <td class="d-flex">
                                                 <a href="{{ route('notice.edit', $notice->id) }}"
                                                     class="btn btn-icon btn-info btn-hover-primary btn-xs mx-3"><i

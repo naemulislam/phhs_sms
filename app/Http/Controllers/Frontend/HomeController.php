@@ -4,21 +4,43 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
+use App\Models\Campas;
+use App\Models\ComputerLab;
 use App\Models\Contact;
+use App\Models\Institute;
 use App\Models\Notice;
+use App\Models\Slider;
+use App\Repositories\AchievementRepository;
+use App\Repositories\NewsRepository;
 use App\Repositories\NoticeRepository;
+use App\Repositories\TeacherRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
     // Home page show
     public function index(){
-        $data['notices'] = NoticeRepository::query()->where('is_active',true)->get();
+        $data['headingNotic'] = NoticeRepository::query()->latest()->where('is_active',true)->take(1)->first();
+        $data['notices'] = NoticeRepository::query()->latest()->where('is_active',true)->take(6)->get();
+        $data['computerLab'] = ComputerLab::latest()->first();
+        //institute campas
+        $data['instituteCampases'] = Campas::where('is_active', true)->get();
+        //News of institute
+        $data['instituteNews'] = NewsRepository::query()->where('is_active', true)->get();
+        //Achivement of institute
+        $data['instituteAchivements'] = AchievementRepository::query()->where('is_active', true)->get();
+        //slider
+        $data['sliders'] = Slider::where('is_active', true)->get();
+
         return view('frontend.home',$data);
     }
     // history page show
     public function history(){
-        return view('frontend.history');
+        //History of institute
+        $data['historyInstitute'] =Institute::latest()->first();
+        return view('frontend.history',$data);
     }
     // principleInfo page show
     public function principleInfo(){
@@ -26,7 +48,26 @@ class HomeController extends Controller
     }
     // teachers page show
     public function teachers(){
-        return view('frontend.school_teacher');
+        // $users = UserRepository::query()->where('role','teacher')->where('is_active',true)->get();
+        // dd($users->teachers);
+        // $data['users'] = TeacherRepository::query()->where('role','teacher')->where('is_active',true)->get();
+        $teachers = TeacherRepository::query()->whereHas('user', function ($query) {
+            $query->where('role', 'teacher')->where('is_active',true);
+        })->get();
+
+        $totalTeachers= TeacherRepository::query()->whereHas('user', function ($query) {
+            $query->where('role', 'teacher')->where('is_active',true);
+        })->count();
+
+        $maleTeachers= TeacherRepository::query()->where('gender','male')->whereHas('user', function ($query) {
+            $query->where('role', 'teacher')->where('is_active',true);
+        })->count();
+        $femaleTeachers= TeacherRepository::query()->where('gender','female')->whereHas('user', function ($query) {
+            $query->where('role', 'teacher')->where('is_active',true);
+        })->count();
+        // dd($teachers);
+        // dd($data['users']->teacher);
+        return view('frontend.school_teacher',compact('teachers','totalTeachers','maleTeachers','femaleTeachers'));
     }
     // students page show
     public function students(){

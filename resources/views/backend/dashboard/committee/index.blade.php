@@ -93,21 +93,20 @@
                                                     Inactive</a>
                                             @endif
                                         </td>
-                                        @if (Auth::user()->role == 'admin')
-                                            <td class="d-flex">
-                                                <a href="{{ route('committee.show', $row->id) }}"
-                                                    class="btn btn-icon btn-success btn-hover-primary btn-xs mx-3"><i
-                                                        class="fa fa-eye"></i></a>
+
+                                        <td class="d-flex">
+                                            <a href="{{ route('committee.show', $row->id) }}"
+                                                class="btn btn-icon btn-success btn-hover-primary btn-xs mx-3"><i
+                                                    class="fa fa-eye"></i></a>
+                                            @if (Auth::user()->role == 'admin')
                                                 <a href="{{ route('committee.edit', $row->id) }}"
                                                     class="btn btn-icon btn-success btn-hover-primary btn-xs mx-3"><i
                                                         class="fa fa-edit"></i></a>
                                                 <a id="delete" href="{{ route('committee.destroy', $row->id) }}"
                                                     class="btn btn-icon btn-danger btn-hover-primary btn-xs mx-3">
-                                                    <i class="fa fa-trash"></i>
-                                            </td>
-                                        @else
-                                            <td>You don't have permission to access</td>
-                                        @endif
+                                                    <i class="fa fa-trash"></i></a>
+                                            @endif
+                                        </td>
                                     </tr>
                                     <!--Row Status -->
                                     <div class="modal fade" data-backdrop="static" id="row_status_{{ $row->id }}"

@@ -26,6 +26,9 @@ class User extends Authenticatable
     public function teacher(){
         return $this->hasOne(Teacher::class,'user_id');
     }
+    public function teachers(){
+        return $this->ManyToMany(Teacher::class,'user_id');
+    }
     public function staff(){
         return $this->hasOne(Staff::class,'user_id');
     }

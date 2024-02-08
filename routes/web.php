@@ -100,7 +100,7 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
     Route::get('/dashboard', [DashboardController::class,'dashboard'])->name('school.dashboard');
     Route::controller(ProfileController::class)->group(function(){
         Route::get('profile','profile')->name('profile');
-        Route::put('admin/profile/{user}','adminUpdate')->name('admin.update');
+        Route::put('admin/profile/{user}','adminUpdate')->name('admin.profile.update');
         Route::put('school-staff/profile/{user}','schoolStaffUpdate')->name('schoolStaff.update');
         Route::get('profile/edit-password','editPassword')->name('edit.password');
         Route::put('profile/edit-password/{user}','updatePassword')->name('update.password');

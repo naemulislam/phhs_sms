@@ -189,6 +189,7 @@ $routeName == 'result.index'? 'menu-item-open':''
 </li>
 {{-- End section --}}
 {{-- Teacher management section --}}
+@if(Auth::user()->role == 'admin' || Auth::user()->role == 'teacher')
 <li class="menu-item menu-item-submenu
 {{
     $routeName == 'attendance.index' ||
@@ -230,7 +231,7 @@ $routeName == 'result.index'? 'menu-item-open':''
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            @if(Auth::user()->role == 'admin')
+
             <li class="menu-item menu-item-submenu {{$routeName == 'attendance.create'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{ route('attendance.create')}}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
@@ -240,10 +241,11 @@ $routeName == 'result.index'? 'menu-item-open':''
                     <i class="menu-arrow"></i>
                 </a>
             </li>
-            @endif
+
         </ul>
     </div>
 </li>
+@endif
 {{-- End section --}}
 {{-- Teacher management section --}}
 <li class="menu-item menu-item-submenu
