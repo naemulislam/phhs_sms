@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="heading-title">
-                                    <h3>ষষ্ঠ শ্রেণি এর সমস্ত শিক্ষার্থী</h3>
+                                    <h3>{{$group->name}} এর সমস্ত শিক্ষার্থী</h3>
                                 </div>
                             </div>
                         </div>
@@ -40,17 +40,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($students as $student)
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td> <img style="width:50px;" src="{{ asset('defaults/avatar/avatar.png') }}"
+                                            <th scope="row">{{$loop->iteration}}</th>
+                                            <td> <img style="width:50px;" src="@if($student->user->profile_id)
+                                                {{$student->user->image->file}} @else
+                                                {{ asset('defaults/avatar/avatar.png') }} @endif"
                                                     alt=""></td>
-                                            <td>Md. Bayzid</td>
-                                            <td>01</td>
-                                            <td>8</td>
-                                            <td>Morning</td>
-                                            <td><button class="btn btn-success" data-toggle="modal"
-                                                    data-target="#studentDetails"><i class="fa fa-eye"></i></button></td>
+                                            <td>{{$student->applicant_name}}</td>
+                                            <td>{{$student->roll}}</td>
+                                            <td>{{$student->group->name}}</td>
+                                            <td>{{$student->shift}}</td>
+                                            <td><button class="btn btn-success studentDetails"
+                                                data-name="{{$student->applicant_name}}"
+                                                data-roll="{{$student->roll}}"
+                                                data-groupName="{{$student->group->name}}"
+                                                data-shift="{{$student->shift}}"
+                                                data-studentId="{{$student->user->student_id}}"
+                                                data-email="{{$student->user->email}}"
+                                                data-phone="{{$student->user->phone}}"
+                                                ><i class="fa fa-eye"></i></button></td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -65,26 +76,26 @@
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <div class="achive-box common-shadow">
-                        <span><i class="fa fa-graduation-cap"></i> 300</span>
+                        <span><i class="fa fa-graduation-cap"></i> {{$totalStudents}}</span>
                         <p>মোট শিক্ষার্থী</p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="achive-box common-shadow">
-                        <span><i class="fa fa-male"></i> 40</span>
+                        <span><i class="fa fa-male"></i> {{$maleStudents}}</span>
                         <p>মোট ছাত্র</p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="achive-box common-shadow">
-                        <span><i class="fa fa-female"></i> 10</span>
+                        <span><i class="fa fa-female"></i> {{$femaleStudents}}</span>
                         <p>মোট ছাত্রি</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <div class="modal fade" id="studentDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="showDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -104,31 +115,60 @@
                         </div>
                     </div>
                     <div class="row">
-                        <dd class="col-md-3">Name</dd>
-                        <b class="col-md-2">:</b>
-                        <dd class="col-md-7">Md. Bayzid</dd>
-
-                        <dd class="col-md-3">Roll</dd>
-                        <b class="col-md-2">:</b>
-                        <dd class="col-md-7">01</dd>
-
-                        <dd class="col-md-3">Class</dd>
-                        <b class="col-md-2">:</b>
-                        <dd class="col-md-7">08</dd>
-
-                        <dd class="col-md-3">Shift</dd>
-                        <b class="col-md-2">:</b>
-                        <dd class="col-md-7">Morning</dd>
-
-                        <dd class="col-md-3">Student Id</dd>
-                        <b class="col-md-2">:</b>
-                        <dd class="col-md-7">baizid541554</dd>
-                        <dd class="col-md-3">Email</dd>
-                        <b class="col-md-2">:</b>
-                        <dd class="col-md-7">Example@gmail.com</dd>
-                        <dd class="col-md-3">Phone</dd>
-                        <b class="col-md-2">:</b>
-                        <dd class="col-md-7">01752542522</dd>
+                        <div class="col">
+                            <div class="d-flex">
+                                <dd class="mr-3">Name : </dd>
+                                <dd id="name"></dd>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex">
+                                <dd class="mr-3">Class : </dd>
+                                <dd id="class"></dd>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex">
+                                <dd class="mr-3">Roll : </dd>
+                                <dd id="roll"></dd>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex">
+                                <dd class="mr-3">Shift : </dd>
+                                <dd id="shift"></dd>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex">
+                                <dd class="mr-3">Student id : </dd>
+                                <dd id="student_id"></dd>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex">
+                                <dd class="mr-3">Email : </dd>
+                                <dd id="email"></dd>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex">
+                                <dd class="mr-3">Phone : </dd>
+                                <dd id="phone"></dd>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -139,3 +179,28 @@
         </div>
     </div>
 @endsection
+@push('customjs')
+<script>
+    $('.studentDetails').on('click', function(){
+        $('#showDetails').modal('show');
+
+        const name = $(this).attr('data-name');
+        const groupName = $(this).attr('data-groupName');
+        const roll = $(this).attr('data-roll');
+        const shift = $(this).attr('data-shift');
+        const studentId = $(this).attr('data-studentId');
+        const email = $(this).attr('data-email');
+        const phone = $(this).attr('data-phone');
+        console.log(name);
+
+        $('#name').text(name);
+        $('#class').text(groupName);
+        $('#roll').text(roll);
+        $('#shift').text(shift);
+        $('#student_id').text(studentId);
+        $('#email').text(email);
+        $('#phone').text(phone);
+    });
+</script>
+
+@endpush

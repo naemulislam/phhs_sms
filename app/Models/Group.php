@@ -9,4 +9,7 @@ class Group extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    public function subjects (){
+        return $this->hasMany(Subject::class,'group_id');
+    }
 }

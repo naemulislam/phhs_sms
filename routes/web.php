@@ -58,7 +58,7 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/about', 'about')->name('about');
     Route::get('/principle/info', 'principleInfo')->name('principleInfo');
     Route::get('/school/teacher', 'teachers')->name('school.teachers');
-    Route::get('/students', 'students')->name('school.students');
+    Route::get('/students/{group}', 'students')->name('school.students');
     //Acadamic info
     Route::get('/class/routine', 'classRoutin')->name('class.routin');
     Route::get('/exam/routine', 'examRoutin')->name('exam.routin');
