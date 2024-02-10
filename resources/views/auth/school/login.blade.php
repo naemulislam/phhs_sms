@@ -37,17 +37,13 @@
                             <!--begin::Title-->
                             <div class="pb-13 pt-lg-0 pt-5">
                                 <h3 class="font-weight-bolder text-dark">Welcome to Signin</h3>
-                                <span class="text-muted font-weight-bold font-size-h4">New Here?
-                                    <a href="javascript:;" id="kt_login_signup"
-                                        class="text-primary font-weight-bolder">Create an Account</a></span><br>
-                                        <span class="text-small">(Only teacher & staff can create an account)</span>
                             </div>
                             <!--begin::Title-->
                             <!--begin::Form group-->
                             <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">Email</label>
                                 <input class="form-control form-control-solid h-auto py-6 px-6 rounded-lg"
-                                    type="email" name="email" placeholder="Enter your pds id" value="{{old('email')}}"/>
+                                    type="email" name="email" placeholder="Enter your email address" value="{{old('email')}}"/>
                                     @error('email')
                                     <span class="text-danger">{{ $message}}</span>
                                     @enderror
@@ -80,62 +76,6 @@
                         <!--end::Form-->
                     </div>
                     <!--end::Signin-->
-                    <!--begin::Signup-->
-                    <div class="login-form login-signup">
-                        <!--begin::Form-->
-                        <form class="form" action="{{ route('portal.register')}}" method="POST" id="kt_login_signup_form">
-                            @csrf
-                            <!--begin::Title-->
-                            <div class="pb-13 pt-lg-0 pt-5">
-                                <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Check your account
-                                </h3>
-                            </div>
-                            <!--end::Title-->
-                            <!--begin::Form group-->
-                            <div class="form-group">
-                                <label for="">PDS ID<span class="text-danger">*</span></label>
-                                <input class="form-control" type="number" placeholder="type your pds id" name="signup_pds_id" />
-                                @error('signup_pds_id')
-                                <span class="text-danger">{{ $message}}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="">Email<span class="text-danger">*</span></label>
-                                <input class="form-control" type="email" placeholder="type your email" name="signup_email" />
-                                @error('signup_email')
-                                <span class="text-danger">{{ $message}}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="">Password<span class="text-danger">*</span></label>
-                                <input class="form-control" type="password" placeholder="Password"
-                                    name="signup_password"/>
-                                    @error('signup_password')
-                                    <span class="text-danger">{{ $message}}</span>
-                                    @enderror
-                            </div>
-                            <!--end::Form group-->
-                            <!--begin::Form group-->
-                            <div class="form-group">
-                                <label for="">Confirm password<span class="text-danger">*</span></label>
-                                <input class="form-control" type="password" placeholder="Confirm password"
-                                    name="password_confirmation"/>
-                                    @error('password_confirmation')
-                                    <span class="text-danger">{{ $message}}</span>
-                                    @enderror
-                            </div>
-                            <!--begin::Form group-->
-                            <div class="form-group d-flex flex-wrap pb-lg-0 pb-3">
-                                <button type="submit" id="kt_login_signup_submit"
-                                    class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4">Submit</button>
-                                <button type="button" id="kt_login_signup_cancel"
-                                    class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3">Cancel</button>
-                            </div>
-                            <!--end::Form group-->
-                        </form>
-                        <!--end::Form-->
-                    </div>
-                    <!--end::Signup-->
                     <!--begin::Forgot-->
                     <div class="login-form login-forgot">
                         <!--begin::Form-->

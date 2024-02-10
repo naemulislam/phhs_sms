@@ -40,7 +40,6 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($teachers as $teacher)
-                                            {{-- @dd($user->teacher->designation) --}}
                                             <tr>
                                                 <td scope="row">{{ $loop->iteration }}</td>
                                                 <td> <img style="width:50px;"

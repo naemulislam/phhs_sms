@@ -10,10 +10,7 @@ use App\Models\Contact;
 use App\Models\Gallery;
 use App\Models\Group;
 use App\Models\Institute;
-use App\Models\Notice;
-use App\Models\Result;
 use App\Models\Slider;
-use App\Models\Student;
 use App\Repositories\AchievementRepository;
 use App\Repositories\ClassRoutineRepository;
 use App\Repositories\ExamRoutineRepository;
@@ -22,11 +19,9 @@ use App\Repositories\NewsRepository;
 use App\Repositories\NoticeRepository;
 use App\Repositories\ResultRepository;
 use App\Repositories\SlybusRepository;
+use App\Repositories\StaffRepository;
 use App\Repositories\StudentRepository;
 use App\Repositories\TeacherRepository;
-use App\Repositories\UserRepository;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -150,12 +145,26 @@ class HomeController extends Controller
     // schoolStaff page show
     public function schoolStaff()
     {
-        return view('frontend.school_staff');
+        $staffs = StaffRepository::query()->whereHas('user', function($query){
+            $query->where('role', 'staff')->where('is_active',true);
+        })->get();
+        $totalStaffs = StaffRepository::query()->whereHas('user', function ($query) {
+            $query->where('role', 'staff')->where('is_active', true);
+        })->count();
+
+        $maleStaffs = StaffRepository::query()->where('gender', 'male')->whereHas('user', function ($query) {
+            $query->where('role', 'staff')->where('is_active', true);
+        })->count();
+        $femaleStaff = StaffRepository::query()->where('gender', 'female')->whereHas('user', function ($query) {
+            $query->where('role', 'staff')->where('is_active', true);
+        })->count();
+        return view('frontend.school_staff',compact('staffs','totalStaffs','maleStaffs','femaleStaff'));
     }
     // All Notice page show
     public function allNotice()
     {
-        return view('frontend.all_notice');
+        $allNotices = NoticeRepository::query()->where('is_active',true)->get();
+        return view('frontend.all_notice',compact('allNotices'));
     }
     //Annual result page show
     public function annualResult()

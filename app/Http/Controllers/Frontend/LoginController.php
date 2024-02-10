@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -12,7 +14,8 @@ class LoginController extends Controller
     //School portal index
     public function schoolPortal()
     {
-        if (auth()->check()) {
+        $checkAdmin = Auth::user()->role == 'admin' || Auth::user()->role == 'teacher' || Auth::user()->role == 'staff';
+        if (auth()->check() && $checkAdmin) {
             return to_route('school.dashboard');
         }
         return view('auth.school.login');
@@ -23,12 +26,17 @@ class LoginController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
+        $adminUser = UserRepository::query()->where('email', $request->email)->first();
+        if ($adminUser->is_active == true) {
+            if (auth()->attempt($request->only('email', 'password'))) {
 
-        if (auth()->attempt($request->only('email', 'password'))) {
-
-            return to_route('school.dashboard')->with('success', 'Successfully Login!');
+                return to_route('school.dashboard')->with('success', 'Successfully Login!');
+            } else {
+                return to_route('school.portal')->with('error', 'Oppes! You have entered invalid credentials');
+            }
+        } else {
+            return back()->with('error', 'Oppes! Your account has been deactivated!');
         }
-        return to_route('school.portal')->with('error','Oppes! You have entered invalid credentials');
     }
     public function schoolPortalLogout()
     {
@@ -38,7 +46,7 @@ class LoginController extends Controller
     //student portal index
     public function studentPortal()
     {
-        if (auth()->check()) {
+        if (auth()->check() && Auth::user()->role == 'student') {
             return to_route('student.dashboard');
         }
         return view('auth.student.login');
@@ -51,9 +59,9 @@ class LoginController extends Controller
         ]);
 
         if (auth()->attempt($request->only('student_id', 'password'))) {
-            return to_route('student.dashboard')->with('success','Successfully Login!');
+            return to_route('student.dashboard')->with('success', 'Successfully Login!');
         }
-        return to_route('student.portal')->with('error','Oppes! You have entered invalid credentials');
+        return to_route('student.portal')->with('error', 'Oppes! You have entered invalid credentials');
     }
     public function studentPortalLogout()
     {
@@ -63,7 +71,7 @@ class LoginController extends Controller
     //user login index
     public function userLogin()
     {
-        if (auth()->check()) {
+        if (auth()->check() && Auth::user()->role == 'user') {
             return to_route('user.dashboard');
         }
         return view('auth.user.login');
