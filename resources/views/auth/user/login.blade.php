@@ -80,7 +80,7 @@
                     <!--begin::Signup-->
                     <div class="login-form login-signup">
                         <!--begin::Form-->
-                        <form class="form" action="" method="POST" id="kt_login_signup_form">
+                        <form class="form" action="{{route('user.register')}}" method="POST" id="kt_login_signup_form">
                             @csrf
                             <!--begin::Title-->
                             <div class="pb-13 pt-lg-0 pt-5">
@@ -101,9 +101,9 @@
                             <!--begin::Form group-->
                             <div class="form-group">
                                 <label for="">Email<span class="text-danger">*</span></label>
-                                <input class="form-control" type="email" placeholder="Email" name="email" />
+                                <input class="form-control" type="email" placeholder="Email" name="register_email" />
                                 <div style='color:red; padding: 0 5px;'>
-                                    {{ $errors->has('email') ? $errors->first('email') : '' }}</div>
+                                    {{ $errors->has('register_email') ? $errors->first('register_email') : '' }}</div>
                             </div>
                             <div class="form-group">
                                 <label for="">Phone<span class="text-danger">*</span></label>
@@ -116,16 +116,16 @@
                             <div class="form-group">
                                 <label for="">Password<span class="text-danger">*</span></label>
                                 <input class="form-control" type="password" placeholder="Password"
-                                    name="password" />
+                                    name="reginter_password"/>
                                 <div style='color:red; padding: 0 5px;'>
-                                    {{ $errors->has('password') ? $errors->first('password') : '' }}</div>
+                                    {{ $errors->has('reginter_password') ? $errors->first('reginter_password') : '' }}</div>
                             </div>
                             <!--end::Form group-->
                             <!--begin::Form group-->
                             <div class="form-group">
                                 <label for="">Confirm password<span class="text-danger">*</span></label>
                                 <input class="form-control" type="password" placeholder="Confirm password"
-                                    name="password_confirmation" />
+                                    name="password_confirmation"/>
                                 <div style='color:red; padding: 0 5px;'>
                                     {{ $errors->has('password_confirmation') ? $errors->first('password_confirmation') : '' }}
                                 </div>
@@ -133,7 +133,7 @@
                             <!--end::Form group-->
                             <!--begin::Form group-->
                             <div class="form-group d-flex flex-wrap pb-lg-0 pb-3">
-                                <button type="button" id="kt_login_signup_submit"
+                                <button type="submit" id="kt_login_signup_submit"
                                     class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4">Submit</button>
                                 <button type="button" id="kt_login_signup_cancel"
                                     class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3">Cancel</button>

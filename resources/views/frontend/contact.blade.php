@@ -88,7 +88,7 @@
                                     <tbody>
                                         <tr>
                                             <td class="info-right">বিদ্যালয়ের নাম :</td>
-                                            <td class="info-left">পূর্ব হকতুল্লাহ মাধ্যমিক বিদ্যালয়</td>
+                                            <td class="info-left">{{$setting->name_b}}</td>
                                         </tr>
                                         <tr>
                                             <td class="info-right">গ্রাম/বাড়ী ও সড়কের বিবরণ :</td>
@@ -128,15 +128,15 @@
                                         </tr>
                                         <tr>
                                             <td class="info-right">টেলিফোন :</td>
-                                            <td class="info-left">০১৭২৪৭৬৯৯৫৪</td>
+                                            <td class="info-left">{{$setting->phone}}</td>
                                         </tr>
                                         <tr>
                                             <td class="info-right">E-Mail :</td>
-                                            <td class="info-left">phhs@gmail.com</td>
+                                            <td class="info-left">{{$setting->email}}</td>
                                         </tr>
                                         <tr>
                                             <td class="info-right">Website :</td>
-                                            <td class="info-left">phhs.edu.bd</td>
+                                            <td class="info-left">{{$setting->web_address}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -161,14 +161,14 @@
                     <div class="col-lg-4">
                         <div class="address">
                             <h4>ADDRESS:</h4>
-                            <p>purbo hoktullah, patuakhali sadar, patuakhali</p>
+                            <p>{{$setting->address}}</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="email">
                             <h4>Email:</h4>
-                            <a target="_blank" href="mailto:phhs@gmail.com">
-                                <span>phhs@gmail.com</span>
+                            <a target="_blank" href="mailto:{{$setting->email}}">
+                                <span>{{$setting->email}}</span>
                             </a>
 
                         </div>
@@ -176,8 +176,8 @@
                     <div class="col-lg-4">
                         <div class="phone">
                             <h4>Phone:</h4>
-                            <a href="tel://০১৭২৪৭৬৯৯৫৪">
-                                <span>০১৭২৪৭৬৯৯৫৪</span>
+                            <a href="tel://{{$setting->phone}}">
+                                <span>{{$setting->phone}}</span>
                             </a>
 
                         </div>
@@ -222,7 +222,7 @@
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <div class="wrapper">
-                            <a href="" target="_blank">
+                            <a href="{{$setting->facebook}}" target="_blank">
                                 <div class="button">
                                     <div class="icon">
                                         <i class="fa fa-facebook-f"></i>
@@ -230,7 +230,7 @@
                                     <span>Facebook</span>
                                 </div>
                             </a>
-                            <a href="#">
+                            <a href="{{$setting->twitter}}" target="_blank">
                                 <div class="button">
                                     <div class="icon">
                                         <i class="fa fa-twitter"></i>
@@ -238,7 +238,7 @@
                                     <span>Twitter</span>
                                 </div>
                             </a>
-                            <a href="#">
+                            <a href="{{$setting->instagram}}" target="_blank">
                                 <div class="button">
                                     <div class="icon">
                                         <i class="fa fa-instagram"></i>
@@ -246,15 +246,7 @@
                                     <span>Instagram</span>
                                 </div>
                             </a>
-                            <a href="#">
-                                <div class="button">
-                                    <div class="icon">
-                                        <i class="fa fa-linkedin"></i>
-                                    </div>
-                                    <span>Linkedin</span>
-                                </div>
-                            </a>
-                            <a href="#">
+                            <a href="{{$setting->youtube}}" target="_blank">
                                 <div class="button">
                                     <div class="icon">
                                         <i class="fa fa-youtube"></i>

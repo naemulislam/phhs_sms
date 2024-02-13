@@ -9,40 +9,21 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    public function portalRegister(Request $request)
+    public function userRegister(Request $request)
     {
         $request->validate([
-            'signup_pds_id' => 'required|max:10',
-            'signup_email' => 'required|email',
-            'signup_password' => 'required',
-            'password_confirmation' => 'required|same:signup_password',
+            'name' => 'required|string|max:20',
+            'register_email' => 'required|email',
+            'phone' => 'required|min:11|max:11',
+            'reginter_password' => 'required|required_with:password_confirmation',
+            'password_confirmation' => 'required',
         ]);
-        $user = UserRepository::query()->where('pds_id', $request->signup_pds_id)->first();
-        if ($user) {
-            $user->update([
-                'email' => $request->signup_email,
-                'password' => Hash::make($request->signup_password)
-            ]);
-            return back()->with('success', 'Successfully! Registered');
-        } else {
-            return back()->with('error', 'Your PDS ID does not match!');
-        }
-    }
-    public function studentRegister(Request $request)
-    {
-        $request->validate([
-            'signup_student_id' => 'required|max:10',
-            'signup_password' => 'required',
-            'password_confirmation' => 'required|same:signup_password',
+        UserRepository::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => Hash::make($request->reginter_password)
         ]);
-        $user = UserRepository::query()->where('student_id', $request->signup_student_id)->first();
-        if ($user) {
-            $user->update([
-                'password' => Hash::make($request->signup_password)
-            ]);
-            return back()->with('success', 'Successfully! Registered');
-        } else {
-            return back()->with('error', 'Your student ID does not match!');
-        }
+        return back()->with('success', 'Successfully! Registered');
     }
 }

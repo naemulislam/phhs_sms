@@ -13,6 +13,7 @@ use App\Models\Institute;
 use App\Models\Slider;
 use App\Repositories\AchievementRepository;
 use App\Repositories\ClassRoutineRepository;
+use App\Repositories\CommitteeRepository;
 use App\Repositories\ExamRoutineRepository;
 use App\Repositories\GroupRepository;
 use App\Repositories\NewsRepository;
@@ -159,6 +160,14 @@ class HomeController extends Controller
             $query->where('role', 'staff')->where('is_active', true);
         })->count();
         return view('frontend.school_staff',compact('staffs','totalStaffs','maleStaffs','femaleStaff'));
+    }
+    public function newCommitteeIndex(){
+        $committees = CommitteeRepository::query()->where('is_active', true)->get();
+        return view('frontend.new_committee', compact('committees'));
+    }
+    public function oldCommitteeIndex(){
+        $committees = CommitteeRepository::query()->where('is_active', false)->get();
+        return view('frontend.old_committee', compact('committees'));
     }
     // All Notice page show
     public function allNotice()

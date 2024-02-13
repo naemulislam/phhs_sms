@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Storage;
 class CommitteeController extends Controller
 {
     public function index(){
-        $committees = Committee::latest()->get();
-        return view('backend.dashboard.committee.index',compact('committees'));
+        $committees = CommitteeRepository::query()->latest()->where('is_active', true)->get();
+        $oldCommittees = CommitteeRepository::query()->where('is_active', false)->get();
+        return view('backend.dashboard.committee.index',compact('committees','oldCommittees'));
     }
     public function create(){
         return view('backend.dashboard.committee.create');

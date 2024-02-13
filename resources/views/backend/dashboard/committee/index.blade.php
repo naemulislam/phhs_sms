@@ -61,7 +61,7 @@
                                     <th>SL</th>
                                     <th>Photo</th>
                                     <th>Name</th>
-                                    <th>Designation</th>
+                                    <th>Position</th>
                                     <th>Phone</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -179,7 +179,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($committees as $row)
+                                @foreach ($oldCommittees as $row)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
@@ -195,17 +195,17 @@
                                                 <a href="#"
                                                     class="btn label label-lg label-light-success label-inline"
                                                     data-toggle="modal"
-                                                    @if (Auth::user()->roll == 'admin') data-target="#row_status_{{ $row->id }}" @endif>
+                                                    @if (Auth::user()->role == 'admin') data-target="#row_status_{{ $row->id }}" @endif>
                                                     Active</a>
                                             @elseif($row->is_active == 0)
                                                 <a href="#"
                                                     class="btn label label-lg label-light-danger label-inline"
                                                     data-toggle="modal"
-                                                    @if (Auth::user()->roll == 'admin') data-target="#row_status_{{ $row->id }}" @endif>
+                                                    @if (Auth::user()->role == 'admin') data-target="#row_status_{{ $row->id }}" @endif>
                                                     Inactive</a>
                                             @endif
                                         </td>
-                                        @if (Auth::user()->roll == 'admin')
+                                        @if (Auth::user()->role == 'admin')
                                             <td class="d-flex">
                                                 <a href="{{ route('committee.show', $row->id) }}"
                                                     class="btn btn-icon btn-success btn-hover-primary btn-xs mx-3"><i

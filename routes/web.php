@@ -76,6 +76,9 @@ Route::controller(HomeController::class)->group(function(){
     // All Notice route
     Route::get('/all/notice', 'allNotice')->name('all.notice');
     Route::get('/online/admission', 'admission')->name('admission');
+    //Comittees route
+    Route::get('/new/committee','newCommitteeIndex')->name('new.committee.index');
+    Route::get('/old/committee','oldCommitteeIndex')->name('old.committee.index');
 });
 Route::controller(LoginController::class)->group(function(){
     //School
@@ -92,8 +95,7 @@ Route::controller(LoginController::class)->group(function(){
     Route::get('/user/logout', 'userLogout')->name('user.logout');
 });
 Route::controller(RegisterController::class)->group(function(){
-    Route::post('/school/portal/register','portalRegister')->name('portal.register');
-    Route::post('/student/portal/register','studentRegister')->name('student.register');
+    Route::post('/user/register','userRegister')->name('user.register');
 });
 //School Dashboard
 Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function(){

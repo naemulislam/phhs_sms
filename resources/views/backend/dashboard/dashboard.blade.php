@@ -69,7 +69,7 @@
                                                 </svg>
                                                 <!--end::Svg Icon-->
                                             </span>
-                                            <a href="{{route('admin.index')}}" class="text-warning font-weight-bold font-size-h6">Admin ({{$admins}})</a>
+                                            <a href="@if(Auth::user()->role == 'admin'){{route('admin.index')}} @endif" class="text-warning font-weight-bold font-size-h6">Admin ({{$admins}})</a>
                                         </div>
                                         <div class="col bg-light-primary px-6 py-8 rounded-xl mb-7">
                                             <span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">

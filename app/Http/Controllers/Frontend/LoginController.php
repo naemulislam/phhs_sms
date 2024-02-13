@@ -14,9 +14,12 @@ class LoginController extends Controller
     //School portal index
     public function schoolPortal()
     {
-        $checkAdmin = Auth::user()->role == 'admin' || Auth::user()->role == 'teacher' || Auth::user()->role == 'staff';
-        if (auth()->check() && $checkAdmin) {
-            return to_route('school.dashboard');
+
+        if (auth()->check()) {
+            $checkAdmin = Auth::user()->role == 'admin' || Auth::user()->role == 'teacher' || Auth::user()->role == 'staff';
+            if ($checkAdmin) {
+                return to_route('school.dashboard');
+            }
         }
         return view('auth.school.login');
     }
@@ -46,8 +49,11 @@ class LoginController extends Controller
     //student portal index
     public function studentPortal()
     {
-        if (auth()->check() && Auth::user()->role == 'student') {
-            return to_route('student.dashboard');
+        if (auth()->check()) {
+            $checkStudent = Auth::user()->role == 'student';
+            if($checkStudent){
+                return to_route('student.dashboard');
+            }
         }
         return view('auth.student.login');
     }
@@ -71,8 +77,11 @@ class LoginController extends Controller
     //user login index
     public function userLogin()
     {
-        if (auth()->check() && Auth::user()->role == 'user') {
-            return to_route('user.dashboard');
+        if (auth()->check()) {
+            $checkUser =  Auth::user()->role == 'user';
+            if($checkUser){
+                return to_route('user.dashboard');
+            }
         }
         return view('auth.user.login');
     }

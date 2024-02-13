@@ -72,8 +72,8 @@
                                             class="fa fa-long-arrow-right"></i>যোগাযোগ</a></li>
                                 <li class="dd-btn2"><a href="{{ route('school.staff') }}"><i
                                             class="fa fa-long-arrow-right"></i>স্টাফদের তথ্য</a></li>
-                                <li><a href="#"><i class="fa fa-long-arrow-right"></i> নতুন কমিটি</a></li>
-                                <li><a href="#"><i class="fa fa-long-arrow-right"></i> পুরাতন কমিটি</a></li>
+                                <li><a href="{{route('new.committee.index')}}"><i class="fa fa-long-arrow-right"></i> নতুন কমিটি</a></li>
+                                <li><a href="{{route('old.committee.index')}}"><i class="fa fa-long-arrow-right"></i> পুরাতন কমিটি</a></li>
                                 <li><a target="_blank" href="{{ asset('frontend/assets/images/pdf/mpo_info.pdf') }}"><i
                                             class="fa fa-long-arrow-right"></i> এমপিও ও জাতীয়করনের তথ্য</a></li>
                                 <li><a href="{{ route('annual.result') }}"><i class="fa fa-long-arrow-right"></i> ফলাফল
@@ -222,8 +222,8 @@
                             </li>
                             <li><a href="{{ route('school.staff') }}"><i class="fa fa-long-arrow-right"></i> স্টাফদের
                                     তথ্য</a></li>
-                            <li><a href="#"><i class="fa fa-long-arrow-right"></i> নতুন কমিটি</a></li>
-                            <li><a href="#"><i class="fa fa-long-arrow-right"></i> পুরাতন কমিটি</a></li>
+                            <li><a href="{{route('new.committee.index')}}"><i class="fa fa-long-arrow-right"></i> নতুন কমিটি</a></li>
+                            <li><a href="{{route('old.committee.index')}}"><i class="fa fa-long-arrow-right"></i> পুরাতন কমিটি</a></li>
                             <li><a href="#"><i class="fa fa-long-arrow-right"></i> এমপিও ও জাতীয়করনের তথ্য</a>
                             </li>
 
