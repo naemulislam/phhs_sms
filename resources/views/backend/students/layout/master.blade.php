@@ -39,6 +39,7 @@
     <link href="{{ asset('backend') }}/assets/css/filter_multi_select.css" rel="stylesheet" type="text/css" />
     <!--end::Layout Themes-->
     <link rel="shortcut icon" href="{{ asset('frontend') }}/assets/images/logo/favicon-32x32.png" type="image/x-icon">
+    <link href="{{ asset('backend') }}/assets/css/custom.css" rel="stylesheet" type="text/css" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -225,9 +226,9 @@
                                         class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">{{ auth()->user()->name }}</span>
 
                                     <?php
-                                    
+
                                     use Illuminate\Support\Facades\Auth;
-                                    
+
                                     ?>
 
 
@@ -235,9 +236,9 @@
                                         <span class="symbol-label font-size-h1 font-weight-bold">
                                             <?php
                                             $get_name = auth()->user()->name;
-                                            $admin = mb_substr($get_name, 0, 1);
+                                            $student = mb_substr($get_name, 0, 1);
                                             ?>
-                                            {{ $admin }}
+                                            {{ $student }}
                                         </span>
                                     </span>
                                 </div>
@@ -293,7 +294,7 @@
                 <div class="symbol symbol-100 mr-5">
 
                     <div class="symbol-label"
-                        style="background-image:url({{ asset('defaults/avatar/avatar.png') }})"></div>
+                        style="background-image:url(@if(Auth::user()->profile_id) {{Auth::user()->image->file}} @else {{ asset('defaults/avatar/avatar.png') }} @endif)"></div>
                     <i class="symbol-badge bg-success"></i>
                 </div>
                 <div class="d-flex flex-column">
@@ -336,7 +337,7 @@
             <!--begin::Nav-->
             <div class="navi navi-spacer-x-0 p-0">
                 <!--begin::Item-->
-                <a href="" class="navi-item">
+                <a href="{{route('student.profile')}}" class="navi-item">
                     <div class="navi-link">
                         <div class="symbol symbol-40 bg-light mr-3">
                             <div class="symbol-label">

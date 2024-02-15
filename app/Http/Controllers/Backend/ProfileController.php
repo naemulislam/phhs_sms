@@ -19,13 +19,7 @@ class ProfileController extends Controller
 {
     public function profile()
     {
-        // if (Auth::user()->role == 'admin') {
-            return view('backend.dashboard.profile.profile_master');
-        // } elseif (Auth::user()->role == 'teacher') {
-        //     return view('backend.dashboard.profile.teacher_profile');
-        // } else {
-        //     return view('backend.dashboard.profile.staff_profile');
-        // }
+        return view('backend.dashboard.profile.profile_master');
     }
     public function adminUpdate(AdminProfileRequest $request, User $user)
     {
