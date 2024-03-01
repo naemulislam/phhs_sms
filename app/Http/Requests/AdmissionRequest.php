@@ -40,7 +40,7 @@ class AdmissionRequest extends FormRequest
             'date_of_birth' => 'required',
             'group_id' => 'required',
             'religion' => 'required|string',
-            'gender' => 'required|in:mail,femail,others',
+            'gender' => 'required|in:male,female,others',
             'sibling' => 'nullable',
             'shift' => 'required',
             'quota' => 'nullable|in:yes,no',

@@ -80,10 +80,10 @@
                             <b class="col-sm-8">{{ $student->religion }}</b>
                             <b class="col-sm-3">Gender</b>
                             <b class="col-sm-8">
-                                @if ($student->gender == 'mail')
-                                    Mail
-                                @elseif($student->gender == 'femail')
-                                    Femail
+                                @if ($student->gender == 'male')
+                                    Male
+                                @elseif($student->gender == 'female')
+                                    Female
                                 @else
                                     Others
                                 @endif

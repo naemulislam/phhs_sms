@@ -141,8 +141,8 @@
                                                 <label for="">Gender <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="gender">
                                                     <option selected disabled>select gender</option>
-                                                    <option value="mail">Mail</option>
-                                                    <option value="femail">Femail</option>
+                                                    <option value="male">Mail</option>
+                                                    <option value="female">Femail</option>
                                                     <option value="others">others</option>
                                                 </select>
                                                 @error('gender')
