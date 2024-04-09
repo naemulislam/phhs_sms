@@ -20,7 +20,7 @@
 				<!--end::Svg Icon-->
 			</span>
 		</button>
-		<!--end::Toolbar-->
+		<!--end::Toolbar------>
 	</div>
 	<!--end::Brand-->
 	<!--begin::Aside Menu-->

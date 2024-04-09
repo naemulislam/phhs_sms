@@ -38,6 +38,7 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->string('blood')->nullable();
             $table->foreignId('group_id')->nullable()->constrained((new Group())->getTable());
+            $table->string('session_year')->nullable();
             $table->string('old_prev_school')->nullable();
             $table->string('status')->default(1);
             $table->timestamps();

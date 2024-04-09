@@ -29,6 +29,7 @@ class StudentRepository extends Repository
             'type' => $request->type,
             'blood' => $request->blood,
             'phone' => $request->phone,
+            'session_year' => date('Y'),
             //Guardian Information
             'father_name' => $request->father_name,
             'father_phone' => $request->father_phone,

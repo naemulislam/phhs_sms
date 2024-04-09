@@ -37,7 +37,7 @@
                 <div class="col">
                     <div class="updateNews-box"><h5>News</h5></div>
                     <div class="updateNews-title">
-                        <a href="#"><marquee onmouseover="this.stop();" onmouseout="this.start();">{{$headingNotic->title}}</marquee></a>
+                        <a href="#"><marquee onmouseover="this.stop();" onmouseout="this.start();">{{$headingNotic->title ?? 'Notice not added yet'}}</marquee></a>
                     </div>
                 </div>
             </div>
@@ -51,8 +51,8 @@
             <div class="row common-shadow py-4">
                 <div class="col-md-6">
                     <div class="about-image">
-                        <img src="{{ asset('storage') }}/{{$computerLab->image}}" alt=""
-                            class="img-responsive">
+                        <img src="{{$computerLab?->image ? asset('storage/'.$computerLab?->image) : asset('defaults/noimage/no_img.jpg') }}" alt="" class="img-responsive">
+
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -61,7 +61,7 @@
                             <h3 class="">সমৃদ্ধ কম্পিউটার ল্যাবের বর্ণনা</h3>
                         </div>
 
-                        <p class="mb-3 simple-text">{!! $computerLab->description !!}</p>
+                        <p class="mb-3 simple-text">{!! $computerLab?->description !!}</p>
                         <div>
                             <a href="#" class="btn-custom btn-sm">More..</a>
                         </div>
@@ -188,25 +188,25 @@
             <div class="row">
                 <div class="col-md-3 mb-3">
                     <div class="achive-box common-shadow">
-                        <span><i class="fa fa-graduation-cap"></i> {{$setting->total_s}}</span>
+                        <span><i class="fa fa-graduation-cap"></i> {{$setting?->total_s ?? '0'}}</span>
                         <p>মোট শিক্ষার্থী</p>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <div class="achive-box common-shadow">
-                        <span><i class="fa fa-male"></i> {{$setting->total_t}}</span>
+                        <span><i class="fa fa-male"></i> {{$setting?->total_t ?? '0'}}</span>
                         <p>মোট শিক্ষক</p>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <div class="achive-box common-shadow">
-                        <span><i class="fa fa-users"></i> {{$setting->total_c}}</span>
+                        <span><i class="fa fa-users"></i> {{$setting?->total_c ?? '0'}}</span>
                         <p>মোট ক্লাস রুম</p>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
                     <div class="achive-box common-shadow">
-                        <span><i class="fa fa-flask"></i> {{$setting->total_l}}</span>
+                        <span><i class="fa fa-flask"></i> {{$setting?->total_l ?? '0'}}</span>
                         <p>মোট ল্যাব</p>
                     </div>
                 </div>
@@ -294,17 +294,17 @@
                         <div class="heading-title m-2">
                             <h3>Social Link</h3>
                         </div>
-                        <a href="@if($setting->facebook) {{$setting->facebook}} @endif" target="_blank">
+                        <a href="@if($setting?->facebook) {{$setting?->facebook}} @endif" target="_blank">
                             <div class="link-box">
                                 <img src="{{ asset('frontend/assets/images/social/facebook.png')}}" alt=""><span>Facebook</span>
                             </div>
                         </a>
-                        <a href="@if($setting->youtube) {{$setting->youtube}} @endif" target="_blank">
+                        <a href="@if($setting?->youtube) {{$setting?->youtube}} @endif" target="_blank">
                             <div class="link-box">
                                 <img src="{{ asset('frontend/assets/images/social/youtube.png')}}" alt=""><span>Youtube</span>
                             </div>
                         </a>
-                        <a href="@if($setting->twitter) {{$setting->twitter}} @endif" target="_blank">
+                        <a href="@if($setting?->twitter) {{$setting?->twitter}} @endif" target="_blank">
                             <div class="link-box">
                                 <img src="{{ asset('frontend/assets/images/social/twitter.png')}}" alt=""><span>Twitter</span>
                             </div>

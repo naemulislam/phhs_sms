@@ -126,6 +126,7 @@ $routeName == 'result.index'? 'menu-item-open':''
 {{
     $routeName == 'student.index' ||
     $routeName == 'student.create' ||
+    $routeName == 'student.info.search' ||
     $routeName == 'student.promote.index'? 'menu-item-open':''
     }}
 " aria-haspopup="true" data-menu-toggle="hover">
@@ -184,6 +185,15 @@ $routeName == 'result.index'? 'menu-item-open':''
                 </a>
             </li>
             @endif
+            <li class="menu-item menu-item-submenu {{$routeName == 'student.info.search'? 'menu-item-active': '' }}" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{ route('student.info.search')}}" class="menu-link menu-toggle">
+                    <i class="menu-bullet menu-bullet-line">
+                        <span></span>
+                    </i>
+                    <span class="menu-text">Previous student info</span>
+                    <i class="menu-arrow"></i>
+                </a>
+            </li>
         </ul>
     </div>
 </li>

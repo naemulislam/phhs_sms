@@ -150,6 +150,9 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         //Student promote route
         Route::get('/student/promote','studentPromote')->name('student.promote.index');
         Route::post('/student/promote/store','promoteStore')->name('student.promote.store');
+        //Previous Student information route
+        Route::get('/student/info/search','studentInfoSearch')->name('student.info.search');
+        Route::get('/student/info/show/{studentLogs}','studentInfoShow')->name('student.info.show');
     });
     // Student Attendance Route
     Route::controller(AttendanceController::class)->group(function(){
