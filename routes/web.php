@@ -177,6 +177,17 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
         Route::get('/teacher/destroy/{teacher}','destroy')->name('teacher.destroy');
         Route::post('/teacher/status/{teacher}','status')->name('teacher.status');
     });
+    //Teacher Route
+    Route::controller(TeacherController::class)->group(function(){
+        Route::get('/teacher','index')->name('teacher.index');
+        Route::get('/teacher/create','create')->name('teacher.create');
+        Route::post('/teacher/store','store')->name('teacher.store');
+        Route::get('/teacher/show/{teacher}','show')->name('teacher.show');
+        Route::get('/teacher/edit/{teacher}','edit')->name('teacher.edit');
+        Route::put('/teacher/update/{teacher}','update')->name('teacher.update');
+        Route::get('/teacher/destroy/{teacher}','destroy')->name('teacher.destroy');
+        Route::post('/teacher/status/{teacher}','status')->name('teacher.status');
+    });
     //Staff Route
     Route::controller(StaffController::class)->group(function(){
         Route::get('/staff','index')->name('staff.index');
@@ -270,12 +281,25 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
     });
     //Result route
     Route::controller(ResultController::class)->group(function(){
-        Route::get('/result','index')->name('result.index');
-        Route::post('/result/store','store')->name('result.store');
-        Route::put('/result/update/{result}','update')->name('result.update');
-        Route::get('/result/destroy/{result}','destroy')->name('result.destroy');
-        Route::post('/result/status/{result}','status')->name('result.status');
+        // upload on document roue
+        Route::get('/document/result','index')->name('result.index');
+        Route::post('/document/result/store','store')->name('result.store');
+        Route::put('/document/result/update/{result}','update')->name('result.update');
+        Route::get('/document/result/destroy/{result}','destroy')->name('result.destroy');
+        Route::post('/document/result/status/{result}','status')->name('result.status');
+        // upload on subject wise number
+        Route::get('/result/list','resultList')->name('submission.result.list');
+        Route::get('/result/create','resultCreate')->name('submission.result.create');
+        Route::post('/result/store','resultStore')->name('submission.result.store');
+        Route::get('/result/edit/{group}/{subject}/{exam}','resultEdit')->name('submission.result.edit');
+        Route::put('/result/update/','resultUpdate')->name('submission.result.update');
+        Route::get('/result/destroy/{group}/{subject}/{exam}','resultDestroy')->name('submission.result.destroy');
+        Route::get('/result/search','resultSearch')->name('submission.result.search');
+        Route::post('/result/search/found','resultSearchFound')->name('submission.result.search.found');
     });
+    //get student and subject form ajax
+    Route::get('/get/students/list/{id}', [ResultController::class,'getStudentsList']);
+    Route::get('/get/subjects/list/{id}', [ResultController::class, 'getSubjects']);
     //News route
     Route::controller(NewsController::class)->group(function(){
         Route::get('/news','index')->name('news.index');
