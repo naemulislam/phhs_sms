@@ -55,7 +55,8 @@ class ResultController extends Controller
     //In this function below custom result management subject wise
     public function resultList(){
         $data['resultSheet'] = SubmissionResult::select('group_id', 'subject_id', 'exam_type')->distinct()->get();
-        $data['totalStudents'] = SubmissionResult::select('group_id', 'subject_id','exam_type')->distinct()->count();
+        $data['totalStudents'] = SubmissionResult::select('group_id','subject_id', 'exam_type')->count();
+        // return $data['totalStudents'];
         return view('backend.dashboard.result.result_list',$data);
     }
     public function resultCreate(){

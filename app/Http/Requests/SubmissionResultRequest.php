@@ -23,12 +23,12 @@ class SubmissionResultRequest extends FormRequest
     {
         $group = 'required';
         $subject = 'required';
-        $examType = 'required|string|in:Half yearly examination, Annual examination, Class test examination';
+        $examType = 'required|string';
         $examYear = 'required|string';
         if (request()->isMethod('put')) {
             $group = 'nullable';
             $subject = 'nullable';
-            $examType = 'nullable|string|in:Half yearly examination, Annual examination, Class test examination';
+            $examType = 'nullable|string';
             $examYear = 'nullable|string';
         }
         return [

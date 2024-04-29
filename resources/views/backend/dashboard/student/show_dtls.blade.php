@@ -54,7 +54,7 @@
                         <div class="row mb-3">
                             <div class="col-md-3 mx-auto">
                                 <div class="imageBox">
-                                    <img src="@if (!empty($student->image_id)) {{ asset($student->image->file) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
+                                    <img src="@if (!empty($student->user->profile_id)) {{ asset($student->user->image->file) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                         alt="">
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
                             <b class="col-sm-3">Session Year</b>
                             <b class="col-sm-9">{{ $student->session_year}}</b>
                             <b class="col-sm-3">Admission Date</b>
-                            <b class="col-sm-9">{{ $student->created_at }}</b>
+                            <b class="col-sm-9">{{ $student->admission_date ?? 'N/A' }}</b>
                             <b class="col-sm-3">Phone</b>
                             <b class="col-sm-9">{{ $student->phone ?? 'N/A' }}</b>
                             <b class="col-sm-3">Birth Registration No</b>

@@ -1,10 +1,16 @@
-@extends('backend.layouts.master')
+@extends('backend.students.layout.master')
 @yield('title')
 @section('content')
 
     @php
         $routeName = \Request::route()->getName();
     @endphp
+    <style>
+        .w-250px {
+    width: 350px !important;
+}
+
+    </style>
 
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Subheader-->
@@ -17,8 +23,7 @@
                     <!--end::Page Title-->
                     <!--begin::Actions-->
                     <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
-                    <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
-                    <a target="_balnk" href="" class="btn btn-light-warning font-weight-bolder btn-sm">Website</a>
+                    <a target="_balnk" href="{{ route('home')}}" class="btn btn-light-warning font-weight-bolder btn-sm">Website</a>
                     <!--end::Actions-->
                 </div>
             </div>
@@ -59,44 +64,65 @@
                                         <div>
                                             <a href="#"
                                                 class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary">{{ Auth::user()->name }}</a>
-                                            @if (auth::user()->role == 'admin')
-                                                <div class="text-muted">Admin</div>
-                                            @elseif (auth::user()->role == 'teacher')
-                                                <div class="text-muted">Teacher</div>
-                                            @elseif (auth::user()->role == 'staff')
-                                                <div class="text-muted">Staff</div>
-                                            @else
-                                                <div class="text-muted"></div>
-                                            @endif
-
+                                                <div class="text-muted">Student</div>
                                         </div>
                                     </div>
                                     <!--end::User-->
                                     <!--begin::Contact-->
                                     <div class="py-9">
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <span class="font-weight-bold mr-2">Email:</span>
-                                            <a href="#"
-                                                class="text-muted text-hover-primary">{{ Auth::user()->email }}</a>
+                                        <div class="d-flex mb-2">
+                                            <span class="font-weight-bold mr-2">Application Name:</span>
+                                            <span class="text-muted">{{ Auth::user()->student->applicant_name }}</span>
                                         </div>
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <div class="d-flex mb-2">
+                                            <span class="font-weight-bold mr-2">Student Id:</span>
+                                            <span class="text-muted">{{ Auth::user()->student_id }}</span>
+                                        </div>
+                                        <div class="d-flex mb-2">
+                                            <span class="font-weight-bold mr-2">Class:</span>
+                                            <span class="text-muted">{{ Auth::user()->student->group->name }}</span>
+                                        </div>
+                                        <div class="d-flex mb-2">
+                                            <span class="font-weight-bold mr-2">Roll:</span>
+                                            <span class="text-muted">{{ Auth::user()->student->roll }}</span>
+                                        </div>
+                                        <div class="d-flex mb-2">
                                             <span class="font-weight-bold mr-2">Phone:</span>
-                                            <span class="text-muted">{{ Auth::user()->phone }}</span>
+                                            <span class="text-muted">
+                                                @if (Auth::user()->student->phone)
+                                                {{ Auth::user()->student->phone }}
+                                                @else
+                                                N/A
+                                                @endif
+                                            </span>
                                         </div>
-                                        @if (auth::user()->role == 'admin')
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <span class="font-weight-bold mr-2">Location:</span>
-                                                <span class="text-muted">{{ Auth::user()->address }}</span>
-                                            </div>
-                                        @endif
+                                        <div class="d-flex mb-2">
+                                            <span class="font-weight-bold mr-2">Email:</span>
+                                            <span class="text-muted">
+                                                @if (Auth::user()->email)
+                                                {{ Auth::user()->email }}
+                                                @else
+                                                N/A
+                                                @endif
+                                            </span>
+                                        </div>
+                                        <div class="d-flex mb-2">
+                                            <span class="font-weight-bold mr-2">Gender:</span>
+                                            <span class="text-muted">
+                                                @if(Auth::user()->student->gender == 'male')
+                                                Male
+                                                @elseif(Auth::user()->student->gender == 'female')
+                                                Female
+                                                @endif
+                                            </span>
+                                        </div>
                                     </div>
                                     <!--end::Contact-->
                                     <!--begin::Nav-->
                                     <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
-
                                         <div class="navi-item mb-2">
-                                            <a href="{{ route('profile') }}"
-                                                class="navi-link py-4 @if ($routeName == 'profile') active @endif">
+                                            <a href="{{ route('student.profile') }}"
+                                                class="navi-link py-4 @if ($routeName == 'student.profile') active @endif">
                                                 <span class="navi-icon mr-2">
                                                     <span class="svg-icon">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg-->
@@ -121,8 +147,8 @@
                                             </a>
                                         </div>
                                         <div class="navi-item mb-2">
-                                            <a href="{{ route('edit.password') }}"
-                                                class="navi-link py-4 @if ($routeName == 'edit.password') active @endif">
+                                            <a href="{{ route('student.edit.password') }}"
+                                                class="navi-link py-4 @if ($routeName == 'student.edit.password') active @endif">
                                                 <span class="navi-icon mr-2">
                                                     <span class="svg-icon">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Shield-user.svg-->
@@ -156,12 +182,11 @@
                             </div>
                             <!--end::Profile Card-->
                         </div>
-
                         <!--end::Aside-->
                         <!--begin::Content-->
-                        <div class="flex-row-fluid ml-lg-8">
-                            <!--begin::Card-->
-                            <form class="form" action="{{ route('update.password', Auth::user()->id) }}" method="post">
+                        <div class="flex-row-fluid ml-lg-6">
+                            <form class="" action="{{ route('student.update.password', Auth::user()->id) }}"
+                                method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
                                 <div class="card card-custom card-stretch">
@@ -179,9 +204,9 @@
                                     </div>
                                     <!--end::Header-->
                                     <!--begin::Form-->
+
                                     <!--begin::Body-->
                                     <div class="card-body">
-                                        <!--begin::Alert-->
                                         <div class="alert alert-custom alert-light-danger fade show mb-10" role="alert">
                                             <div class="alert-icon">
                                                 <span class="svg-icon svg-icon-3x svg-icon-danger">
@@ -257,28 +282,16 @@
                                         </div>
                                     </div>
                                     <!--end::Body-->
-
-                                    <!--end::Form-->
-                                </div>
                             </form>
                         </div>
-                        <!--end::Content-->
+                        {{-- @yield('profile_content') --}}
                     </div>
-                    <!--end::Profile Personal Information-->
+                    <!--end::Content-->
                 </div>
-                <!--end::Container-->
+                <!--end::Profile Personal Information-->
             </div>
-            <!--end::Entry-->
+            <!--end::Container-->
         </div>
-    @endsection
-    @push('scripts')
-        <script>
-            var loadFile = function(event) {
-                var output = document.getElementById('output');
-                output.src = URL.createObjectURL(event.target.files[0]);
-                output.onload = function() {
-                    URL.revokeObjectURL(output.src) // free memory
-                }
-            };
-        </script>
-    @endpush
+        <!--end::Entry-->
+    </div>
+@endsection

@@ -52,7 +52,6 @@
                 <div class="col-md-6">
                     <div class="about-image">
                         <img src="{{$computerLab?->image ? asset('storage/'.$computerLab?->image) : asset('defaults/noimage/no_img.jpg') }}" alt="" class="img-responsive">
-
                     </div>
                 </div>
                 <div class="col-md-6">

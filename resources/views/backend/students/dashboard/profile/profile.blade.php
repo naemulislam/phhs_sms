@@ -23,8 +23,7 @@
                     <!--end::Page Title-->
                     <!--begin::Actions-->
                     <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
-                    <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
-                    <a target="_balnk" href="" class="btn btn-light-warning font-weight-bolder btn-sm">Website</a>
+                    <a target="_balnk" href="{{ route('home')}}" class="btn btn-light-warning font-weight-bolder btn-sm">Website</a>
                     <!--end::Actions-->
                 </div>
             </div>
@@ -121,10 +120,9 @@
                                     <!--end::Contact-->
                                     <!--begin::Nav-->
                                     <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
-
                                         <div class="navi-item mb-2">
-                                            <a href="{{ route('profile') }}"
-                                                class="navi-link py-4 @if ($routeName == 'profile') active @endif">
+                                            <a href="{{ route('student.profile') }}"
+                                                class="navi-link py-4 @if ($routeName == 'student.profile') active @endif">
                                                 <span class="navi-icon mr-2">
                                                     <span class="svg-icon">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg-->
@@ -149,8 +147,8 @@
                                             </a>
                                         </div>
                                         <div class="navi-item mb-2">
-                                            <a href="{{ route('edit.password') }}"
-                                                class="navi-link py-4 @if ($routeName == 'edit.password') active @endif">
+                                            <a href="{{ route('student.edit.password') }}"
+                                                class="navi-link py-4 @if ($routeName == 'student.edit.password') active @endif">
                                                 <span class="navi-icon mr-2">
                                                     <span class="svg-icon">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Shield-user.svg-->
@@ -212,14 +210,21 @@
                                     <!--begin::Body-->
                                     <div class="card-body">
                                         <div class="form-group row">
+
                                             <label class="col-xl-3 col-lg-3 col-form-label">Avatar</label>
-                                            <div class="imageBox mr-3">
-                                                <img src="@if (!empty(Auth::user()->profile_id)) {{ asset(Auth::user()->image->file) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
-                                                    alt="">
+                                            <div class="col-lg-4">
+                                                <div class="imageBox mr-3">
+                                                    <label></label>
+                                                    <img src="@if (!empty(Auth::user()->profile_id)) {{ asset(Auth::user()->image->file) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
+                                                        alt="">
+                                                </div>
                                             </div>
-                                            <div class="imageBox">
-                                                <label>Preview Image</label>
-                                                <img class="small-previewImage" id="output" />
+
+                                            <div class="col-lg-4">
+                                                <div class="imageBox">
+                                                    <label>Preview Image</label>
+                                                    <img class="small-previewImage" id="output" />
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -285,6 +290,67 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Date of Birth</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="la la-at"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="date" name="date_of_birth" class="form-control"
+                                                        value="{{ auth::user()->student->date_of_birth }}"
+                                                        placeholder="Date of Birth" readonly/>
+                                                </div>
+                                                @error('date_of_birth')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Birth Registration No</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="la la-at"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" name="birth_reg_no" class="form-control"
+                                                        value="{{ auth::user()->student->birth_reg_no }}" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Admission Date</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="la la-at"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="date" name="admission_date" class="form-control"
+                                                        value="{{ auth::user()->student->admission_date }}"
+                                                        placeholder="Date of Birth" readonly/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Quota (Freedom)</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="la la-at"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" name="quota" class="form-control"
+                                                        value="{{ auth::user()->student->quota }}" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <label class="col-xl-3"></label>
                                             <div class="col-lg-9 col-xl-6">
@@ -323,25 +389,6 @@
                                                         value="{{ auth::user()->email }}" placeholder="Email" />
                                                 </div>
                                                 @error('email')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">Date of Birth</label>
-                                            <div class="col-lg-9 col-xl-6">
-                                                <div class="input-group input-group-lg input-group-solid">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="la la-at"></i>
-                                                        </span>
-                                                    </div>
-                                                    <input type="date" name="date_of_birth" class="form-control"
-                                                        value="{{ auth::user()->student->date_of_birth }}"
-                                                        placeholder="Date of Birth" />
-                                                </div>
-                                                @error('date_of_birth')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -401,6 +448,118 @@
                                                         value="{{ auth::user()->student->blood }}" />
                                                 </div>
                                                 @error('blood')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Sibling</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="la la-at"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" name="sibling" class="form-control"
+                                                        value="{{ auth::user()->student->sibling }}" />
+                                                </div>
+                                                @error('sibling')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Shift</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="la la-at"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" name="sibling" class="form-control"
+                                                        value="{{ auth::user()->student->shift }}" />
+                                                </div>
+                                                @error('sibling')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Previous school name</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <input type="text" name="old_prev_school" class="form-control"
+                                                        value="{{ auth::user()->student->old_prev_school }}" />
+                                                </div>
+                                                @error('old_prev_school')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-xl-3"></label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <h5 class="font-weight-bold mt-10 mb-6">Guardian Information</h5>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Father Name</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                    <input type="text" name="father_name" class="form-control"
+                                                        value="{{ auth::user()->student->father_name }}" placeholder="Enter father name"/>
+                                                @error('father_name')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Father Phone</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                    <input type="text" name="father_phone" class="form-control"
+                                                        value="{{ auth::user()->student->father_phone }}" placeholder="Enter father phone"/>
+                                                @error('father_phone')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Father NID</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                    <input type="text" name="father_nid" class="form-control"
+                                                        value="{{ auth::user()->student->father_nid }}" placeholder="Enter father nid"/>
+                                                @error('father_nid')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Mother Name</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                    <input type="text" name="mother_name" class="form-control"
+                                                        value="{{ auth::user()->student->mother_name }}" placeholder="Enter mother name"/>
+                                                @error('mother_name')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Mother Phone</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                    <input type="text" name="mother_phone" class="form-control"
+                                                        value="{{ auth::user()->student->mother_phone }}" placeholder="Enter mother phone"/>
+                                                @error('mother_phone')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Mother NID</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                    <input type="text" name="mother_nid" class="form-control"
+                                                        value="{{ auth::user()->student->mother_nid }}" placeholder="Enter mother nid"/>
+                                                @error('mother_nid')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>

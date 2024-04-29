@@ -67,18 +67,21 @@
                                     <th>Class</th>
                                     <th>Subject</th>
                                     <th>Exam type</th>
-                                    <th>Totla students</th>
+                                    {{-- <th>Totla students</th> --}}
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($resultSheet as $row)
+                                @php
+                                    $total = \App\Models\SubmissionResult::select('group_id', 'subject_id', 'exam_type')->distinct()->count();
+                                @endphp
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $row->group->name }}</td>
                                         <td>{{ $row->subject->name }}</td>
                                         <td>{{ $row->exam_type }}</td>
-                                        <td>66</td>
+                                        {{-- <td>{{$total}}</td> --}}
                                         <td class="d-flex">
                                             <a href="{{ route('submission.result.edit',[
                                                 'group'=> $row->group_id,

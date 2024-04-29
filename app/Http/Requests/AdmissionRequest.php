@@ -48,6 +48,7 @@ class AdmissionRequest extends FormRequest
             'type' => 'required|in:0,1',
             'blood' => 'nullable|string',
             'phone' => 'nullable|min:11',
+            'admission_date'=> 'required',
             //Guardian Information
             'father_name' => 'nullable|string|max:150',
             'father_phone' => 'nullable|max:11',

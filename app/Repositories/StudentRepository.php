@@ -30,6 +30,7 @@ class StudentRepository extends Repository
             'blood' => $request->blood,
             'phone' => $request->phone,
             'session_year' => date('Y'),
+            'admission_date' => $request->admission_date,
             //Guardian Information
             'father_name' => $request->father_name,
             'father_phone' => $request->father_phone,
@@ -60,7 +61,7 @@ class StudentRepository extends Repository
             'type' => $request->type,
             'blood' => $request->blood,
             'phone' => $request->phone,
-            'image_id' => $imageId ?? $student->image_id,
+            'admission_date' => $request->admission_date,
             //Guardian Information
             'father_name' => $request->father_name,
             'father_phone' => $request->father_phone,

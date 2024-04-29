@@ -44,10 +44,10 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="bg-green">
                         <div class="headertext">
-                            <h1>Purbo Hoktullah High School</h1>
+                            <h1>{{$setting->name_e ?? 'Purbo Hoktullah High School'}}</h1>
                         </div>
                         <div class="headertext-bangla">
-                            <h1>পূর্ব হকতুল্লাহ মাধ্যমিক বিদ্যালয়</h1>
+                            <h1>{{$setting->name_b ?? 'পূর্ব হকতুল্লাহ মাধ্যমিক বিদ্যালয়'}}</h1>
                         </div>
                     </div>
                 </div>

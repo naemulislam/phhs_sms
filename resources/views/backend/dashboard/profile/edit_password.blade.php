@@ -17,8 +17,7 @@
                     <!--end::Page Title-->
                     <!--begin::Actions-->
                     <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
-                    <span class="text-muted font-weight-bold mr-4">#XRS-45670</span>
-                    <a target="_balnk" href="" class="btn btn-light-warning font-weight-bolder btn-sm">Website</a>
+                    <a target="_balnk" href="{{route('home')}}" class="btn btn-light-warning font-weight-bolder btn-sm">Website</a>
                     <!--end::Actions-->
                 </div>
             </div>

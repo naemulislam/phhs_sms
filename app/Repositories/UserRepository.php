@@ -144,6 +144,7 @@ class UserRepository extends Repository
         $studentCreate = self::create([
             'name' => $request->name,
             'email' => $request->email,
+            'email_verified_at' => now(),
             'role' => 'student',
             'student_id' => $request->student_id,
             'is_active' => true,

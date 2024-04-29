@@ -339,14 +339,14 @@ Route::prefix('school/portal')->middleware(['auth', 'verified'])->group(function
 });
 
 // Student Dashboard
-Route::middleware(['auth', 'verified'])->group(function(){
-    Route::get('/student/dashboard', [StudentDashboardController::class,'dashboard'])->name('student.dashboard');
+Route::middleware(['auth', 'verified'])->as('student.')->group(function(){
+    Route::get('/student/dashboard', [StudentDashboardController::class,'dashboard'])->name('dashboard');
     Route::controller(StudentProfileController::class)->group(function(){
-        Route::get('student/profile','profile')->name('student.profile');
-        Route::put('student/profile/{user}','adminUpdate')->name('student.profile.update');
+        Route::get('student/profile','profile')->name('profile');
+        Route::put('student/profile/{user}','adminUpdate')->name('profile.update');
         // Route::put('school-staff/profile/{user}','schoolStaffUpdate')->name('schoolStaff.update');
-        Route::get('profile/edit-password','editPassword')->name('edit.password');
-        Route::put('profile/edit-password/{user}','updatePassword')->name('update.password');
+        Route::get('student/edit-password','editPassword')->name('edit.password');
+        Route::put('student/edit-password/{user}','updatePassword')->name('update.password');
     });
 });
 // User Dashboard

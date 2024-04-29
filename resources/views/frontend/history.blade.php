@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-6 mb-3 mx-auto">
                 <div class="history-img common-shadow">
-                    <img class="p-3 img-fluid" src="{{ asset('storage')}}/{{$historyInstitute->image}}" alt="">
+                    <img class="p-3 img-fluid" src="@if($historyInstitute?->image) {{ asset('storage')}}/{{$historyInstitute->image}} @else {{asset('defaults/noimage/no_img.jpg') }} @endif " alt="">
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
                         <h3 class="">প্রতিষ্ঠানের ইতিহাস</h3>
                     </div>
                     <div class="history-text p-3">
-                        <p>{!! $historyInstitute->description !!}</p>
+                        <p>{!! $historyInstitute?->description !!}</p>
                     </div>
                 </div>
             </div>

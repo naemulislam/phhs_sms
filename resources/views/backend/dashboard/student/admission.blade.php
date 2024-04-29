@@ -231,6 +231,17 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="">Admission Date<span
+                                                        class="text-danger">*</span></label>
+                                                <input type="date" class="form-control" name="admission_date"
+                                                    value="{{ old('admission_date') }}">
+                                                @error('admission_date')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <h4 class="card-title">Guardian Information</h4>
