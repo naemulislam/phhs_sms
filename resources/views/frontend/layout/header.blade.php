@@ -49,6 +49,8 @@
                                         রুটিন</a></li>
                                 <li><a href="{{ route('result') }}"><i class="fa fa-long-arrow-right"></i> ফলাফল</a>
                                 </li>
+                                <li><a href="{{ route('fornt.result.search') }}"><i class="fa fa-long-arrow-right"></i> ব্যক্তিগত ফলাফল</a>
+                                </li>
                                 <li><a href="{{ route('academic.subject') }}"><i class="fa fa-long-arrow-right"></i>
                                         একাডেমিক বিষয় </a></li>
                             </ul>

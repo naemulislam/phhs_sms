@@ -11,6 +11,7 @@ use App\Models\Gallery;
 use App\Models\Group;
 use App\Models\Institute;
 use App\Models\Slider;
+use App\Models\SubmissionResult;
 use App\Repositories\AchievementRepository;
 use App\Repositories\ClassRoutineRepository;
 use App\Repositories\CommitteeRepository;
@@ -120,6 +121,11 @@ class HomeController extends Controller
     {
         $results = ResultRepository::query()->where('is_active',true)->get();
         return view('frontend.result',compact('results'));
+    }
+    public function forntResultSearch(){
+        $groups = GroupRepository::query()->where('is_active', true)->get();
+        $years = SubmissionResult::select('year')->distinct()->get();
+        return view('frontend.result_search',compact('groups','years'));
     }
     // academicSubject page show
     public function academicSubject()

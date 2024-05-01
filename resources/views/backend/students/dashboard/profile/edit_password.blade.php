@@ -186,7 +186,7 @@
                         <!--begin::Content-->
                         <div class="flex-row-fluid ml-lg-6">
                             <form class="" action="{{ route('student.update.password', Auth::user()->id) }}"
-                                method="POST" enctype="multipart/form-data">
+                                method="POST">
                                 @csrf
                                 @method('put')
                                 <div class="card card-custom card-stretch">

@@ -368,7 +368,7 @@
                                                     </div>
                                                     <input type="number" name="phone"
                                                         class="form-control form-control-lg form-control-solid"
-                                                        value="{{ auth::user()->phone }}" placeholder="Phone" />
+                                                        value="{{ auth::user()->student->phone }}" placeholder="Phone" />
                                                 </div>
                                                 @error('phone')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -478,10 +478,10 @@
                                                             <i class="la la-at"></i>
                                                         </span>
                                                     </div>
-                                                    <input type="text" name="sibling" class="form-control"
+                                                    <input type="text" name="shift" class="form-control"
                                                         value="{{ auth::user()->student->shift }}" />
                                                 </div>
-                                                @error('sibling')
+                                                @error('shift')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -560,6 +560,32 @@
                                                     <input type="text" name="mother_nid" class="form-control"
                                                         value="{{ auth::user()->student->mother_nid }}" placeholder="Enter mother nid"/>
                                                 @error('mother_nid')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-xl-3"></label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <h5 class="font-weight-bold mt-10 mb-6">Absent Guardian Information</h5>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Absent guardian name</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                    <input type="text" name="absent_guardian" class="form-control"
+                                                        value="{{ auth::user()->student->absent_guardian }}" placeholder="Enter absent guardian name"/>
+                                                @error('absent_guardian')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Absent guardian name</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                    <input type="text" name="absent_guardian_nid" class="form-control"
+                                                        value="{{ auth::user()->student->absent_guardian_nid }}" placeholder="Enter absent guardian nid"/>
+                                                @error('absent_guardian_nid')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>

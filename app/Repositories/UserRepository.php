@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Http\Requests\AdmissionRequest;
 use App\Http\Requests\SchoolStaffRequest;
 use App\Http\Requests\StaffRequest;
+use App\Http\Requests\StudentProfileRequest;
 use App\Http\Requests\TeacherRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -224,5 +225,36 @@ class UserRepository extends Repository
             'pds_id' => $request->pds_id,
         ]);
 
+    }
+    // Student profule update method
+    public static function studentProfileUpdate(StudentProfileRequest $request, User $user){
+        // $user = self::query()->where('id', $userId)->first();
+        $imageId = null;
+        if ($user->image) {
+            if ($request->hasFile('image')) {
+                $image = MediaRepository::updateByRequest(
+                    $request->image,
+                    self::$student,
+                    'image',
+                    $user->image
+                );
+                $imageId = $image->id;
+            }
+        }else{
+            if ($request->hasFile('image')) {
+                $image =  MediaRepository::storeByRequest(
+                    $request->image,
+                    self::$student,
+                    'image'
+                );
+                $imageId = $image->id;
+            }
+        }
+
+        return self::update($user,[
+            'profile_id' => $imageId ?? $user->profile_id,
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
     }
 }

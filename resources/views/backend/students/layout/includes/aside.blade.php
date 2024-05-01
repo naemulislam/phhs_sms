@@ -2,7 +2,7 @@
 	<!--begin::Brand-->
 	<div class="brand flex-column-auto" id="kt_brand">
 		<!--begin::Logo-->
-		<a href="{{route('school.dashboard')}}" class="brand-logo">
+		<a href="{{route('student.dashboard')}}" class="brand-logo">
 			<h5>PHH School</h5>
 		</a>
 		<!--end::Logo-->
@@ -30,7 +30,7 @@
 			<!--begin::Menu Nav-->
 			<ul class="menu-nav">
 				<li class="menu-item menu-item-active" aria-haspopup="true">
-                    <a href="{{ route('school.dashboard') }}" class="menu-link">
+                    <a href="{{ route('student.dashboard') }}" class="menu-link">
                         <span class="svg-icon menu-icon">
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -51,10 +51,10 @@
                     </a>
                 </li>
                 <li class="menu-section">
-                    <h4 class="menu-text">Custom</h4>
+                    <h4 class="menu-text">Sidebar Menue</h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
-                
+
                 <!--Category-->
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
@@ -83,8 +83,8 @@
                                     <span class="menu-text">Class report</span>
                                 </span>
                             </li>
-                
-                
+
+
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                 <a href="" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
@@ -93,12 +93,12 @@
                                     <span class="menu-text">Calss</span>
                                     <i class="menu-arrow"></i>
                                 </a>
-                
+
                             </li>
                         </ul>
                     </div>
                 </li>
-                
+
 			</ul>
 			<!--end::Menu Nav-->
 		</div>
