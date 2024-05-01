@@ -113,15 +113,13 @@
     @endif
     @if (Session::has('error'))
     <script>
-        toastr.success("{{ Session::get('error') }}");
+        toastr.error("{{ Session::get('error') }}");
     </script>
     @endif
 
     @stack('customjs')
     <script>
         $(document).ready(function() {
-
-
             /*mobile menu*/
             $('.menu-icon').on('click', function() {
                 $('.mobile-menu').toggleClass('mobile-menu-active');

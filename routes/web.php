@@ -67,6 +67,7 @@ Route::controller(HomeController::class)->group(function(){
     //Result
     Route::get('/result', 'result')->name('result');
     Route::get('/result/search', 'forntResultSearch')->name('fornt.result.search');
+    Route::post('/result/search/published', 'forntResultSearchFind')->name('fornt.result.search.find');
     //end result route
     Route::get('/academic/subject', 'academicSubject')->name('academic.subject');
     //Gallery route

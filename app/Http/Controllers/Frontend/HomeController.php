@@ -24,6 +24,7 @@ use App\Repositories\SlybusRepository;
 use App\Repositories\StaffRepository;
 use App\Repositories\StudentRepository;
 use App\Repositories\TeacherRepository;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -80,64 +81,94 @@ class HomeController extends Controller
     public function students(Group $group)
     {
         // get all student is active
-        $data['students'] = StudentRepository::query()->where('group_id',$group->id)->where('status',1)->whereHas('user', function($query){
-            $query->where('role','student')->where('is_active',true);
+        $data['students'] = StudentRepository::query()->where('group_id', $group->id)->where('status', 1)->whereHas('user', function ($query) {
+            $query->where('role', 'student')->where('is_active', true);
         })->get();
         // get class wise total student
-        $data['totalStudents'] = StudentRepository::query()->where('group_id',$group->id)->where('status',1)->whereHas('user', function($query){
-            $query->where('role','student')->where('is_active',true);
+        $data['totalStudents'] = StudentRepository::query()->where('group_id', $group->id)->where('status', 1)->whereHas('user', function ($query) {
+            $query->where('role', 'student')->where('is_active', true);
         })->count();
         // get class wise total male student
-        $data['maleStudents'] = StudentRepository::query()->where('gender','male')->where('group_id',$group->id)->where('status',1)->whereHas('user', function($query){
-            $query->where('role','student')->where('is_active',true);
+        $data['maleStudents'] = StudentRepository::query()->where('gender', 'male')->where('group_id', $group->id)->where('status', 1)->whereHas('user', function ($query) {
+            $query->where('role', 'student')->where('is_active', true);
         })->count();
         // get class wise total female student
-        $data['femaleStudents'] = StudentRepository::query()->where('gender','female')->where('group_id',$group->id)->where('status',1)->whereHas('user', function($query){
-            $query->where('role','student')->where('is_active',true);
+        $data['femaleStudents'] = StudentRepository::query()->where('gender', 'female')->where('group_id', $group->id)->where('status', 1)->whereHas('user', function ($query) {
+            $query->where('role', 'student')->where('is_active', true);
         })->count();
 
-        return view('frontend.students', $data,compact('group'));
+        return view('frontend.students', $data, compact('group'));
     }
     // classRoutin page show
     public function classRoutin()
     {
-        $classRoutines = ClassRoutineRepository::query()->where('is_active',true)->get();
-        return view('frontend.class_routin',compact('classRoutines'));
+        $classRoutines = ClassRoutineRepository::query()->where('is_active', true)->get();
+        return view('frontend.class_routin', compact('classRoutines'));
     }
     // examRoutin page show
     public function examRoutin()
     {
-        $examRoutines = ExamRoutineRepository::query()->where('is_active',true)->get();
-        return view('frontend.exam_routin',compact('examRoutines'));
+        $examRoutines = ExamRoutineRepository::query()->where('is_active', true)->get();
+        return view('frontend.exam_routin', compact('examRoutines'));
     }
     // sylebus page show
     public function sylebus()
     {
-        $slybuses = SlybusRepository::query()->where('is_active',true)->get();
-        return view('frontend.sylebus',compact('slybuses'));
+        $slybuses = SlybusRepository::query()->where('is_active', true)->get();
+        return view('frontend.sylebus', compact('slybuses'));
     }
     // result page show
     public function result()
     {
-        $results = ResultRepository::query()->where('is_active',true)->get();
-        return view('frontend.result',compact('results'));
+        $results = ResultRepository::query()->where('is_active', true)->get();
+        return view('frontend.result', compact('results'));
     }
-    public function forntResultSearch(){
+    public function forntResultSearch()
+    {
         $groups = GroupRepository::query()->where('is_active', true)->get();
         $years = SubmissionResult::select('year')->distinct()->get();
-        return view('frontend.result_search',compact('groups','years'));
+        return view('frontend.result_search', compact('groups', 'years'));
+    }
+    public function forntResultSearchFind(Request $request)
+    {
+        $request->validate([
+            'group_id' => 'required',
+            'year' => 'required',
+            'exam_type' => 'required',
+            'roll' => 'required',
+        ]);
+        $group_id = $request->group_id;
+        $year = $request->year;
+        $exam_type = $request->exam_type;
+        $roll = $request->roll;
+        $groups = GroupRepository::query()->where('is_active', true)->get();
+        $years = SubmissionResult::select('year')->distinct()->get();
+        $results = SubmissionResult::with('student')->where('group_id', $group_id)
+            ->where('year', $year)
+            ->where('exam_type', $exam_type)
+            ->where('roll', $roll)->get();
+            // dd($results);
+        $totalMarks = SubmissionResult::with('student')->where('group_id', $group_id)
+            ->where('year', $year)
+            ->where('exam_type', $exam_type)
+            ->where('roll', $roll)->sum('mark');
+        if ($results->count()) {
+            return view('frontend.result_published', compact('groups', 'years', 'results', 'totalMarks'));
+        } else {
+            return back()->with('error', 'Data not found!');
+        }
     }
     // academicSubject page show
     public function academicSubject()
     {
-        $groups = GroupRepository::query()->where('is_active',true)->get();
-        return view('frontend.academic_subject',compact('groups'));
+        $groups = GroupRepository::query()->where('is_active', true)->get();
+        return view('frontend.academic_subject', compact('groups'));
     }
     // galleryPhoto page show
     public function galleryPhoto()
     {
-        $galleries = Gallery::latest()->where('is_active',true)->get();
-        return view('frontend.image_gallery',compact('galleries'));
+        $galleries = Gallery::latest()->where('is_active', true)->get();
+        return view('frontend.image_gallery', compact('galleries'));
     }
     // videoGallery page show
     public function videoGallery()
@@ -152,8 +183,8 @@ class HomeController extends Controller
     // schoolStaff page show
     public function schoolStaff()
     {
-        $staffs = StaffRepository::query()->whereHas('user', function($query){
-            $query->where('role', 'staff')->where('is_active',true);
+        $staffs = StaffRepository::query()->whereHas('user', function ($query) {
+            $query->where('role', 'staff')->where('is_active', true);
         })->get();
         $totalStaffs = StaffRepository::query()->whereHas('user', function ($query) {
             $query->where('role', 'staff')->where('is_active', true);
@@ -165,21 +196,23 @@ class HomeController extends Controller
         $femaleStaff = StaffRepository::query()->where('gender', 'female')->whereHas('user', function ($query) {
             $query->where('role', 'staff')->where('is_active', true);
         })->count();
-        return view('frontend.school_staff',compact('staffs','totalStaffs','maleStaffs','femaleStaff'));
+        return view('frontend.school_staff', compact('staffs', 'totalStaffs', 'maleStaffs', 'femaleStaff'));
     }
-    public function newCommitteeIndex(){
+    public function newCommitteeIndex()
+    {
         $committees = CommitteeRepository::query()->where('is_active', true)->get();
         return view('frontend.new_committee', compact('committees'));
     }
-    public function oldCommitteeIndex(){
+    public function oldCommitteeIndex()
+    {
         $committees = CommitteeRepository::query()->where('is_active', false)->get();
         return view('frontend.old_committee', compact('committees'));
     }
     // All Notice page show
     public function allNotice()
     {
-        $allNotices = NoticeRepository::query()->where('is_active',true)->get();
-        return view('frontend.all_notice',compact('allNotices'));
+        $allNotices = NoticeRepository::query()->where('is_active', true)->get();
+        return view('frontend.all_notice', compact('allNotices'));
     }
     //Annual result page show
     public function annualResult()
